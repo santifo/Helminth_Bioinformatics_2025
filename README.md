@@ -34,7 +34,8 @@ After completing this course, you will be able to:
 
 | Course Date | Course Title | Location |Citation DOI |
 |-------------|--------------|----------|-------------|
-| 18–24 May 2025 | [Helminth Bioinformatics - Latin America & the Caribbean](https://github.com/WCSCourses/HelminthBioinformatics_2023)| Universidad de la Republica, Uruguay | Citation DOI |
+| 21–27 May 2023 | [Helminth Bioinformatics - Asia ](https://github.com/WCSCourses/HelminthBioinformatics_2023)| Khon Kaen University, Thailand | Citation DOI |
+| 18–24 May 2025 | [Helminth Bioinformatics - Latin America & the Caribbean](https://github.com/WCSCourses/Helminth_Bioinformatics_2025)| Universidad de la Republica, Uruguay | Citation DOI |
 
 ******
 
