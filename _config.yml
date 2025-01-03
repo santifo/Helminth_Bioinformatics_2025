@@ -1,3 +1,19 @@
-remote_theme: pages-themes/time-machine@v0.2.0
+
+theme: minima
+
 plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
+  - jekyll-relative-links
+  - jekyll-remote-theme
+
+relative_links:
+  enabled: true
+  collections: true
+
+include:
+  - module_1_WBP1.md
+  - module_linux_scripting.md
+  - module_3_WBP2.md
+
+header_pages:
+- about.md
+- portfolio.md
