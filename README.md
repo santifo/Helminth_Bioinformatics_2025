@@ -1,33 +1,40 @@
 <img src="https://coursesandconferences.wellcomeconnectingscience.org/wp-content/themes/wcc_courses_and_conferences/dist/assets/svg/logo.svg" width="300" height="50"> 
 
-# Add Course Title
+# Helminth Bioinformatics
 
 [Wellcome Connecting Science GitHub Home Page](https://github.com/WCSCourses) <br /> 
 [Wellcome Connecting Science Website](https://coursesandconferences.wellcomeconnectingscience.org/)
 
-Add one line description of the course (the same needs to be added on the right side of the page in the description)
+Practical hands-on training in helminth genome analysis
 
 ### Summary
 
-Add text here
+Advancements in sequencing technologies have enabled the production of draft and high-quality genome assemblies for the most significant disease-causing helminths. However, the full potential of these data remains unrealised due to challenges in data manipulation and computational analyses, which often hinder their maximum benefit and accurate interpretation. This Helminth Bioinformatics course is designed to bridge that gap, empowering attendees with the skills to access, analyse, and present large-scale genomic data effectively.
 
-### Target Audience
+**What Will This Course Cover?**
 
-Add text here
+Through immersive, hands-on training, you will master key bioinformatics techniques, including read mapping, transcriptomics, phylogenetics, genome assembly and genetic variation analysis, all tailored to address the challenges presented by large helminth genomes. By the end of this course, you will not only have a toolkit of cutting-edge bioinformatics skills but also the confidence to overcome the challenges of large-scale genomic data.
+
+In addition, the course integrates science engagement training into its curriculum, equipping you with the skills and confidence to communicate complex genomic concepts to non-specialist audiences. You will explore effective science communication approaches and work collaboratively to design and deliver a live engagement event for the local community. This practical experience will enhance your bioinformatics expertise and outreach capabilities.
 
 ### Learning outcomes
 
-Add text here
+After completing this course, you will be able to:
 
-### Programme
-
-Add text here
+- utilise essential bioinformatics tools to format and manipulate helminth genomic data for various analysis workflows.
+- use long read sequence data, taken from a sequencing machine, to perform downstream analyses.
+- download, manage, and visualise large-scale helminth genomic data using genome browsers.
+- map sequencing read data to a helminth reference genome and visualise using a genome browser.
+- characterise helminth genomic variation, identifying SNP variants and other markers important for downstream analysis.
+- construct phylogenetic trees to study evolutionary relationships among helminth samples.
+- design experiments and analyse helminth transcriptomic data to interpret differential gene expression patterns.
+- deliver engaging outreach activity for non-specialist genomics audiences.
 
 **Course Runs**      
 
 | Course Date | Course Title | Location |Citation DOI |
 |-------------|--------------|----------|-------------|
-| Add Course Run Dates  | [Add Course Run Title](Add Github Repository link) | Location|Citation DOI |
+| 18–24 May 2025 | [Helminth Bioinformatics - Latin America & the Caribbean](https://github.com/WCSCourses/HelminthBioinformatics_2023)| Universidad de la Republica, Uruguay | Citation DOI |
 
 ******
 
