@@ -186,7 +186,7 @@ You can learn more about the Genome Browser [here](https://parasite.wormbase.org
 There is an alternative interactive Genome Browser in WormBase ParaSite that can be accessed by the "View region in Jbrowse" button at the top-right of the gene page but we're going to talk about it in our next module!
 </details>
 
-5. Navigate back to the gene page by clicking the "Gene:inx" tab at the top of the page.
+5. Navigate back to the gene page by clicking the "Gene:inx" tab at the top of the page. Notice that there are different tabs to rapidly jump from the genomic context, gene info or transcripts information.
 
 As well as gene pages, WormBase ParaSite has a page for each transcript that a gene produces. In this case, only one transcript isoform has been annotated.
 
