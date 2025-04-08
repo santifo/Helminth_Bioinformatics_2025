@@ -227,7 +227,7 @@ A fast way to find out about the function of a gene’s product is to see which 
 
 1. Click the “Gene:inx” tab at the top of the page to return to the main gene page, then select "Biological process" and/or “Cellular component” from the Gene Ontology section of the navigation menu.
 
-![](figures/figure_3.12.png)
+![](figures/figure_3.12b.png)
 
 WormBase ParaSite imports GO annotations from three sources:
 - Terms assigned by UniProt
