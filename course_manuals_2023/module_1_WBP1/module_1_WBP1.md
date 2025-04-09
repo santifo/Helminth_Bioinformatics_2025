@@ -7,7 +7,7 @@
     * [Genomes: the basics](#basics_genomes)
     * [Sequence databases](#sequence_databases)
 3. [Looking at genomes in WormBase ParaSite](#wbps_genomes)
-    * [EXERCISE](#genomes_exercise)
+    * [EXERCISE 1](#genomes_exercise)
     * [Submit a genome to WormBase ParaSite](#submit_genome)
 4. [Looking at genes in WormBase ParaSite](#wbps_genes)
     * [The gene page](#gene_page)
@@ -16,9 +16,9 @@
     * [Protein domains](#protein_domains)
     * [AlphaFold 3D protein structures](#af)
     * [Orthologues and paralogues](#comparative_genomics)
-    * [EXERCISE](#gene_page_exercise)
+    * [EXERCISE 2](#gene_page_exercise)
 5. [BioMart](#biomart)
-    * [EXERCISE](#biomart_exercise)
+    * [EXERCISE 3](#biomart_exercise)
 
 ## Overview and Aims <a name="intro"></a>
 In this first module we'll start by reviewing the basics on genes and genomes: what they are, how we represent and talk about them, and how we go from a DNA sequence- a string of letters- to making predictions about gene function. We'll look at this in the context of WormBase ParaSite (which you might also see referred to as WBPS) and other online database resources. 
@@ -119,10 +119,11 @@ The information in this box tells us about two metrics related to the quality of
 <br><br>
 
 ---
-#### Genome assembly metrics exercise <a name="genomes_exercise"></a>
+### _EXERCISE 1 - Genome assembly metrics_ <a name="genomes_exercise"></a>
 
 1. Find the two other genome assemblies from different _Brugia_ species in WormBase ParaSite, which are of lower quality than _Brugia malayi_.
-2. According to their scaffold statistics and BUSCO scores, which of these two assemblies is more contiguous and complete?
+   
+3. According to their scaffold statistics and BUSCO scores, which of these two assemblies is more contiguous and complete?
 
 ---
 #### How to submit a genome to WormBase ParaSite? <a name="submit_genome"></a>
@@ -409,7 +410,7 @@ You can read more about this pipeline [here](http://www.ensembl.org/info/genome/
 
 [↥ **Back to top**](#top)
 
-#### Gene page exercise <a name="gene_page_exercise"></a>
+### _EXERCISE 2 - Gene page information retrival_ <a name="gene_page_exercise"></a>
 
 The aim of this exercise is to familiarise yourself with the WormBase ParaSite gene page.
 Go to the gene page for the _Trichuris muris_ gene TMUE_2000008757 and retrieve the following information:
@@ -498,7 +499,7 @@ BioMart lets us generate two types of output: data tables, and sequence (FASTA) 
 [↥ **Back to top**](#top)
 
 ---
-#### BioMart exercise <a name="biomart_exercise"></a>
+### _EXERCISE 3 - BioMart data retrival_ <a name="biomart_exercise"></a>
 
 Use the following _S. ratti_  gene **names** (note: names, not stable IDs) and use BioMart to answer questions 1-5.
 
