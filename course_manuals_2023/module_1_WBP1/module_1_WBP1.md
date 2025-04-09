@@ -309,7 +309,7 @@ WormBase ParaSite has imported all AlphaFold predicted models available for its 
 
 You can now view the shiny new interactive 3D AlphaFold structure of the protein. The interactive molecular viewer visualizes the structure, coloured by the per-residue pLDDT confidence measure. 
 
-Drag and drop with your mouse over the protein model to rotate it and use your mouse wheel to zoom in/out. You can use the right panel to visualise exons as well protein domains and features on the 3D model. This might give you a better understanding of where your domains of interest are. 
+Drag and drop with your mouse over the protein model to rotate it and use your mouse wheel to zoom in/out. You can use the right panel to visualise exons as well protein domains and features on the 3D model (toggle the eye or + symbol to view options). This might give you a better understanding of where your domains of interest are. 
 
 <details close>
 <summary>What can I do with an AlphaFold protein structure?</summary>
@@ -321,7 +321,11 @@ To download the raw files for an AlphaFold protein structure you found in WormBa
 
 Then you could use the structure file to perform subsequent analyses. Online tools that can be used with the downloaded structures from AlphaFold:
 
-- [SwissDock](http://www.swissdock.ch/), a web service to predict the molecular interactions that may occur between a target protein and a small molecule. It is used alongside S3DB, a database of manually curated target and ligand structures, inspired by the Ligand-Protein Database. 
+- [SwissDock](http://www.swissdock.ch/), a web service to predict the molecular interactions that may occur between a target protein and a small molecule.
+  It is used alongside S3DB, a database of manually curated target and ligand structures, inspired by the Ligand-Protein Database. 
+
+- [SwissModel](http://www.swissmodel.expasy.org/), a fully automated protein structure homology-modelling server, accessible via the Expasy web server.
+  It allows to generate novel homology models, generate structural overlaps, and annotate them.
 
 - [Zhang group Online-serivces portal](https://zhanggroup.org/)
   - Docking simulations (https://zhanggroup.org/EDock/) against different ligands.
