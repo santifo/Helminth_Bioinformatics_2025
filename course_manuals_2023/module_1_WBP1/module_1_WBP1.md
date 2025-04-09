@@ -356,7 +356,7 @@ WormBase ParaSite groups all helminth genes, together with comparator genes from
 
 For each family, we arrange the genes into an evolutionary tree. 
 
-1. Select “Gene tree” from the Comparative Genomics section of the navigation menu on the gene page.
+1. Go back to the gene page tab and select “Gene tree” from the Comparative Genomics section of the left navigation menu.
 
 ![](figures/figure_3.13.png)
 
