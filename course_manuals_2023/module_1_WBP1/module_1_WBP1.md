@@ -196,8 +196,14 @@ As well as gene pages, WormBase ParaSite has a page for each transcript that a g
 
 ![](figures/figure_3.5.png)
 
-Notice that there are different tabs to rapidly jump from the genomic context, gene info or transcripts information. The navigation menu of the left hand side of the page, automatically updates with information available for each level.  
+
+Notice that there are different tabs to rapidly jump from the genomic context, gene info or transcripts information. 
+
+The navigation menu of the left hand side of the page, automatically updates with information available for each level.
+
 Again using the navigation menu on the left hand side of the page, we can retrieve three main types of information on the transcript: sequences, information about the protein domains, and external references.
+
+
 
 ![](figures/figure_3.6.png)
 
