@@ -15,7 +15,7 @@ output:
 1. [Overview and Aims](#aims)
 2. [Tools](#tools)
     * [BLAST](#blast)
-      * [EXERCISE](#blast_exercise)
+      * [EXERCISE 1](#blast_exercise)
     * [The genome browser](#genome_browser)
     * [VEP](#vep)
       * [EXERCISE](#vep_exercise)
@@ -93,7 +93,9 @@ similarity has a 5 in 100 (1 in 20) chance of occurring by chance alone.
 [↥ **Back to top**](#top)
 
 ---
-### BLAST exercise <a name="blast_exercise"></a>
+### _EXERCISE 1 BLAST exercise_ <a name="blast_exercise"></a>
+
+- Use WormBase ParaSite BLAST to find out the identity of this sequence, and which species it belongs to.
 
 ```
 TTTGCAGATGCTTCTCCCTTCAAACTTGACGACGTCAACATTAATGACGTCATCATCAGA
@@ -122,7 +124,6 @@ AGCCCAACGAATTGCCAATGCCATATCTTTAACAACTTTTATGGTTTCTTGTTTGTTTTT
 TTTTATTTATTTTATTGTAATGTTTGATTCTCGGTGAAAAATTTGTGTAAAATAAATTAT
 TTTTTATGTGAAA
 ```
-- Use WormBase ParaSite BLAST to find out the identity of this sequence, and which species it belongs to.
 - Does it have any close hits in other genomes?
 - BONUS question: Try BLASTing against both cDNA and a genomic DNA databases. What kind of sequence is this?
 
