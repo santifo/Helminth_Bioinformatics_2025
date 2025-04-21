@@ -75,7 +75,7 @@ Both options will take you to WormBase ParaSite's BLAST tool page:
 Blast jobs are summarized in a table with a link to the results. The results page initially displays as a table with several (expandable) information columns. 
 We need to pay particular attention to some metrics of the comparisons.
 
-![](figures/Blast_5.png)
+![](figures/BLAST_5.png)
 
 Metrics used in the results table:
 - **Score**: The bit score gives an indication of how good the alignment is; the higher the score, the better the alignment.
