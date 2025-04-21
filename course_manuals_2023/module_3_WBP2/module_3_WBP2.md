@@ -202,6 +202,19 @@ Let’s say you want to see in which life stages Smp_312440 is expressed:
 - By mousing over the histogram, you can see the exact number of aligned reads at each base. 
 - We can see that a lot of the tracks show biological replicates of the same condition.- We can use combination tracks to combine replicate tracks “on the fly”, so we use up less space on the screen.
 
+* In the main menu at the top of the page, select “Track” and “Add combination track”.
+
+A new empty track should appear. You can then drag and drop existing tracks in to combine them. When you add additional tracks, a dialogue box should appear for you to select the type of operation to use to combine them. For this example, we’ll choose “addition”: you’ll now see the total number of reads across both selected libraries that aligned at each region. Note that different set operations can be performed, including subtraction, multiplication and division; these might make sense depending on the tracks that are being combined and the information that you’re interested in.
+
+![](figures/jbrowse_7.png)
+
+As well as seeing that Smp_312440 is expressed in these conditions, we can use the coverage histograms to assess the quality of the gene model. Most parasitic worm genomes are annotated with automated pipelines. Whilst annotation algorithms can often be very accurate, they are not infallible. Most of the gene models that you look at in WormBase ParaSite will not have been checked by a human curator, so it is wise not to take them as “truth" unless you verify that they agree with any evidence that is available.
+
+![](figures/jbrowse_8.png)
+
+In this case we can see that each of the exons in the gene model have got good RNASeq coverage, with no additional exons suggested by the RNASeq data.
+
+
 #### Visualising your own data
 
 As well as looking at publicly available data, you can use WormBase ParaSite JBrowse to visualise your own data.
