@@ -71,10 +71,12 @@ Both options will take you to WormBase ParaSite's BLAST tool page:
 ![](figures/BLAST_4.png)
 
 **How to evaluate Blast results?**
-   
+
+Blast jobs are summarized in a table with a link to the results. The results page initially displays as a table with several (expandable) information columns. 
+We need to pay particular attention to some metrics of the comparisons.
+
 Metrics used in the results table:
-- **Score**: The bit score gives an indication of how good the alignment is; the higher the score, the better
-the alignment.
+- **Score**: The bit score gives an indication of how good the alignment is; the higher the score, the better the alignment.
 - **E-value**: The E-value gives an indication of the statistical significance of each alignment. A sequence alignment that has an E-value of 0.05 means that this
 similarity has a 5 in 100 (1 in 20) chance of occurring by chance alone.
 - **%ID or percent identity**: Percent identity is telling you how many residues in your query are an identical match to the hit. Closely related sequences will have a much higher % identity.
