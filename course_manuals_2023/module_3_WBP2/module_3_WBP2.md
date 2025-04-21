@@ -35,7 +35,7 @@ Finally, the module ends with a Bonus section introducing our Expression browser
 ---
 ## Tools <a name="tools"></a>
 
-### BLAST <a name="blast"></a>
+## BLAST <a name="blast"></a>
 
 BLAST (Basic Local Alignment Search Tool) is one of the most commonly used tools to search for sequences that are similar to each other. It is a fast searching programme that is able to compare a query sequence with hundreds to millions of sequences quickly. 
 
@@ -123,7 +123,7 @@ TTTTTATGTGAAA
 [↥ **Back to top**](#top)
 
 ---
-### The genome browser <a name="genome_browser"></a>
+## The genome browser <a name="genome_browser"></a>
 
 A genome browser is a tool that allows you to visualise a genome assembly and its features, together with experimental data aligned to the genome.
 
@@ -135,7 +135,7 @@ There are several commonly used genome browsers in bioinformatics, each with dif
 
 There are many other genome browsers for different needs out there. Feel free to explore them at your own time: [Integrative Genomics Viewer (IGV)](https://igv.org/),[UCSC Genome Browser](https://genome.ucsc.edu/),[Artemis/Artemis Comparison Tool (ACT)](https://www.sanger.ac.uk/tool/artemis-comparison-tool-act/) and the new version of Jbrowse: [Jbrowse 2](https://jbrowse.org/jb2/) 
 
-#### Using JBrowse: basic functionality
+### Using JBrowse: basic functionality
 
 In this example we’ll introduce the basic functionality of WormBase ParaSite's JBrowse 1, and demonstrate how to use the various tracks.
 
@@ -170,7 +170,7 @@ file.
 
 ![](figures/jbrowse_4.png)
 
-#### Tracks
+### Tracks
 
 We can also use JBrowse to view other types of data aligned to the genome. 
 
@@ -208,7 +208,7 @@ As well as seeing that Smp_312440 is expressed in these conditions, we can use t
 In this case we can see that each of the exons in the gene model have got good RNASeq coverage, with no additional exons suggested by the RNASeq data.
 
 
-#### Visualising your own data
+### Visualising your own data
 
 As well as looking at publicly available data, you can use WormBase ParaSite JBrowse to visualise your own data.
 
@@ -240,6 +240,7 @@ Move down through the file (by pressing the space bar) until you come to the ali
 ![](figures/jbrowse_11.png)
 
 The full SAM specification is available here: http://samtools.github.io/hts-specs/
+</details>
 
 Before we can visualise the file in JBrowse, we need to create an index. An index is another file that often accompanies a BAM file, and acts like a table of contents. Software such as JBrowse can look inside the index file and find where exactly in the corresponding BAM file it needs to look, without having to go through all of the reads (which would be computationally very expensive).
 
@@ -269,7 +270,7 @@ Now we can see the reads aligned to the genome. Notice that this RNA-Seq data is
 [↥ **Back to top**](#top)
 
 ---
-### VEP <a name="vep"></a>
+## VEP <a name="vep"></a>
 
 Another WormBase ParaSite tool that we will look at today is the Variant Effect Predictor, or VEP.
 
