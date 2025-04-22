@@ -208,6 +208,18 @@ As well as seeing that Smp_312440 is expressed in these conditions, we can use t
 In this case we can see that each of the exons in the gene model have got good RNASeq coverage, with no additional exons suggested by the RNASeq data.
 
 
+#### Motif searching
+
+It might be useful to have a quick, visual way of showing where certain motifs (short, defined DNA sequences) are found in the reference sequence. JBrowse offers a quick and flexible way to do this. We’ll demonstrate this by generating a track for the TATA box sequence (a sequence found in the promoter region of many eukaryotic genes). The consensus TATA sequence is TATA[A/T]A[A/T] (where [A/T] indicates that either A or T could be present at that position).
+
+* In JBrowse, select “Track” from the main menu bar, followed by “Add sequence search track”.
+* Type the motif that we’re searching for in the dialogue box, in this format: TATA[AT]A[AT], and tick “Treat as regular expression”. This means that the [AT] section of the motif will be interpreted as a regular expression (ie, the base in this position can be either A or T). Click “Search”.
+
+![](figures/jbrowse_9.png)
+
+Going back to the main JBrowse window, a new track has appeared with all instances of the motif marked. Zooming in to the 5-prime end of Smp_312440, we can see that one of these is well positioned to be our TATA box.
+
+
 ### Visualising your own data
 
 As well as looking at publicly available data, you can use WormBase ParaSite JBrowse to visualise your own data.
