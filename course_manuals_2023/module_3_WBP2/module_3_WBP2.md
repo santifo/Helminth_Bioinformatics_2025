@@ -254,8 +254,6 @@ Software such as JBrowse can look inside the index file and find where exactly i
 You should now see a file called SRR3223448.bam.bai in your working directory. We can now load the file into WormBase ParaSite JBrowse.
 
 
-![](figures/jbrowse_12.png)
-<br>
 
 We can only add an indexed BAM file to Jbrowse (BAM file accompanied by a file with the same name with the addition of a .bai suffix). The BAM file in the directory is already indexed (You should see a file called SRR3223448.bam.bai in your working directory.)
 
@@ -265,9 +263,14 @@ We can only add an indexed BAM file to Jbrowse (BAM file accompanied by a file w
     - Select both the BAM file and the index file. JBrowse guesses the file type from the name, but we have an option to correct it if it gets it wrong. We can see that it’s right this time.
     - Click “Open”.
 
+![](figures/jbrowse_12.png)
+<br>
+
 Now we can see the reads aligned to the genome. Notice that this RNA-Seq data is stranded- this means that the library preparation protocol preserved information on which end of the RNA molecule was 5-prime and which end was 3-prime, so we can infer which strand of DNA it was transcribed from. This information is encoded in the BAM file, and JBrowse colours the reads accordingly:
 - reads aligning to the forward strand are $\textcolor{pink}{\textsf{pink}}$
 - and reads aligning to the reverse strand are $\textcolor{purple}{\textsf{purple}}$
+
+
 
 [↥ **Back to top**](#top)
 
