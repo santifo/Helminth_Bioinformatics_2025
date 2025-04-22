@@ -7,7 +7,7 @@
       * [EXERCISE 1](#blast_exercise)
     * [The genome browser](#genome_browser)
     * [VEP](#vep)
-      * [EXERCISE](#vep_exercise)
+      * [EXERCISE_2](#vep_exercise)
 3. [Accessing WormBase ParaSite data programmatically](#programmatic_access)
     * [Working with sequence and annotation files](#files)
     * [The REST API](#api)
@@ -123,7 +123,7 @@ TTTTTATGTGAAA
 [↥ **Back to top**](#top)
 
 ---
-## The genome browser <a name="genome_browser"></a>
+## JBROWSE - The genome browser <a name="genome_browser"></a>
 
 A genome browser is a tool that allows you to visualise a genome assembly and its features, together with experimental data aligned to the genome.
 
@@ -293,7 +293,7 @@ Now we can see the reads aligned to the genome. Notice that this RNA-Seq data is
 [↥ **Back to top**](#top)
 
 ---
-## VEP <a name="vep"></a>
+## VEP Variant Effect Predictor <a name="vep"></a>
 
 Another WormBase ParaSite tool that we will look at today is the Variant Effect Predictor, or VEP.
 
@@ -362,7 +362,7 @@ To do this:
 
 [↥ **Back to top**](#top)
 
-#### VEP exercise <a name="vep_exercise"></a>
+### _EXERCISE 2 : Variant Effect Prediction exercise_ <a name="vep_exercise"></a>
 
 Download the VEP results from the example above as a “VEP file”. Use this file and the original VCF file to answer the following questions:
 
