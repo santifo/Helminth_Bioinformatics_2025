@@ -228,8 +228,10 @@ We’ll demonstrate how to do this using a BAM file that we have provided for yo
 As a BAM file, this file is binary, so trying to read it as it is won’t be very informative. To read it we should first convert it into the SAM file format (non-binary, human-readable). We can do that with samtools:  [Samtools](http://www.htslib.org/doc/samtools.html) is a useful software package for manipulating SAM and BAM files.
 
 
+
 <details closed>
-<summary> <- Click here to read more about the BAM and SAM file formats at your own time.</summary>
+<summary> <- Click here to read more about the BAM and SAM file formats at your own time.</summary>   
+
 The SAM file starts with a header section. All header lines begin with a ‘@’ character.
 
 ![](figures/jbrowse_10.png)
@@ -239,13 +241,18 @@ Move down through the file (by pressing the space bar) until you come to the ali
 ![](figures/jbrowse_11.png)
 
 The full SAM specification is available here: http://samtools.github.io/hts-specs/
+
+If you’ve looked at RNA sequencing data before, you may notice something unusual about the reads in this file: they’re very long! Until recently, next generation sequencing reads were typically ~100bp in length, so transcripts had to be sequenced in short sections at high coverage and reconstructed computationally. This BAM file contains “IsoSeq” data, from the Pacific Biosciences platform, whereby full length transcripts have been sequences in their entirety.
+
+
 </details>
 
 
 
-* In the module 3 data directory you should find a file named SRR3223448.bam. 
 
-- We will use a samtools command to convert the BAM file to a SAM file so we can have a look at how it’s structured. Move to the module 3 data directory and type the following into your terminal:
+In the module 3 data directory you should find a file named SRR3223448.bam. 
+
+We will use a samtools command to convert the BAM file to a SAM file so we can have a look at how it’s structured. Move to the module 3 data directory and type the following into your terminal:
 
     ```bash
     samtools view -h SRR3223448.bam | less
@@ -257,14 +264,13 @@ The full SAM specification is available here: http://samtools.github.io/hts-spec
 Before we can visualise the file in JBrowse, we need to create an index. An index is another file that often accompanies a BAM file, and acts like a table of contents. 
 Software such as JBrowse can look inside the index file and find where exactly in the corresponding BAM file it needs to look, without having to go through all of the reads (which would be computationally very expensive). BAM index files should have exactly the same name as their corresponding BAM file, with the addition of a .bai suffix. 
 
-- We can index our BAM file using samtools. Type:
+We can index our BAM file using samtools. Type:
 
     ```bash
     samtools index SRR3223448.bam
     ```
 
 You should now see a file called SRR3223448.bam.bai in your working directory. We can now load the file into WormBase ParaSite JBrowse.
-
 
 
 We can only add an indexed BAM file to Jbrowse (BAM file accompanied by a file with the same name with the addition of a .bai suffix). The BAM file in the directory is already indexed (You should see a file called SRR3223448.bam.bai in your working directory.)
