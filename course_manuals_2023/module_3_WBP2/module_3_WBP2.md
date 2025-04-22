@@ -41,7 +41,7 @@ BLAST (Basic Local Alignment Search Tool) is one of the most commonly used tools
 
 You can use BLAST to search a query sequence against the sequences in WormBase ParaSite.
 
-**How BLAST works?**
+### How BLAST works? 
 
 BLAST uses three steps:
 ![](figures/BLAST_1.png)
@@ -54,12 +54,12 @@ BLAST uses three steps:
    - The results are then presented as a list of alignments with associated scores. The alignments with the highest scores are most likely to be true matches or homologues of the query sequence.
 
 
-**When do we need to use BLAST?**
+### When do we need to use BLAST?
 - **Discovering new genes or proteins**: Imagine that you have sequenced a gene that is associated with drug resistance in a helminth. You know part of the DNA sequence, but you do not know which gene it belongs to. You can use WormBase ParaSite's BLAST to see if any genes correspond to your sequence!
 - **Discovering variants of genes or proteins**: Imagine you have identified a new protein of helminth which is similar but not identical to any of the  known proteins for this species. You might have found a new isoform of the encoding gene.
 - **Identifying orthologs and paralogs**: You can run BLAST using a protein/gene of a species to find its paralogues or its orthologues in other species.
 
-**BLAST in WormBase ParaSite**
+### BLAST in WormBase ParaSite
 
 The BLAST tool is accessible:
 - From the WormBase ParaSite homepage, select BLAST from the tool bar, or the BLAST icon. 
@@ -70,7 +70,7 @@ The BLAST tool is accessible:
 Both options will take you to WormBase ParaSite's BLAST tool page:
 ![](figures/BLAST_4.png)
 
-**How to evaluate Blast results?**
+### How to evaluate Blast results?
 
 Blast jobs are summarized in a table with a link to the results. The results page initially displays as a table with several (expandable) information columns. 
 We need to pay particular attention to some metrics of the comparisons.
@@ -86,7 +86,7 @@ similarity has a 5 in 100 (1 in 20) chance of occurring by chance alone.
 [↥ **Back to top**](#top)
 
 ---
-### _EXERCISE 1 BLAST exercise_ <a name="blast_exercise"></a>
+### _EXERCISE 1 BLAST search exercise_ <a name="blast_exercise"></a>
 
 - Use WormBase ParaSite BLAST to find out the identity of this sequence, and which species it belongs to.
 
