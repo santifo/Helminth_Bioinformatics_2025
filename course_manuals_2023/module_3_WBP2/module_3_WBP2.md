@@ -437,19 +437,25 @@ grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | less
 
 Use some of the commands you learned yesterday to extract the following information from the "24-hour-schistosomule-vs-cercariae.tsv" file:
 
-4. Extract the top 5 most significantly regulated genes (hint: the final column, "padj", gives the adjusted p value. A smaller adjusted p value = more significant).
+4. Extract the top 5 most significantly regulated genes
+    (hint: the final column, "padj", gives the adjusted p value. A smaller adjusted p value = more significant).
 
 ```bash
 grep  "^Smp_" 24-hour-schistosomule-vs-cercariae.tsv | sort -g -k 7,7 | awk -F'\t' '$7 != "NA"' | head -n 5
 ```
 
-5. Of the genes with an adjusted p-value that is less than 0.05, which is (a) most highly upregulated in the 24h schistosomules v the cercariae (b) most strongly upregulated in the cercariae v the 24h schistosomules?
+5. Of the genes with an adjusted p-value that is less than 0.05, which is
+    (a) most highly upregulated in the 24h schistosomules v the cercariae   
+    (b) most strongly upregulated in the cercariae v the 24h schistosomules?   
+
 ```bash
-# upregulated in the 24h schistosomules means tha Log2FoldChange (column 3) should be a positive number
+# upregulated in the 24h schistosomules means that Log2FoldChange (column 3) should be a positive number
+
 grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | grep -v "^gene_id" | awk -F'\t' '$7 != "NA" && $7 < 0.05 && $3 > 0' | sort -r -g -k 3,3 | head -n 10
 
 
-# upregulated in the cercariate means tha Log2FoldChange (column 3) should be a negative number
+# upregulated in the cercariate means that Log2FoldChange (column 3) should be a negative number
+
 grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | grep -v "^gene_id" | awk -F'\t' '$7 != "NA" && $7 < 0.05 && $3 < 0' | sort -g -k 3,3 | head -n 10
 ```
 
@@ -461,6 +467,7 @@ grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | grep -v "^gene_id" | awk -
 Gene set enrichment analysis (GSEA) (also called functional enrichment analysis or pathway enrichment analysis) is a method to identify classes of genes or proteins that are over-represented in a large set of genes or proteins, and may have an association with disease phenotypes.
 
 ![image](https://user-images.githubusercontent.com/33452269/203346104-4ebe92bf-65c3-44d3-8e16-8bf4cd3342f8.png)
+
 
 In the previous module we talked about Gene Ontology (GO) [here](https://github.com/WCSCourses/HelminthBioinformatics_2023/blob/wbps_edits/manuals/module_1_WBP1/module_1_WBP1.md#go_terms).
 
@@ -485,10 +492,16 @@ and organises them to Gene Ontology terms (GO):
 
 <img src="figures/gprofiler_2.png" width="600">
 <br><br>
+
 WormBase ParaSite offers a tool that performs this kind of analysis: g:Profiler that can be accessed from the "Tools" page:
 
-- Go to WormBase ParaSite (https://parasite.wormbase.org/). Click "Tools" at the top menu. Click "g:Profiler" in the tools table.
+- Go to WormBase ParaSite (https://parasite.wormbase.org/).
+- Click "Tools" at the top menu.
+- Click "g:Profiler" in the tools table.
+- 
 <img width="1440" alt="Screenshot 2022-11-22 at 17 29 02" src="https://user-images.githubusercontent.com/33452269/203386793-b5f8080f-c53f-4cba-9023-876982684f83.png">
+
+
 
 [↥ **Back to top**](#top)
 
