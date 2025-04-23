@@ -11,11 +11,11 @@
 3. [The WormBase ParaSite Expression browser](#expression_data)
       * [EXERCISE](#expression_exercise)
 4. [Gene-set enrichment analysis](#gene-set)
-      * [EXERCISE](#gene-set_exercises)
+      * [EXERCISE_3](#gene-set_exercises)
 5. [Accessing WormBase ParaSite data programmatically](#programmatic_access)
     * [Working with sequence and annotation files](#files)
     * [The REST API](#api)
-      * [EXERCISE](#api_exercises)
+      * [EXERCISE_4](#api_exercises)
 
 
 
@@ -416,7 +416,6 @@ Several files are available for download. These are:
     - Summary files: for each combination of variables for which comparisons have been calculated, this file contains the genes that show a significant difference in at least one comparison. 
     - Full results files: each of these files contain the full DESeq2 results for a contrast (i.e., fold changes for ALL genes, whether or not they are statistically significant).
 
-
 3. Download the full results files for the "Schistosoma mansoni transcriptomics at different life stages" "24-hour-schistosomule-vs-cercariae" experiment by clicking "Full result files for 3 contrasts (zipped) and place it into the "Module_3_WormBaseParaSite_2" directory.
 
 ```bash
@@ -506,7 +505,9 @@ WormBase ParaSite offers a tool that performs this kind of analysis: g:Profiler 
 [↥ **Back to top**](#top)
 
 ---
-### Gene-set enrichment analysis exercise <a name="gene-set_exercises"></a> 
+
+### _EXERCISE 3 : Gene -set enrichment analysis exercise_ <a name="gene-set_exercise"></a>
+
 
 Use the 24-hour-schistosomule-vs-cercariae.tsv from the previous section and print a list of genes with an adjusted p-value that is less than 0.05, which are most strongly upregulated in the cercariae v the 24h schistosomules.
 
@@ -844,7 +845,7 @@ We can see that _M. arenaria_ is the assembly with the highest BUSCO Annotation 
 [↥ **Back to top**](#top)
 
 ---
-### API exercises <a name="api_exercises"></a> 
+### _EXERCISE 4 -API exercise_ <a name="api_exercises"></a> 
 
 Adapt the commands that you used above to retrieve the following information from the WormBase ParaSite API. Note that you’ll need to use different endpoints: browse the site to see which ones to use.
 
