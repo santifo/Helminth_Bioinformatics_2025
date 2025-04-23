@@ -427,6 +427,9 @@ unzip ERP000427.de.contrasts.zip
 cd ERP000427.de.contrasts
 
 # have a look at the 24-hour-schistosomule-vs-cercariae file
+
+head -n 20 24-hour-schistosomule-vs-cercariae.tsv  
+or  
 grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | less
 ```
 
@@ -435,7 +438,7 @@ Use some of the commands you learned yesterday to extract the following informat
 4. Extract the top 5 most significantly regulated genes (hint: the final column, "padj", gives the adjusted p value. A smaller adjusted p value = more significant).
 
 ```bash
-grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | grep -v "^gene_id" | sort -g -k 7,7 | awk -F'\t' '$7 != "NA"' | head -n 5
+grep  "^Smp_" 24-hour-schistosomule-vs-cercariae.tsv | sort -g -k 7,7 | awk -F'\t' '$7 != "NA"' | head -n 5
 ```
 
 5. Of the genes with an adjusted p-value that is less than 0.05, which is (a) most highly upregulated in the 24h schistosomules v the cercariae (b) most strongly upregulated in the cercariae v the 24h schistosomules?
