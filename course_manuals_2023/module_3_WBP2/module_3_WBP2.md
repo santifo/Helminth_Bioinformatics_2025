@@ -5,32 +5,32 @@
 2. [Tools](#tools)
     * [BLAST](#blast)
       * [EXERCISE 1](#blast_exercise)
-    * [The genome browser](#genome_browser)
+    * [JBrowse](#genome_browser)
     * [VEP](#vep)
       * [EXERCISE_2](#vep_exercise)
-3. [Accessing WormBase ParaSite data programmatically](#programmatic_access)
+3. [The WormBase ParaSite Expression browser](#expression_data)
+      * [EXERCISE](#expression_exercise)
+4. [Gene-set enrichment analysis](#gene-set)
+      * [EXERCISE](#gene-set_exercises)
+5. [Accessing WormBase ParaSite data programmatically](#programmatic_access)
     * [Working with sequence and annotation files](#files)
     * [The REST API](#api)
       * [EXERCISE](#api_exercises)
-4. [The WormBase ParaSite Expression browser](#expression_data)
-      * [EXERCISE](#expression_exercise)
-5. [Gene-set enrichment analysis](#gene-set)
-      * [EXERCISE](#gene-set_exercises)
+
+
 
 ## Overview and Aims <a name="aims"></a>
 
 In this module, we return to WormBase ParaSite.
 
 We will start by looking at commonly-used tools in WBPS:
-- BLAST
+- BLAST (a sequence comparison tool) 
 - JBrowse (a genome browser)
-- Variant Effect Predictor (VEP)
+- VEP (a Variant Effect Predictor)
 - Gene expression platform
 - g:Profiler
 
-We will then go on to apply some of the command line skills that you were introduced to in module 2 to explore WormBase ParaSite data programmatically.
-
-Finally, the module ends with a Bonus section introducing our Expression browser.
+Finally, we will go on to apply some of the command line skills that you were introduced to in module 2 to explore WormBase ParaSite data programmatically.
 
 ---
 ## Tools <a name="tools"></a>
