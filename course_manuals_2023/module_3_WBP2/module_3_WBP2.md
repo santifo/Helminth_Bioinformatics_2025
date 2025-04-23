@@ -430,15 +430,15 @@ cd ~/Module_3_WormBaseParaSite_2
 ```wget``` is a handy utility for retrieving online files including the ones from the FTP. The following will pull down the _Necator americanus_ GFF3 file into your working directory:
 
 ```bash
-wget http://ftp.ebi.ac.uk/pub/databases/wormbase/parasite/releases/current/species/necator_americanus/PRJNA72135/necator_americanus.PRJNA72135.WBPS18.annotations.gff3.gz
+wget http://ftp.ebi.ac.uk/pub/databases/wormbase/parasite/releases/current/species/necator_americanus/PRJNA72135/necator_americanus.PRJNA72135.WBPS19.annotations.gff3.gz
 
 ```
 
 Unzip the file and have a look at the contents:
 
 ```bash
-gzip -d necator_americanus.PRJNA72135.WBPS18.annotations.gff3.gz
-less necator_americanus.PRJNA72135.WBPS18.annotations.gff3
+gzip -d necator_americanus.PRJNA72135.WBPS19.annotations.gff3.gz
+less necator_americanus.PRJNA72135.WBPS19.annotations.gff3
 ```
 
 Using the commands that you learned yesterday, we can manipulate these files to extract all sorts of information. Break down the following commands to understand what each section is doing:
@@ -452,46 +452,46 @@ To extract the names all of the gene features on scaffold "KI657457":
 # There are various ways to achieve this
 
 # One is:
-grep "^KI657457" necator_americanus.PRJNA72135.WBPS18.annotations.gff3 | grep "\tgene\t" | cut -f9 | grep -o "Name=[^;]\+" | sed -e 's/Name=//'
+grep "^KI657457" necator_americanus.PRJNA72135.WBPS19.annotations.gff3 | grep "\tgene\t" | cut -f9 | grep -o "Name=[^;]\+" | sed -e 's/Name=//'
 
 # Another more specific one is:
-grep -v "#"  necator_americanus.PRJNA72135.WBPS18.annotations.gff3  | awk '$3~/gene/ && $1~/KI657457/ {print}'  | grep -o "Name=[^;]\+" | sed -e 's/Name=//' 
+grep -v "#"  necator_americanus.PRJNA72135.WBPS19.annotations.gff3  | awk '$3~/gene/ && $1~/KI657457/ {print}'  | grep -o "Name=[^;]\+" | sed -e 's/Name=//' 
 ```
 
 Count how many genes each scaffold is annotated with:
 
 ```bash
 # One way to do it:
-grep "\tgene\t" necator_americanus.PRJNA72135.WBPS18.annotations.gff3 | cut -f1 | sort | uniq -c
+grep "\tgene\t" necator_americanus.PRJNA72135.WBPS19.annotations.gff3 | cut -f1 | sort | uniq -c
 
 # Another way:
-grep -v "#"  necator_americanus.PRJNA72135.WBPS18.annotations.gff3  | awk '$3~/gene/{print}'  | cut -f 1 | sort | uniq -c
+grep -v "#"  necator_americanus.PRJNA72135.WBPS19.annotations.gff3  | awk '$3~/gene/{print}'  | cut -f 1 | sort | uniq -c
 ```
 
 Similarly, using the protein FASTA file:
 
 ```bash
 # download the file
-wget https://ftp.ebi.ac.uk/pub/databases/wormbase/parasite/releases/current/species/necator_americanus/PRJNA72135/necator_americanus.PRJNA72135.WBPS18.protein.fa.gz
+wget https://ftp.ebi.ac.uk/pub/databases/wormbase/parasite/releases/current/species/necator_americanus/PRJNA72135/necator_americanus.PRJNA72135.WBPS19.protein.fa.gz
 
 # unzip 
-gzip -d necator_americanus.PRJNA72135.WBPS18.protein.fa.gz
+gzip -d necator_americanus.PRJNA72135.WBPS19.protein.fa.gz
 
 # count the number of proteins
-grep -c "^>" necator_americanus.PRJNA72135.WBPS18.protein.fa
+grep -c "^>" necator_americanus.PRJNA72135.WBPS19.protein.fa
 
 # extract the sequence of NECAME_00165
-sed -n -e "/NAME_00165/,/^>/p" necator_americanus.PRJNA72135.WBPS18.protein.fa | sed -e '$d'
+sed -n -e "/NAME_00165/,/^>/p" necator_americanus.PRJNA72135.WBPS19.protein.fa | sed -e '$d'
 ```
 
 And a more complicated ```awk``` to extract scaffold lengths in a genome FASTA file:
 
 ```bash
 # download the file
-wget  https://ftp.ebi.ac.uk/pub/databases/wormbase/parasite/releases/current/species/necator_americanus/PRJNA72135/necator_americanus.PRJNA72135.WBPS18.genomic.fa.gz
+wget  https://ftp.ebi.ac.uk/pub/databases/wormbase/parasite/releases/current/species/necator_americanus/PRJNA72135/necator_americanus.PRJNA72135.WBPS19.genomic.fa.gz
 
 # unzip 
-gzip -d necator_americanus.PRJNA72135.WBPS18.genomic.fa.gz
+gzip -d necator_americanus.PRJNA72135.WBPS19.genomic.fa.gz
 
 # count the lengths
 awk '/^>/ { 
@@ -506,8 +506,28 @@ awk '/^>/ {
 {
   seqlen += length($0)
 }
-END {print seqlen}'  necator_americanus.PRJNA72135.WBPS18.genomic.fa
+END {print seqlen}'  necator_americanus.PRJNA72135.WBPS19.genomic.fa
 ```
+
+Additional exercises 
+
+1. Which _N.americanus_ scaffold has more genes ?
+2. Write a loop to extract the sequences of all of these proteins:
+
+NECAME_00333  
+NECAME_00215  
+NECAME_00169  
+NECAME_00417  
+NECAME_00018  
+NECAME_00028  
+NECAME_00893  
+NECAME_00782  
+NECAME_00092  
+NECAME_00891  
+NECAME_00638  
+NECAME_00025  
+
+  
 [↥ **Back to top**](#top)
 
 ### The REST API <a name="api"></a>
