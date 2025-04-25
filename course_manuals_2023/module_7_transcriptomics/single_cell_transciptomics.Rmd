@@ -21,8 +21,9 @@ output:
 
 Route to folder (set your path here)
 ```{r}
-
-setwd("C:/Users/alfon/OneDrive/Documentos/drive-download-20231004T173339Z-001/")
+library(knitr)
+#setwd("C:/Users/alfon/OneDrive/Documentos/drive-download-20231004T173339Z-001/")
+opts_knit$set(root.dir="C:/Users/alfon/OneDrive/Documentos/drive-download-20231004T173339Z-001/")
 
 ```
 
