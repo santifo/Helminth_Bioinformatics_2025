@@ -440,7 +440,7 @@ Use some of the commands you learned yesterday to extract the following informat
     (hint: the final column, "padj", gives the adjusted p value. A smaller adjusted p value = more significant).
 
 ```bash
-grep  "^Smp_" 24-hour-schistosomule-vs-cercariae.tsv | sort -g -k 7,7 | awk -F'\t' '$7 != "NA"' | head -n 5
+grep  "^Smp_" 24-hour-schistosomule-vs-cercariae.tsv | LC_ALL=C sort -g -k 7,7 | awk -F'\t' '$7 != "NA"' | head -n 5
 ```
 
 5. Of the genes with an adjusted p-value that is less than 0.05, which is
@@ -450,12 +450,12 @@ grep  "^Smp_" 24-hour-schistosomule-vs-cercariae.tsv | sort -g -k 7,7 | awk -F'\
 ```bash
 # upregulated in the 24h schistosomules means that Log2FoldChange (column 3) should be a positive number
 
-grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | grep -v "^gene_id" | awk -F'\t' '$7 != "NA" && $7 < 0.05 && $3 > 0' | sort -r -g -k 3,3 | head -n 10
+grep  "^Sman_" 24-hour-schistosomule-vs-cercariae.tsv | awk -F'\t' '$7 < 0.05 && $3 > 0' | LC_ALL=C sort -r -g -k 3,3 | head -n 10
 
 
 # upregulated in the cercariate means that Log2FoldChange (column 3) should be a negative number
 
-grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | grep -v "^gene_id" | awk -F'\t' '$7 != "NA" && $7 < 0.05 && $3 < 0' | sort -g -k 3,3 | head -n 10
+grep  "^Sman_" 24-hour-schistosomule-vs-cercariae.tsv | awk -F'\t' ' $7 < 0.05 && $3 < 0' | LC_ALL=C sort -g -k 3,3 | head -n 10
 ```
 
 [↥ **Back to top**](#top)
