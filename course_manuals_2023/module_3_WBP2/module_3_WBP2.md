@@ -7,15 +7,14 @@
       * [EXERCISE 1](#blast_exercise)
     * [JBrowse](#genome_browser)
     * [VEP](#vep)
-      * [EXERCISE_2](#vep_exercise)
+      * [EXERCISE 2](#vep_exercise)
 3. [The WormBase ParaSite Expression browser](#expression_data)
-      * [EXERCISE](#expression_exercise)
 4. [Gene-set enrichment analysis](#gene-set)
-      * [EXERCISE_3](#gene-set_exercises)
+      * [EXERCISE 3](#gene-set_exercises)
 5. [Accessing WormBase ParaSite data programmatically](#programmatic_access)
     * [Working with sequence and annotation files](#files)
     * [The REST API](#api)
-      * [EXERCISE_4](#api_exercises)
+      * [EXERCISE 4](#api_exercises)
 
 
 
@@ -439,24 +438,29 @@ Use some of the commands you learned yesterday to extract the following informat
 4. Extract the top 5 most significantly regulated genes
     (hint: the final column, "padj", gives the adjusted p value. A smaller adjusted p value = more significant).
 
+
 ```bash
 grep  "^Smp_" 24-hour-schistosomule-vs-cercariae.tsv | LC_ALL=C sort -g -k 7,7 | awk -F'\t' '$7 != "NA"' | head -n 5
 ```
 
-5. Of the genes with an adjusted p-value that is less than 0.05, which is
+
+5. Of the genes with an adjusted p-value that is less than 0.05, which is   
     (a) most highly upregulated in the 24h schistosomules v the cercariae   
-    (b) most strongly upregulated in the cercariae v the 24h schistosomules?   
+
+    (b) most strongly upregulated in the cercariae v the 24h schistosomules?       
 
 ```bash
 # upregulated in the 24h schistosomules means that Log2FoldChange (column 3) should be a positive number
 
 grep  "^Sman_" 24-hour-schistosomule-vs-cercariae.tsv | awk -F'\t' '$7 < 0.05 && $3 > 0' | LC_ALL=C sort -r -g -k 3,3 | head -n 10
+```
 
-
+```bash
 # upregulated in the cercariate means that Log2FoldChange (column 3) should be a negative number
 
 grep  "^Sman_" 24-hour-schistosomule-vs-cercariae.tsv | awk -F'\t' ' $7 < 0.05 && $3 < 0' | LC_ALL=C sort -g -k 3,3 | head -n 10
 ```
+
 
 [↥ **Back to top**](#top)
 
@@ -495,9 +499,12 @@ and organises them to Gene Ontology terms (GO):
 WormBase ParaSite offers a tool that performs this kind of analysis: g:Profiler that can be accessed from the "Tools" page:
 
 - Go to WormBase ParaSite (https://parasite.wormbase.org/).
+  
 - Click "Tools" at the top menu.
+
 - Click "g:Profiler" in the tools table.
-- 
+
+  
 <img width="1440" alt="Screenshot 2022-11-22 at 17 29 02" src="https://user-images.githubusercontent.com/33452269/203386793-b5f8080f-c53f-4cba-9023-876982684f83.png">
 
 
@@ -509,20 +516,23 @@ WormBase ParaSite offers a tool that performs this kind of analysis: g:Profiler 
 ### _EXERCISE 3 : Gene -set enrichment analysis exercise_ <a name="gene-set_exercise"></a>
 
 
-Use the 24-hour-schistosomule-vs-cercariae.tsv from the previous section and print a list of genes with an adjusted p-value that is less than 0.05, which are most strongly upregulated in the cercariae v the 24h schistosomules.
 
-1. Use gProfiler and perform a Gene-set enrichment analysis for these 40 genes from the "Schistosoma mansoni (PRJEA36577)" organism.
+Use the 24-hour-schistosomule-vs-cercariae.tsv from the previous section and print a list of genes with an adjusted p-value that is less than 0.05, which are most strongly upregulated in the cercariae v the 24h schistosomules.  
+
+1. Use gProfiler and perform a Gene-set enrichment analysis for these 40 genes from the "Schistosoma mansoni (PRJEA36577)" organism.  
 
 2. Which are the 3 most significantly enriched Cellular Component terms? Are they relevant to this developmental stage comparion we're performing?
 
-3. Expand the stats by using the ">>" in the header of the GO:CC result table. Try to interpret the T, Q, TnQ and U metrics. What do they represent?
+3. Expand the stats by using the ">>" in the header of the GO:CC result table. Try to interpret the T, Q, TnQ and U metrics. What do they represent?  
+
+
     <details closed>
-    <summary>Help!</summary>
+    <summary>**Useful tips**</summary>
     You can read more here: https://biit.cs.ut.ee/gprofiler/page/docs<br>
-   * T - Term Size: How many S. mansoni genes are in general associated with this term.<br>
-   * Q - Query Size: The number of genes in our gene list (the one we run the analysis for). In our case this number should theoretically be 40, however it is 14, why?<br>
-   * TnQ - Overlap Size: How many genes from our list are associated with this term.<br>
-   * U - Total number of S. mansoni genes.<br>
+   * **T - Term Size**: How many S. mansoni genes are in general associated with this term.<br>
+   * **Q - Query Size**: The number of genes in our gene list (the one we run the analysis for). In our case this number should theoretically be 40, however it is 14, why?<br>
+   * **TnQ - Overlap Size**: How many genes from our list are associated with this term.<br>
+   * **U - Total number of _S.mansoni_ genes.<br>
     </details>
 
 [↥ **Back to top**](#top)
