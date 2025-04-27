@@ -12,11 +12,15 @@ Use WormBase ParaSite BLAST to find out the identity of this sequence, and which
   Against Genomic Sequences:
     - First look at the results table. Usally output is ordered by score. Scrolling down you might see that several hits overlap to the same gene. Toggle the query start and end in the table. You might see that they could represent different exons.  
     - Go the genomic location of the hit with the best score. You can zoom out to see all hits on the region (overlapping gene).
+
+![](figures/BLAST_CS1.png)
             
   Against cDNA:
    - now you have a first top result with a very high score and covering the whole query.
    - Go to ovelaping gene or genomic location. Instead of independent blocks of homology, you see them unified in a box. 
-    
+
+![](figures/BLAST_CS2.png)
+
  _The gene selected corresponds to a fragment of the cDNA of Fasciola hepatica Dicer2.  
   There are two assemblies of F.hepatica so they might pick any of them and compare._
     
@@ -24,12 +28,14 @@ Use WormBase ParaSite BLAST to find out the identity of this sequence, and which
    - You can get that from looking at the hits table.  
    - Also on the "genomic location" view you can go to tracks and toggle "pairwise genomic alignments" this would highlight the regions of homology.  
 
+![](figures/BLAST_CS3.png)
+
 - Bonus Question:  Get the corresponding protein sequence and BLAST it against the genomes. How diferent are the results? Why?  
 
   - Go to the top hit gene and get the fasta protein sequence. Run a TBlastN comparison.  
    - Inspect the results table, from the top hit genomic location view zoom out till covering the neighbour genes. You will see hits on gene g6383 also.
 
-     
+![](figures/BLAST_CS4.png)     
 
 #### VEP exercise <a name="vep_exercise"></a>
 
