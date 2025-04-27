@@ -3,12 +3,33 @@
 
 Use WormBase ParaSite BLAST to find out the identity of this sequence, and which species it belongs to. Does it have any close hits in other genomes? Try BLASTing against both cDNA and a genomic DNA databases. What kind of sequence is this?
 
-- Use the provided sequence as input in WBPS Blast tool and run two different jobs one against genomic DNA (Search Against: All species, DNA database: Genomic Sequence) and one agaist cDNA (Search Against: All species, DNA database: cDNAs).
+- Use the provided sequence as input in WBPS Blast tool and run two different jobs  
+     one against genomic DNA (Search Against: All species, DNA database: Genomic Sequence) and  
+     one agaist cDNA (Search Against: All species, DNA database: cDNAs).
 
 - Examine the results:
-    - Alignment against Genomic Sequence: First top result - Only 339 from the query's 1453 bases are aligned against the genomic sequence ("Length" column). Click the Sequence button in the "length" column -> only a part of the query is aligned against the genome perfectly (%ID=100%, click the "Alignment" button to examine the alignment)
-    - Alignment against cDNA: First top result - The whole query sequence aligns against the cDNA of daf-38 sequence apart from its first 8 bases which are probably part of the UTR that is not annotated. These 8 bases are before the ATG codon. Click the "Sequence" and "Alignment" buttons of the first result to examine this further. 
 
+  Against Genomic Sequences:
+    - First look at the results table. Usally output is ordered by score. Scrolling down you might see that several hits overlap to the same gene. Toggle the query start and end in the table. You might see that they could represent different exons.  
+    - Go the genomic location of the hit with the best score. You can zoom out to see all hits on the region (overlapping gene).
+            
+  Against cDNA:
+   - now you have a first top result with a very high score and covering the whole query.
+   - Go to ovelaping gene or genomic location. Instead of independent blocks of homology, you see them unified in a box. 
+    
+ _The gene selected corresponds to a fragment of the cDNA of Fasciola hepatica Dicer2.  
+  There are two assemblies of F.hepatica so they might pick any of them and compare._
+    
+- Does it have close hits on other genomes ?   
+   - You can get that from looking at the hits table.  
+   - Also on the "genomic location" view you can go to tracks and toggle "pairwise genomic alignments" this would highlight the regions of homology.  
+
+- Bonus Question:  Get the corresponding protein sequence and BLAST it against the genomes. How diferent are the results? Why?  
+
+  - Go to the top hit gene and get the fasta protein sequence. Run a TBlastN comparison.  
+   - Inspect the results table, from the top hit genomic location view zoom out till covering the neighbour genes. You will see hits on gene g6383 also.
+
+     
 
 #### VEP exercise <a name="vep_exercise"></a>
 
