@@ -17,7 +17,7 @@
 
 ## Overview and Aims <a name="intro"></a>
 
-In this module, we will cover some basic concepts in single-cell transcriptomics. In the example we will use data of the somule stage from _Schistosoma mansoni_. We will start examining the data structure of counts per sample, filter low quality cells 
+In this module, you will learn basic concepts about the technology and data structure related to single-cell generated data. We will use data generated from 3 replicates of the 2 days somules of _Schistosoma mansoni_. We will start examining the raw data and the structure of the count matrices generated with Cell Ranger, we will transform these matrices to Seurat objects and we will generate some plots to visualize the data. Then we will remove doublet cells and do quality filter to retain good quality cells with the remianing cells we will low quality cells 
 
 
 
