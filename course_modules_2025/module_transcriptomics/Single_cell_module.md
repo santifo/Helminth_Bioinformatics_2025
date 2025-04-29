@@ -23,7 +23,7 @@ In this module, we will cover some basic concepts in single-cell transcriptomics
 
 ---
 
-[ **Back to top**](#top)
+[↥ **Back to top**](#top)
 
 ## Introduction to single cell transcriptomics <a name="basic"></a>
 
@@ -185,7 +185,7 @@ head(sample1@meta.data$orig.ident)
 ```
 If you're not sure which metadata are available, or you want a summary of metadata in each category, that's an easy way to check. Anything that comes after the R object name and a dollar sign is a metadata value so you can look at it in a table as above, or in a UMAP, once you've generated one.
 
-[ **Back to top**](#top)
+[↥ **Back to top**](#top)
 
 ## Doublet ID <a name="doubletremoval"></a>
 
@@ -266,7 +266,7 @@ table(day2somules@meta.data$batches)
 
 ```
 
-[ **Back to top**](#top)
+[↥ **Back to top**](#top)
 
 ## QC removal <a name="QCremoval"></a>
 
@@ -400,7 +400,7 @@ day2somules <- readRDS(file = "day2somules_v10_firstfilt.rds")
 
 ```
 
-[ **Back to top**](#top)
+[↥ **Back to top**](#top)
 
 ## Normalisation and scaling <a name="N&S"></a>
 
