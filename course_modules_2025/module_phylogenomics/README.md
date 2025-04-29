@@ -299,7 +299,8 @@ e.g.  can modify the size of the fonts (in Tip Labels, Legend, etc).
 |                   | Cyathocotylidae      | *Cyathocotyle prussica*                                                                                                                       |
 |                   | Echinostomatidae     | *Echinoparyphium aconiatum*, *Echinostoma caproni*, *Echinostoma hortense*, *Echinostoma miyagawai*, *Echinostoma paraensei*, *Echinostoma revolutum* |
 |                   | Fasciolidae          | *Fasciola hepatica*, *Fasciola jacksoni*, *Fascioloides magna*, *Fasciolopsis buskii*                                                               |
-|                   | Morishitiidae        | *Morishitium polonicum*                                                                                                                       |
+|                   | Morishitiidae        | *Morishitium polonicum*     
+|                   | Diplodiscidae        | *Diplodiscus_japonicus*, *Diplodiscus_mehrai*, *Diplodiscus_nigromaculati*  |
 |                   | Notocotylidae        | *Ogmocotyle ailuri*                                                                                                                           |
 |                   | Paragonimidae        | *Paragonimus skrjabini miyazakii*, *Paragonimus westermani*                                                                                     |
 |                   | Plagiorchiidae       | *Plagiorchis elegans*, *Proterometra macrostoma*                                                                                                 |
