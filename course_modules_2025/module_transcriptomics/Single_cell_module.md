@@ -42,11 +42,11 @@ After sequencing, reads are mapped to the reference genome with Cell Ranger, a s
 
 Navigate to the output folder of Cell Ranger, within each sample folder you will find a web_summary of the run and a feature-barcode folder containing the feature-barcode_matrix. Inspect each web_summary. 
 
-_Three key metrics are presented at the top left of the Summary tab:
+Three key metrics are presented at the top left of the Summary tab:
 
-*Estimated Number of Cells: the number of barcodes associated with cells.
-*Mean Reads per Cell: the total number of sequenced reads divided by the number of cells. We recommend a minimum of 20,000 read pairs per cell.
-*Median Genes per Cell: the median number of genes detected per cell-associated barcode. This metric is dependent on cell type and sequencing depth.
+- **Estimated Number of Cells**: the number of barcodes associated with cells.
+- **Mean Reads per Cell**: the total number of sequenced reads divided by the number of cells. A minimum of 20,000 read pairs per cell is recommended.
+- **Median Genes per Cell**: the median number of genes detected per cell-associated barcode. This metric is dependent on cell type and sequencing depth.
 
 ![](figures/SC_Figure_2.png)
 
@@ -101,11 +101,11 @@ Here we save an object that contains today's date, so we can save any files with
 st <- format(Sys.time(), "%Y-%m-%d") 
 
 ```
-####Loading data
+#### Importing the data to R
 
-Next, we import the data files that contain the mapping outputs from Cellranger. There are three folders, from the three samples which were sequenced. Each folder contains the list of genes, the cell barcodes, and the count matrix showing the number of transcripts.
+Next, we import the data files that contain the mapping outputs from Cell Ranger. There are three folders, from the three samples which were sequenced. Each folder contains the list of genes, the cell barcodes, and the count matrix showing the number of transcripts.
 
-Since the we used 10X sequencing, we import this into R using the specific 10X import function.
+Since the data was generated with 10X sequencing, we import this into R using the specific 10X import function.
 
 ```R
 
@@ -382,7 +382,7 @@ dim(day2somules) #shows number of genes and number of cells
 
 How many cells were removed in total and by batch?
 
-###Save and start next analysis
+### Save and start next analysis
 
 Now that you have completed the QC filter, you can save your analysis in a R object.  
 
