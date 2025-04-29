@@ -9,9 +9,9 @@
 5. [QC removal](#QCremoval)
 6. [Normalizing and Scaling the data](#N&S)
 7. [SCTransform of data](#SCTrasform)
+8. [Plot UMAPs](#plotUMAPs)
 
-8. [Exploring gene expression using gene plots and heatmaps](#plots)
-9. [Functional analysis using GO term enrichment](#go)
+10. [Functional analysis using GO term enrichment](#go)
 
 ---
 
@@ -23,7 +23,7 @@ In this module, you will learn basic concepts about the technology and data stru
 
 ---
 
-[↥ **Back to top**](#top)
+[↥  **Back to top**](#top)
 
 ## Introduction to single cell transcriptomics <a name="basic"></a>
 
@@ -42,11 +42,11 @@ After sequencing, reads are mapped to the reference genome with Cell Ranger, a s
 
 Navigate to the output folder of Cell Ranger, within each sample folder you will find a web_summary of the run and a feature-barcode folder containing the feature-barcode_matrix. Inspect each web_summary. 
 
-_Three key metrics are presented at the top left of the Summary tab:
+Three key metrics are presented at the top left of the Summary tab:
 
-*Estimated Number of Cells: the number of barcodes associated with cells.
-*Mean Reads per Cell: the total number of sequenced reads divided by the number of cells. We recommend a minimum of 20,000 read pairs per cell.
-*Median Genes per Cell: the median number of genes detected per cell-associated barcode. This metric is dependent on cell type and sequencing depth.
+- **Estimated Number of Cells**: the number of barcodes associated with cells.
+- **Mean Reads per Cell**: the total number of sequenced reads divided by the number of cells. A minimum of 20,000 read pairs per cell is recommended.
+- **Median Genes per Cell**: the median number of genes detected per cell-associated barcode. This metric is dependent on cell type and sequencing depth.
 
 ![](figures/SC_Figure_2.png)
 
@@ -101,11 +101,11 @@ Here we save an object that contains today's date, so we can save any files with
 st <- format(Sys.time(), "%Y-%m-%d") 
 
 ```
-####Loading data
+#### Importing the data to R
 
-Next, we import the data files that contain the mapping outputs from Cellranger. There are three folders, from the three samples which were sequenced. Each folder contains the list of genes, the cell barcodes, and the count matrix showing the number of transcripts.
+Next, we import the data files that contain the mapping outputs from Cell Ranger. There are three folders, from the three samples which were sequenced. Each folder contains the list of genes, the cell barcodes, and the count matrix showing the number of transcripts.
 
-Since the we used 10X sequencing, we import this into R using the specific 10X import function.
+Since the data was generated with 10X sequencing, we import this into R using the specific 10X import function.
 
 ```R
 
@@ -185,7 +185,7 @@ head(sample1@meta.data$orig.ident)
 ```
 If you're not sure which metadata are available, or you want a summary of metadata in each category, that's an easy way to check. Anything that comes after the R object name and a dollar sign is a metadata value so you can look at it in a table as above, or in a UMAP, once you've generated one.
 
-[↥ **Back to top**](#top)
+[↥  **Back to top**](#top)
 
 ## Doublet ID <a name="doubletremoval"></a>
 
@@ -266,7 +266,7 @@ table(day2somules@meta.data$batches)
 
 ```
 
-[↥ **Back to top**](#top)
+[↥  **Back to top**](#top)
 
 ## QC removal <a name="QCremoval"></a>
 
@@ -382,7 +382,7 @@ dim(day2somules) #shows number of genes and number of cells
 
 How many cells were removed in total and by batch?
 
-###Save and start next analysis
+### Save and start next analysis
 
 Now that you have completed the QC filter, you can save your analysis in a R object.  
 
@@ -440,6 +440,7 @@ DimHeatmap(day2somules, dims = 1, cells = 500, balanced = TRUE)
 ```
 
 ![](figures/SC_Figure_8.png)
+
 **Figure 8.**
 
 ### Jackstraw
@@ -481,7 +482,8 @@ ggsave(paste0("day2somules_v10clust_40PC_0.4res_RNA_",st,".jpg"))
 
 ## SCTransform of data <a name="SCTrasform"></a>
 
-Do a basic analysis to start with, using SCTransform. This function normalises and scales the data, and finds variable features. It has some improvements from earlier versions of Seurat (and replaces NormalizeData(), ScaleData(), and FindVariableFeatures()), though there are functions it's difficult to perform when the data is transformed with this method.
+Do a basic analysis to start with, using SCTransform. This function normalises and scales the data, and finds variable features. It has some improvements from earlier versions of Seurat and replaces NormalizeData(), ScaleData(), and FindVariableFeatures()).
+
 ```R
 # run sctransform
 day2somules <- SCTransform(day2somules, verbose = TRUE)
@@ -489,28 +491,37 @@ day2somules <- SCTransform(day2somules, verbose = TRUE)
 
 The results of this are saved in a different 'assay' of the R object - so you can still use both, and the data aren't overwritten.
 
-#PCA on SCT
+### PCA on SCT transformed data
 
 Now, perform dimensionality reduction by PCA and UMAP embedding
 
 Here, we perform PCA on the scaled data. The most variable features selected earlier are used. This follows the same approach as when using the RNA assay we used above.
+
 ```R
 day2somules <- RunPCA(day2somules, features = VariableFeatures(object = day2somules), npcs=100)
 VizDimLoadings(day2somules, dims = 1:2, reduction = "pca") #shows the weightings of top contributing features to PCs 1 and 2
 DimHeatmap(day2somules, dims = 1, cells = 500, balanced = TRUE) #plots heatmap of top 500 most variable cells for PC1, with relative gene expression
 ```
-#CLustering on SCT
+
+### Clustering on SCT
 
 ```R
 #here construct k-nearest neighbours graph based on euclidean distance in PCA space, then refine edge weights based on Jaccard similarity. this takes the number of PCs previously determined as important (here 40 PCs_)
 day2somules <- FindNeighbors(day2somules, dims = 1:40) 
 #this iteratively groups cells using Louvain algorithm (default). Resolution sets the granularity. 0.4-1.2 gives good results for ~3K cells, with larger number suiting larger datasets.
 day2somules <- FindClusters(day2somules, resolution = 0.5) 
-#runs umap to visualize the clusters. Need to set the number of PCs
+```
+## Plot UMAPs <a name="plotUMAPs"></a>
+
+Runs umap to visualize the clusters. Need to set the number of PCs
+
+```R
+
 day2somules <- RunUMAP(day2somules, dims = 1:40) 
 #visualises the UMAP
 DimPlot(day2somules, reduction = "umap") 
 ggsave(paste0("day2somules_v10clust_40PC_0.4res_SCT",st,".jpg"))
+
 ```
 
 ![](figures/SC_Figure_11.png)
@@ -541,7 +552,7 @@ ggsave("day2somules_v10_40PC_0.5res_after_one_filt_mt_SCT.jpg")
 What do you think about this figure? Is there any cluster with a higher proportion of MT RNA?
 
 
-# Marker identification
+## Markers identification <a name="markers"></a>
 
 We want to understand what the cell clusters might be. One approach to do that is find gene that are cluster markers - find differentially expressed genes that are descriptive of a cluster.
 
@@ -554,8 +565,8 @@ day2somules<-JoinLayers(day2somules)
 
 day2somules.markers_roc_cluster0 <- FindMarkers(day2somules, ident.1 = 0, only.pos = TRUE, min.pct = 0.0, logfc.threshold = 0.0, test.use = "roc")
 ```
-
 Import annotation information. I have collected this from the genome annotation file. 
+
 ```R
 v10_genelist <- read.csv("v10_genes_with_descriptions_2023-04-17.csv", stringsAsFactors = FALSE, header = TRUE) 
 v10_genelist$X <- NULL 
@@ -585,7 +596,7 @@ A brainstorm question: how might you use this list to choose a gene to use for i
 How else might you classify cell cluster tissue types?
 
 
-#Plot individual genes
+### Plot individual genes
 
 Now we can look at gene expression in these data by gene. The example below shows you ago 2-1. As above, remove the hash symbol in front of the word ggsave and run this chunk of code if you want to save the plot. If you want to look at a different gene, simply type the gene ID where "Smp-179320" currently sits. Remember to use - rather than _ ! We can visualise genes that we already know something about in the organism, to see if that gives us some clues
 ```R
@@ -594,6 +605,7 @@ FeaturePlot(day2somules, features = "Smp-179320")
 ```
 
 We can also look at these genes with a violin plot - this visualisation can be helpful in many ways, including seeing which clusters a gene is most expressed in.
+
 ```R
 VlnPlot(day2somules, features = "Smp-179320")
 #ggsave(paste0("day2somules-Smp-179320_",st, ".jpg"), width = 25, height = 15)
@@ -602,8 +614,9 @@ VlnPlot(day2somules, features = "Smp-179320")
 Are there any genes you're particularly interested in? You can adapt the code below to see if, and where, it might be expressed in these data. If you're not sure, you can look up S mansoni on WBPS and choose a gene from there (https://parasite.wormbase.org/index.html). Remember to delete the # if you want to save the plot to your computer!
 ```R
 FeaturePlot(day2somules, features = "your_gene")
-#ggsave(paste0("day2somules-Smp-179320_",st,".jpg"), width = 25, height = 15)
+#ggsave(paste0("day2somules-your-gene_",st,".jpg"), width = 25, height = 15)
 ```
+### Plot co-expressed genes
 
 You can also look for co-expression - are two genes you're interested in expressed in the same cells?
 ```R
