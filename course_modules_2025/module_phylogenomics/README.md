@@ -12,7 +12,7 @@ Trematodes and cestodes are parasitic flatworms, and their evolutionary relation
 
 In this practical activity, we will reconstruct phylogenetic relationships based on multiple sequences (multi-gene phylogenetic approach) of selected organisms, mainly trematodes, and identify the main lineages within this group.
 
-For this purpose, we have built a dataset of six mitochondrial protein-coding genes, each consisting of 66 amino acid sequences in fasta format: 51 from trematodes and 16 from cestodes (atp6.faa, cox1.faa, cox2.faa, nad1.faa, nad2.faa, and nad3.faa). 
+For this purpose, we have built a dataset of six mitochondrial protein-coding genes, each consisting of 66 amino acid sequences in fasta format: 50 from trematodes and 16 from cestodes (atp6.faa, cox1.faa, cox2.faa, nad1.faa, nad2.faa, and nad3.faa). 
 
 A file containing the four-letter code, complete name, and class (trematode/cestode) of each species is provided and required for the analysis (Codes-Names.tab). 
 
