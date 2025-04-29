@@ -1,7 +1,5 @@
 # Single-cell transcriptomics
-## Author: T Attenborough 
-## Affiliation: University of Glasgow
-
+### Author: Santiago Fontenla, addapted from tutorial by Teresa Attenborough 
 
 ## Table of Contents
 1. [Overview and Aims](#intro)
