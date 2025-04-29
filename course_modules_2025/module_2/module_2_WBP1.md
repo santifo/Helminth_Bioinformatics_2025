@@ -7,7 +7,7 @@
     * [Genomes: the basics](#basics_genomes)
     * [Sequence databases](#sequence_databases)
 3. [Looking at genomes in WormBase ParaSite](#wbps_genomes)
-    * [EXERCISE](#genomes_exercise)
+    * [EXERCISE 1](#genomes_exercise)
     * [Submit a genome to WormBase ParaSite](#submit_genome)
 4. [Looking at genes in WormBase ParaSite](#wbps_genes)
     * [The gene page](#gene_page)
@@ -16,9 +16,9 @@
     * [Protein domains](#protein_domains)
     * [AlphaFold 3D protein structures](#af)
     * [Orthologues and paralogues](#comparative_genomics)
-    * [EXERCISE](#gene_page_exercise)
+    * [EXERCISE 2](#gene_page_exercise)
 5. [BioMart](#biomart)
-    * [EXERCISE](#biomart_exercise)
+    * [EXERCISE 3](#biomart_exercise)
 
 ## Overview and Aims <a name="intro"></a>
 In this first module we'll start by reviewing the basics on genes and genomes: what they are, how we represent and talk about them, and how we go from a DNA sequence- a string of letters- to making predictions about gene function. We'll look at this in the context of WormBase ParaSite (which you might also see referred to as WBPS) and other online database resources. 
@@ -119,10 +119,11 @@ The information in this box tells us about two metrics related to the quality of
 <br><br>
 
 ---
-#### Genome assembly metrics exercise <a name="genomes_exercise"></a>
+### _EXERCISE 1 - Genome assembly metrics_ <a name="genomes_exercise"></a>
 
 1. Find the two other genome assemblies from different _Brugia_ species in WormBase ParaSite, which are of lower quality than _Brugia malayi_.
-2. According to their scaffold statistics and BUSCO scores, which of these two assemblies is more contiguous and complete?
+   
+3. According to their scaffold statistics and BUSCO scores, which of these two assemblies is more contiguous and complete?
 
 ---
 #### How to submit a genome to WormBase ParaSite? <a name="submit_genome"></a>
@@ -131,9 +132,11 @@ Let's say you have just finished working on a genome project and you would like 
 
 If you are interested in including your newly sequenced genome to WBPS you need to:
 
-1) Make sure to first submit the genome assembly to the INSDC either through [ENA](https://ena-docs.readthedocs.io/en/latest/submit/assembly.html), [NCBI](https://www.ncbi.nlm.nih.gov/assembly/docs/submission/) or [DDBJ](https://www.ddbj.nig.ac.jp/ddbj/submission-e.html).<br><br>INSDC stores both primary data (i.e. the sequence reads exactly as they come off the machine) and assembled genomes (i.e. where an assembly algorithm has been used to build scaffolds or chromosomes from those reads). Commonly, these data are all stored together under what's known as a **BioProject**. Each BioProject is identified by an **accession**. Although every BioProject accession is a unique identifier for that project, they all start with a 5-letter code that denotes which INSDC database the data were submitted to: "PRJEB" for ENA, "PRJNA" for GenBank, and "PRJDB" for DDBJ.<br><br>An AGP file is often also provided, describing how the contigs fit together as scaffolds, and how the scaffolds fit together as chromosomes.<br><br> 
+1) Make sure to first submit the genome assembly to the INSDC either through [ENA](https://ena-docs.readthedocs.io/en/latest/submit/assembly.html), [NCBI](https://www.ncbi.nlm.nih.gov/assembly/docs/submission/) or [DDBJ](https://www.ddbj.nig.ac.jp/ddbj/submission-e.html).<br><br>INSDC stores both primary data (i.e. the sequence reads exactly as they come off the machine) and assembled genomes (i.e. where an assembly algorithm has been used to build scaffolds or chromosomes from those reads). Commonly, these data are all stored together under what's known as a **BioProject**. Each BioProject is identified by an **accession**. Although every BioProject accession is a unique identifier for that project, they all start with a 5-letter code that denotes which INSDC database the data were submitted to: "PRJEB" for ENA, "PRJNA" for GenBank, and "PRJDB" for DDBJ. The **BioProject** assigned to each genome deposited in WBPS can be accessed in the genomes table or through a link below below the species name in each species genome page.<br><br>An AGP file is often also provided, describing how the contigs fit together as scaffolds, and how the scaffolds fit together as chromosomes.<br><br> 
 
 2) Submit the gene models annotation file in GFF format (more on this file format later).<br><br>A genome project may also contain an annotation file. This file contains predicted gene structures: based on the genome sequence, certain algorithms can predict which regions encode genes. An example of a commonly-used gene prediction tools is [BRAKER](https://github.com/Gaius-Augustus/BRAKER). These predictions may or may not be guided by other types of evidence, such as RNA sequencing data. It is important to bear in mind that the majority of genes as they appear in the sequence databases (and also in WormBase ParaSite) are based on predictions: these predictions are driven by evidence, but most genes from helminth genome assemblies are unlikely to have been cloned and sequenced in their entirety. We'll look at an example of checking how well a gene model is supported by RNAseq evidence in the next WormBase ParaSite module. The gene models annotation file can either be submitted to the INSDC as part of the assembly submission or directly to us.
+
+[↥ **Back to top**](#top)
 
 ---
 ## Looking at genes in WormBase ParaSite <a name="wbps_genes"></a>
@@ -186,7 +189,7 @@ You can learn more about the Genome Browser [here](https://parasite.wormbase.org
 There is an alternative interactive Genome Browser in WormBase ParaSite that can be accessed by the "View region in Jbrowse" button at the top-right of the gene page but we're going to talk about it in our next module!
 </details>
 
-5. Navigate back to the gene page by clicking the "Gene:inx" tab at the top of the page.
+5. Navigate back to the gene page by clicking the "Gene:inx" tab at the top of the page. 
 
 As well as gene pages, WormBase ParaSite has a page for each transcript that a gene produces. In this case, only one transcript isoform has been annotated.
 
@@ -194,7 +197,14 @@ As well as gene pages, WormBase ParaSite has a page for each transcript that a g
 
 ![](figures/figure_3.5.png)
 
+
+Notice that there are different tabs to rapidly jump from the genomic context, gene info or transcripts information. 
+
+The navigation menu of the left hand side of the page, automatically updates with information available for each level.
+
 Again using the navigation menu on the left hand side of the page, we can retrieve three main types of information on the transcript: sequences, information about the protein domains, and external references.
+
+
 
 ![](figures/figure_3.6.png)
 
@@ -217,16 +227,17 @@ Note that this protein sequence is what is known as a conceptual translation: th
 ---
 #### Functional annotation: Gene Ontology (GO) terms, protein domains and protein structure <a name="functional_annotation"></a>
 
-So far we have gathered general information about this _Opisthorcis viverrini_ gene. We have also inspected their genomic location and sequence. However, we don't have any clues about the genes' function! What does the protein encoded from this gene do?
+So far we have gathered general information about this _Opisthorcis viverrini_ gene. We have also inspected their genomic location and sequence.
+However, we don't have any clues about the genes' function! What does the protein encoded from this gene do?
 
 
 ##### Gene ontology (GO) <a name="go_terms"></a>
 
-A fast way to find out about the function of a gene’s product is to see which Gene Ontology (GO) terms have been associated with it. GO is a project that seeks to describe complex biology in a logical, hierarchical and computer-processable way. It is a controlled vocabulary, whereby proteins are associated with GO terms that describe their function. There are three aspects to GO: Cellular Component, Molecular Function and Biological Process. Cellular Component GO terms describe where a protein is localised (in the membrane, extracellular, in the nucleus etc). Molecular Function GO terms describe the biochemical activity of the protein. Biological Process GO terms describe the pathways and broader processes that the protein contributes to.
+A fast way to find out about the function of a gene’s product is to see which **Gene Ontology** (GO) terms have been associated with it. GO is a project that seeks to describe complex biology in a logical, hierarchical and computer-processable way. It is a controlled vocabulary, whereby proteins are associated with GO terms that describe their function. There are three aspects to GO: Cellular Component, Molecular Function and Biological Process. Cellular Component GO terms describe where a protein is localised (in the membrane, extracellular, in the nucleus etc). Molecular Function GO terms describe the biochemical activity of the protein. Biological Process GO terms describe the pathways and broader processes that the protein contributes to.
 
-1. Click the “Gene:inx” tab at the top of the page to return to the main gene page, then select "Biological process" and/or “Cellular component” from the Gene Ontology section of the navigation menu.
+1. Click the “Gene:inx” tab at the top of the page to return to the main gene page, then select "Biological process" and/or “Cellular component” from the Gene Ontology section of the left navigation menu.
 
-![](figures/figure_3.12.png)
+![](figures/figure_3.12b.png)
 
 WormBase ParaSite imports GO annotations from three sources:
 - Terms assigned by UniProt
@@ -238,11 +249,12 @@ The GO terms associated with this gene make sense given what we already know abo
 ---
 ##### Protein Features and Domains <a name="protein_domains"></a>
 
-How we do go from a string of amino acids to predicting what this protein might do in the cell? This is where another type of database comes in: protein family databases. 
+How we do go from a string of amino acids to predicting what this protein might do in the cell? 
+This is where another type of database comes in: **protein family databases**. 
 
 For the vast majority of predicted protein sequences, nobody will have done experiments to test what its function is. However, we can use the principle of **homology** to take proteins that are well-studied in one experimental system and infer that proteins of similar sequence in other organisms are likely to have similar structure, and therefore similar function.
 
-In reality, protein sequences are analysed in terms of domains: these are subsequences of a protein that have a defined tertiary structure or sequence motif, conferring a defined function. A protein can consist of several domains. When comparing proteins between organisms, often the region encoding a protein domain is highly conserved whilst the bit that connects different domains together is more divergent.
+In reality, protein sequences are analysed in terms of **domains**: these are subsequences of a protein that have a defined tertiary structure or sequence motif, conferring a defined function. A protein can consist of several domains. When comparing proteins between organisms, often the region encoding a protein domain is highly conserved whilst the bit that connects different domains together is more divergent.
 
 **The [InterPro](https://www.ebi.ac.uk/interpro/) consortium**: There are many protein domain databases. A well known example of a protein domain database is Pfam. Pfam uses multiple sequence alignments of the known proteins with a certain domain to capture a representative model (a profile Hidden Markov Model) of that domain. Other protein domain databases, that might use slightly different methods to define domains, are:  CATH, CDD, HAMAP, MobiDB Lite, Panther, PIRSF, PRINTS, Prosite, SFLD, SMART, SUPERFAMILY and TIGRfams. Luckily for us, all of these databases are united under the [InterPro](https://www.ebi.ac.uk/interpro/) consortium.
 
@@ -298,7 +310,7 @@ WormBase ParaSite has imported all AlphaFold predicted models available for its 
 
 You can now view the shiny new interactive 3D AlphaFold structure of the protein. The interactive molecular viewer visualizes the structure, coloured by the per-residue pLDDT confidence measure. 
 
-Drag and drop with your mouse over the protein model to rotate it and use your mouse wheel to zoom in/out. You can use the right panel to visualise exons as well protein domains and features on the 3D model. This might give you a better understanding of where your domains of interest are. 
+Drag and drop with your mouse over the protein model to rotate it and use your mouse wheel to zoom in/out. You can use the right panel to visualise exons as well protein domains and features on the 3D model (toggle the eye or + symbol to view options). This might give you a better understanding of where your domains of interest are. 
 
 <details close>
 <summary>What can I do with an AlphaFold protein structure?</summary>
@@ -310,7 +322,11 @@ To download the raw files for an AlphaFold protein structure you found in WormBa
 
 Then you could use the structure file to perform subsequent analyses. Online tools that can be used with the downloaded structures from AlphaFold:
 
-- [SwissDock](http://www.swissdock.ch/), a web service to predict the molecular interactions that may occur between a target protein and a small molecule. It is used alongside S3DB, a database of manually curated target and ligand structures, inspired by the Ligand-Protein Database. 
+- [SwissDock](http://www.swissdock.ch/), a web service to predict the molecular interactions that may occur between a target protein and a small molecule.
+  It is used alongside S3DB, a database of manually curated target and ligand structures, inspired by the Ligand-Protein Database. 
+
+- [SwissModel](http://www.swissmodel.expasy.org/), a fully automated protein structure homology-modelling server, accessible via the Expasy web server.
+  It allows to generate novel homology models, generate structural overlaps, and annotate them.
 
 - [Zhang group Online-serivces portal](https://zhanggroup.org/)
   - Docking simulations (https://zhanggroup.org/EDock/) against different ligands.
@@ -341,7 +357,7 @@ WormBase ParaSite groups all helminth genes, together with comparator genes from
 
 For each family, we arrange the genes into an evolutionary tree. 
 
-1. Select “Gene tree” from the Comparative Genomics section of the navigation menu on the gene page.
+1. Go back to the gene page tab and select “Gene tree” from the Comparative Genomics section of the left navigation menu.
 
 ![](figures/figure_3.13.png)
 
@@ -394,7 +410,7 @@ You can read more about this pipeline [here](http://www.ensembl.org/info/genome/
 
 [↥ **Back to top**](#top)
 
-#### Gene page exercise <a name="gene_page_exercise"></a>
+### _EXERCISE 2 - Gene page information retrival_ <a name="gene_page_exercise"></a>
 
 The aim of this exercise is to familiarise yourself with the WormBase ParaSite gene page.
 Go to the gene page for the _Trichuris muris_ gene TMUE_2000008757 and retrieve the following information:
@@ -483,7 +499,7 @@ BioMart lets us generate two types of output: data tables, and sequence (FASTA) 
 [↥ **Back to top**](#top)
 
 ---
-#### BioMart exercise <a name="biomart_exercise"></a>
+### _EXERCISE 3 - BioMart data retrival_ <a name="biomart_exercise"></a>
 
 Use the following _S. ratti_  gene **names** (note: names, not stable IDs) and use BioMart to answer questions 1-5.
 

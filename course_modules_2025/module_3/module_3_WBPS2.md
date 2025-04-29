@@ -1,58 +1,46 @@
----
-title: 'WormBase ParaSite (2) '
-author: ""
-date: "4th May 2023"
-output:
- prettydoc::html_pretty:
-  theme: leonids
-  highlight: github
-    
-
----
-
+# WormBase ParaSite (part 2)
 
 ## Table of contents
 1. [Overview and Aims](#aims)
 2. [Tools](#tools)
     * [BLAST](#blast)
-      * [EXERCISE](#blast_exercise)
-    * [The genome browser](#genome_browser)
+      * [EXERCISE 1](#blast_exercise)
+    * [JBrowse](#genome_browser)
     * [VEP](#vep)
-      * [EXERCISE](#vep_exercise)
-3. [Accessing WormBase ParaSite data programmatically](#programmatic_access)
+      * [EXERCISE 2](#vep_exercise)
+3. [The WormBase ParaSite Expression browser](#expression_data)
+4. [Gene-set enrichment analysis](#gene-set)
+      * [EXERCISE 3](#gene-set_exercises)
+5. [Accessing WormBase ParaSite data programmatically](#programmatic_access)
     * [Working with sequence and annotation files](#files)
     * [The REST API](#api)
-      * [EXERCISE](#api_exercises)
-4. [The WormBase ParaSite Expression browser](#expression_data)
-      * [EXERCISE](#expression_exercise)
-5. [Gene-set enrichment analysis](#gene-set)
-      * [EXERCISE](#gene-set_exercises)
+      * [EXERCISE 4](#api_exercises)
+
+
 
 ## Overview and Aims <a name="aims"></a>
 
 In this module, we return to WormBase ParaSite.
 
 We will start by looking at commonly-used tools in WBPS:
-- BLAST
+- BLAST (a sequence comparison tool) 
 - JBrowse (a genome browser)
-- Variant Effect Predictor (VEP)
+- VEP (a Variant Effect Predictor)
 - Gene expression platform
 - g:Profiler
 
-We will then go on to apply some of the command line skills that you were introduced to in module 2 to explore WormBase ParaSite data programmatically.
-
-Finally, the module ends with a Bonus section introducing our Expression browser.
+Finally, we will go on to apply some of the command line skills that you were introduced to in module 2 to explore WormBase ParaSite data programmatically.
 
 ---
 ## Tools <a name="tools"></a>
 
-### BLAST <a name="blast"></a>
+## BLAST <a name="blast"></a>
 
 BLAST (Basic Local Alignment Search Tool) is one of the most commonly used tools to search for sequences that are similar to each other. It is a fast searching programme that is able to compare a query sequence with hundreds to millions of sequences quickly. 
 
 You can use BLAST to search a query sequence against the sequences in WormBase ParaSite.
 
-**How BLAST works?**
+### How BLAST works? 
 
 BLAST uses three steps:
 ![](figures/BLAST_1.png)
@@ -65,12 +53,12 @@ BLAST uses three steps:
    - The results are then presented as a list of alignments with associated scores. The alignments with the highest scores are most likely to be true matches or homologues of the query sequence.
 
 
-**When do we need to use BLAST?**
+### When do we need to use BLAST?
 - **Discovering new genes or proteins**: Imagine that you have sequenced a gene that is associated with drug resistance in a helminth. You know part of the DNA sequence, but you do not know which gene it belongs to. You can use WormBase ParaSite's BLAST to see if any genes correspond to your sequence!
 - **Discovering variants of genes or proteins**: Imagine you have identified a new protein of helminth which is similar but not identical to any of the  known proteins for this species. You might have found a new isoform of the encoding gene.
 - **Identifying orthologs and paralogs**: You can run BLAST using a protein/gene of a species to find its paralogues or its orthologues in other species.
 
-**BLAST in WormBase ParaSite**
+### BLAST in WormBase ParaSite
 
 The BLAST tool is accessible:
 - From the WormBase ParaSite homepage, select BLAST from the tool bar, or the BLAST icon. 
@@ -81,55 +69,69 @@ The BLAST tool is accessible:
 Both options will take you to WormBase ParaSite's BLAST tool page:
 ![](figures/BLAST_4.png)
 
-**How to evaluate Blast results?**
-   
+### How to evaluate Blast results?
+
+Blast jobs are summarized in a table with a link to the results. The results page initially displays as a table with several (expandable) information columns. 
+We need to pay particular attention to some metrics of the comparisons.
+
+![](figures/BLAST_5.png)
+
 Metrics used in the results table:
-- **Score**: The bit score gives an indication of how good the alignment is; the higher the score, the better
-the alignment.
+- **Score**: The bit score gives an indication of how good the alignment is; the higher the score, the better the alignment.
 - **E-value**: The E-value gives an indication of the statistical significance of each alignment. A sequence alignment that has an E-value of 0.05 means that this
 similarity has a 5 in 100 (1 in 20) chance of occurring by chance alone.
 - **%ID or percent identity**: Percent identity is telling you how many residues in your query are an identical match to the hit. Closely related sequences will have a much higher % identity.
 
+Besides these parameters, you can visualize where the different hits fall within the genome by clicking at the genomic location. Zoom in or out to find out if there are other hits in the region.
+
 [↥ **Back to top**](#top)
 
 ---
-### BLAST exercise <a name="blast_exercise"></a>
+### _EXERCISE 1 BLAST search exercise_ <a name="blast_exercise"></a>
+
+- We are goint to use WormBase ParaSite BLAST to find what is encoded by the following sequence.
+
 
 ```
-TTTGCAGATGCTTCTCCCTTCAAACTTGACGACGTCAACATTAATGACGTCATCATCAGA
-ATCGTACGACGCTGATAATCCGGGGCTTCCGCCTGAGCCAATCCTGTCGGATTACGTGGA
-AATGTTCACTTTGGTGCTCAATTTTATTGTTGGCGCGCCGTTGAACCTGGCCGCTTATAC
-ACAGCTAAGCGAACGACCTACATCAACGCGGTTAGACCTTCTGAAGCGATCACTCAACTA
-TTCGGATCTTCTCGTTCTATTCATCTACGTACCATCTCGTGCCTGCTGGTTATTGACCTA
-CGATTGGCGGGGTGGAGATGCACTCTGTAAAATTGTCAAGATGTTTCATACGTTCGCGTT
-TCAGAGCTCCTCCAACGTGATCGTGTGCATCGCCGTGGATCGCCTGCTATCCGTCCTCTC
-CCCATCCCATCACAGCCCCAACAAAGCCCTGAAACGGACTAAAATGATGTTAATAGTCGC
-GTGGATAGTAGCGCTAGTAATCTCATGCCCACAACTTTTCATCTGGAAAGCATATCTAGC
-ACTTCCCGAGTATAATTGGAGCCAGTGTCTGCAAATTTGGGAGATTGCACGGATGGAAAA
-ATTCAACAAACCACAGGTAGTGCCAGAGTTTGACGCCGAGTTCTGGTACAGCATACTGCA
-TATTAGTCTCGTTTTTTGGATCCCTTGTATCATTATCATGCTATCCTACATCATAGTCAT
-CTCATGGGTATGGATCAACTCTCGGCCGTCCATCCGTCACACCTCTTCATTTTCCTTCCA
-CACCGGCTGCGATACGGTAGATACAGTACTGACTAGAGCCTCTGAATGGAATCCTTTGAA
-GACATTCTCCCGTCACGTCAACATCAAGGAGCCCGAGAAGCCGATGACGACTCCCAGAAT
-CGTGGTCAGCGACGAGACGGAGGTCCCACTGACGCAGCGACCATCGATTTCTCCGTCGGA
-AGCGTCGGCGGTGATGAGGACCGGTGTGCACACGAGTACCTCGTATAATGCTAATTTGAA
-TCGATCCCGAGCCCTGCGAGTTTCCTTGCTACTAGTCGTCGCGTACATCATCTGCTGGCT
-ACCATATAACCTCATAAGTCTTATCCAATTTCTTGATCGGGACTTTTTTTCGTCATATCT
-TAAACATGTCCACTTCTGCCAACAACTAATCATTTTTAACTCGGTCGTCAATCCATGGCT
-CTACGGTTTCTTCGGTCCCCGCCGCCCGTCTACCACCGGTGCCGGCCGTCACTGATCTCC
-AAACATCAAACATCGAATTCGCCATATCTTTCCAAAATCCCCCCAACGTTCCAGTTTTCA
-AGCCCAACGAATTGCCAATGCCATATCTTTAACAACTTTTATGGTTTCTTGTTTGTTTTT
-TTTTATTTATTTTATTGTAATGTTTGATTCTCGGTGAAAAATTTGTGTAAAATAAATTAT
-TTTTTATGTGAAA
+GACTTATATTCGGTTACGGAGTCCGATCCTAATCTGGAGAACTCTCGTCTGATCGACCAA
+TTCATGTACGATCCGAAAAATGCCTTGGTTTGCGCGCTATTATGTATTGTTCAGTGGCCT
+TCTTCCACTCTAGACTTCGAGGCTTCTCGTTGTTTGTTGTCCGAATCGTTTGGAACTAAA
+ATCCCGATATTTTCCAAGTCATTTCCAGCTACATCACCCAAACTTATTCCTCATCATGAT
+ATCATTCCATTCCGTCGAACTCCGTTGGATGAGATAGACTCGTCTTCTTGGCGTGGTCGT
+CTTCTACGTTCGATCACAATGGCTTCTTGTGATCTGGGTCTGCTTGCCTGTGCTGGACCA
+GATTCACGGTCACCTACATCTGTGCAGTGCTTTCGCCTTAGCCGGCATTTTCAAGCCGCT
+CGGGCTCATGGGTCCAGGACTTTCAAGCGACCTACCGCTGTGATCAATAAATCCAGCACC
+TGCAGCGTACATCCTTTGTCCGCTTGGCTTTGGTTCAATTTGACCCTTATCCCAGTCGTG
+TTATACCAGCTCAATCGTGCATTATGCTCTGTGGAACTGGGTCAATTTTTACGTAAACTC
+GTCCCCTGTTCAATTCATGTACGCTATCCGATTCCAATTCCAGACCGATTAGATGCACCG
+AAATGTATGCTGTCTAGTTTGCGAGTCCCTGTTGAACTAGATCGCCTAGCGGCGAGTTCA
+AATCTCTGGCCAACACTTGAAAAACCCGAACCGGACATCATTCGACCAACCAACCAAGCA
+GAAGTGAGTAATCTGATGGTGGCCACAACCACCTTAGGTACGGATGATGTGGTGAATTTG
+GAGCGTTTGGAGTTTTGGGGTGATTCGTTTATCAAACTCATGGGTACCTTGATTGTGTAC
+AACCAATTACCTCAAACAGCTTCCGAGGGGGATCTGACCAGCAAACGTGTCGCGTACCTC
+ACGAATACCTATCTAGCAGATATCGTCGAAAAGCTTCACTGGTCTGGCTACTGCACTGCT
+CGACCGTACTTAGCTGAGACGCAGTTTTTACCGCCAACATTTGTCTTGTCCAAGCAGGCA
+GATGAATCGAAACATCAGGACAGGTTGTTTGTTACGTTCCGCCGAAAGTCCCTGTCCGAT
+ATGCTGGAAGCGTTGGTAGGCTACTTGCTTACTTATTCAAATCTGGAATCGGCATTTTTG
+TTGCTCACTTATGGAAGTTCTAATTCGATAATCACAACAATAAGACAAAATTGGCCAAAA
+CTTTTTGTGACTTCTGTTGGCTATTGGATCAAGCCAACACTTGTGTCAGACCTAACCACT
+CAATCATCTGTTGAAGGCGTACTGAACTATCATTTTCGTCAACCGGTGCATCTAGTGACC
+GCATTGAGACATCAAAGTGCGACGCGTGCATCTGAGAATTCACCTGATTACCAACGCCTA
+GAATTCTTGGGTGACGCAGTGCTGGATTACGTAATCACCTCTCATATTTACAATGCCAAC
+AGCGATTTCGACCCGGGTGTCCTCA
+
 ```
-- Use WormBase ParaSite BLAST to find out the identity of this sequence, and which species it belongs to.
+- To which species it belongs to? 
 - Does it have any close hits in other genomes?
-- BONUS question: Try BLASTing against both cDNA and a genomic DNA databases. What kind of sequence is this?
+- Is this a genomic or cDNA sequence?
+  
+- BONUS question: Get the corresponding protein sequence and BLAST it against the genomes. How diferent are the results? Why?
+
 
 [↥ **Back to top**](#top)
 
 ---
-### The genome browser <a name="genome_browser"></a>
+## JBROWSE - The genome browser <a name="genome_browser"></a>
 
 A genome browser is a tool that allows you to visualise a genome assembly and its features, together with experimental data aligned to the genome.
 
@@ -139,9 +141,9 @@ There are several commonly used genome browsers in bioinformatics, each with dif
 
 * [JBrowse 1](https://jbrowse.org/jbrowse1.html) - this is the genome browser that we’ll be using today. WormBase ParaSite has an instance of JBrowse for every genome that it hosts. The Apollo project is a well known extension of JBrowse, which, like Artemis, can be used to edit gene models.
 
-There are many other genome browsers for different needs out there. Feel free to explore them at your own time:n[Integrative Genomics Viewer (IGV)](https://igv.org/),[UCSC Genome Browser](https://genome.ucsc.edu/),[Artemis/Artemis Comparison Tool (ACT)](https://www.sanger.ac.uk/tool/artemis-comparison-tool-act/) and the new version of Jbrowse: [Jbrowse 2](https://jbrowse.org/jb2/) 
+There are many other genome browsers for different needs out there. Feel free to explore them at your own time: [Integrative Genomics Viewer (IGV)](https://igv.org/),[UCSC Genome Browser](https://genome.ucsc.edu/),[Artemis/Artemis Comparison Tool (ACT)](https://www.sanger.ac.uk/tool/artemis-comparison-tool-act/) and the new version of Jbrowse: [Jbrowse 2](https://jbrowse.org/jb2/) 
 
-#### Using JBrowse: basic functionality
+### Using JBrowse: basic functionality
 
 In this example we’ll introduce the basic functionality of WormBase ParaSite's JBrowse 1, and demonstrate how to use the various tracks.
 
@@ -176,7 +178,7 @@ file.
 
 ![](figures/jbrowse_4.png)
 
-#### Tracks
+### Tracks
 
 We can also use JBrowse to view other types of data aligned to the genome. 
 
@@ -201,29 +203,43 @@ Let’s say you want to see in which life stages Smp_312440 is expressed:
 - By mousing over the histogram, you can see the exact number of aligned reads at each base. 
 - We can see that a lot of the tracks show biological replicates of the same condition.- We can use combination tracks to combine replicate tracks “on the fly”, so we use up less space on the screen.
 
-#### Visualising your own data
+* In the main menu at the top of the page, select “Track” and “Add combination track”.
+
+A new empty track should appear. You can then drag and drop existing tracks in to combine them. When you add additional tracks, a dialogue box should appear for you to select the type of operation to use to combine them. For this example, we’ll choose “addition”: you’ll now see the total number of reads across both selected libraries that aligned at each region. Note that different set operations can be performed, including subtraction, multiplication and division; these might make sense depending on the tracks that are being combined and the information that you’re interested in.
+
+![](figures/jbrowse_7.png)
+
+As well as seeing that Smp_312440 is expressed in these conditions, we can use the coverage histograms to assess the quality of the gene model. Most parasitic worm genomes are annotated with automated pipelines. Whilst annotation algorithms can often be very accurate, they are not infallible. Most of the gene models that you look at in WormBase ParaSite will not have been checked by a human curator, so it is wise not to take them as “truth" unless you verify that they agree with any evidence that is available.
+
+![](figures/jbrowse_8.png)
+
+In this case we can see that each of the exons in the gene model have got good RNASeq coverage, with no additional exons suggested by the RNASeq data.
+
+
+### Motif searching
+
+It might be useful to have a quick, visual way of showing where certain motifs (short, defined DNA sequences) are found in the reference sequence. JBrowse offers a quick and flexible way to do this. We’ll demonstrate this by generating a track for the TATA box sequence (a sequence found in the promoter region of many eukaryotic genes). The consensus TATA sequence is TATA[A/T]A[A/T] (where [A/T] indicates that either A or T could be present at that position).
+
+* In JBrowse, select “Track” from the main menu bar, followed by “Add sequence search track”.
+* Type the motif that we’re searching for in the dialogue box, in this format: TATA[AT]A[AT], and tick “Treat as regular expression”. This means that the [AT] section of the motif will be interpreted as a regular expression (ie, the base in this position can be either A or T). Click “Search”.
+
+![](figures/jbrowse_9.png)
+
+Going back to the main JBrowse window, a new track has appeared with all instances of the motif marked. Zooming in to the 5-prime end of Smp_312440, we can see that one of these is well positioned to be our TATA box.
+
+
+### Visualising your own data
 
 As well as looking at publicly available data, you can use WormBase ParaSite JBrowse to visualise your own data.
 
-We’ll demonstrate how to do this using a BAM file that we have provided for you.
+We’ll demonstrate how to do this using a BAM file that we have provided for you. A BAM file is a type of file format used in genomics to store DNA sequencing data in a compressed and indexed manner.
+As a BAM file, this file is binary, so trying to read it as it is won’t be very informative. To read it we should first convert it into the SAM file format (non-binary, human-readable). We can do that with samtools:  [Samtools](http://www.htslib.org/doc/samtools.html) is a useful software package for manipulating SAM and BAM files.
 
-**BAM file?**
-A BAM file is a type of file format used in genomics to store DNA sequencing data in a compressed and indexed manner.
 
-In the module 3 data directory you should find a file named SRR3223448.bam. 
 
-As a BAM file, this file is binary, so trying to read it as it is won’t be very informative. To read it we should first convert it into the SAM file format (non-binary, human-readable). We can do that with samtools:
-
-- [Samtools](http://www.htslib.org/doc/samtools.html) is a useful software package for manipulating SAM and BAM files.
-- We will use a samtools command to convert the BAM file to a SAM file so we can have a look at how it’s structured. Move to the module 3 data directory and type the following into your terminal:
-
-    ```bash
-    samtools view -h SRR3223448.bam | less
-    ```
-<br>
-<br>
 <details closed>
-<summary> <- Click here to read more about the BAM and SAM file formats at your own time.</summary>
+<summary> <- Click here to read more about the BAM and SAM file formats at your own time.</summary>   
+
 The SAM file starts with a header section. All header lines begin with a ‘@’ character.
 
 ![](figures/jbrowse_10.png)
@@ -234,18 +250,36 @@ Move down through the file (by pressing the space bar) until you come to the ali
 
 The full SAM specification is available here: http://samtools.github.io/hts-specs/
 
-Before we can visualise the file in JBrowse, we need to create an index. An index is another file that often accompanies a BAM file, and acts like a table of contents. Software such as JBrowse can look inside the index file and find where exactly in the corresponding BAM file it needs to look, without having to go through all of the reads (which would be computationally very expensive).
+If you’ve looked at RNA sequencing data before, you may notice something unusual about the reads in this file: they’re very long! Until recently, next generation sequencing reads were typically ~100bp in length, so transcripts had to be sequenced in short sections at high coverage and reconstructed computationally. This BAM file contains “IsoSeq” data, from the Pacific Biosciences platform, whereby full length transcripts have been sequences in their entirety.
 
-BAM index files should have exactly the same name as their corresponding BAM file, with the addition of a .bai suffix. We can index our BAM file using samtools. Type:
 
-    ```bashsamtools index SRR3223448.bam
-```
+</details>
+
+
+
+
+In the module 3 data directory you should find a file named SRR3223448.bam. 
+
+We will use a samtools command to convert the BAM file to a SAM file so we can have a look at how it’s structured. Move to the module 3 data directory and type the following into your terminal:
+
+    ```bash
+    samtools view -h SRR3223448.bam | less
+    ```
+<br>
+<br>
+
+
+Before we can visualise the file in JBrowse, we need to create an index. An index is another file that often accompanies a BAM file, and acts like a table of contents. 
+Software such as JBrowse can look inside the index file and find where exactly in the corresponding BAM file it needs to look, without having to go through all of the reads (which would be computationally very expensive). BAM index files should have exactly the same name as their corresponding BAM file, with the addition of a .bai suffix. 
+
+We can index our BAM file using samtools. Type:
+
+    ```bash
+    samtools index SRR3223448.bam
+    ```
 
 You should now see a file called SRR3223448.bam.bai in your working directory. We can now load the file into WormBase ParaSite JBrowse.
 
-![](figures/jbrowse_12.png)
-</details>
-<br>
 
 We can only add an indexed BAM file to Jbrowse (BAM file accompanied by a file with the same name with the addition of a .bai suffix). The BAM file in the directory is already indexed (You should see a file called SRR3223448.bam.bai in your working directory.)
 
@@ -255,14 +289,19 @@ We can only add an indexed BAM file to Jbrowse (BAM file accompanied by a file w
     - Select both the BAM file and the index file. JBrowse guesses the file type from the name, but we have an option to correct it if it gets it wrong. We can see that it’s right this time.
     - Click “Open”.
 
+![](figures/jbrowse_12.png)
+<br>
+
 Now we can see the reads aligned to the genome. Notice that this RNA-Seq data is stranded- this means that the library preparation protocol preserved information on which end of the RNA molecule was 5-prime and which end was 3-prime, so we can infer which strand of DNA it was transcribed from. This information is encoded in the BAM file, and JBrowse colours the reads accordingly:
 - reads aligning to the forward strand are $\textcolor{pink}{\textsf{pink}}$
 - and reads aligning to the reverse strand are $\textcolor{purple}{\textsf{purple}}$
 
+
+
 [↥ **Back to top**](#top)
 
 ---
-### VEP <a name="vep"></a>
+## VEP Variant Effect Predictor <a name="vep"></a>
 
 Another WormBase ParaSite tool that we will look at today is the Variant Effect Predictor, or VEP.
 
@@ -331,7 +370,7 @@ To do this:
 
 [↥ **Back to top**](#top)
 
-#### VEP exercise <a name="vep_exercise"></a>
+### _EXERCISE 2 : Variant Effect Prediction exercise_ <a name="vep_exercise"></a>
 
 Download the VEP results from the example above as a “VEP file”. Use this file and the original VCF file to answer the following questions:
 
@@ -350,6 +389,158 @@ Hint: to view the VCF in JBrowse you first need to compress and index it. Do:
 ```bash
 bgzip file.vcf && tabix -p vcf file.vcf.gz
 ```
+
+[↥ **Back to top**](#top)
+
+## The WormBase ParaSite Expression browser <a name="expression_data"></a>
+
+Earlier in this section, we looked at a gene in JBrowse and used RNAseq tracks to see in which life stages it was expressed. What if you were interested in transcriptional differences between life stages, but didn't have a specific gene in mind?
+
+You might want to retrieve **all** of the _S. mansoni_ genes that are differentially expressed between 2 life cycle stages. 
+
+WormBase ParaSite has collated RNAseq data from publicly available studies and analysed it against our genomes and annotations.
+
+This means that if somebody has already conducted a study to compare the conditions that you're interested in, you can look up pre-calculated differentially expressed genes. 
+
+1. Navigate back to the _S. mansoni_ genome landing page, and select "Gene expression"
+
+![](figures/expression_1.png)
+
+2. We can see a summary of the different studies that have been conducted. We're interested in life cycle stages, so select the first study "Schistosoma mansoni transcriptomics at different life stages". 
+
+![](figures/expression_2.png)
+
+For each study, we have a summary of the conditions for which data is available. You'll learn much more about how transcriptomic experiments are analysed in module 7, but for those who are interested we have used HISAT2 to align reads to the genome, HTSeq to quantify counts per gene and DESeq2 to compute differential expression per condition.
+
+Several files are available for download. These are:
+
+* **Characteristics and conditions per run** - a file summarising the metadata available for each sample/run in the study.
+* **Counts of aligned reads per run (FeatureCounts)** - for each gene, raw counts per sample/run as produced by HTSeq (not normalised for library size).
+* **Gene expression (TPM) per run** - for each gene, counts per sample/run normalised for gene length and library size (TPM = transcripts per million).
+* **Gene expression (TPM) per condition as median across replicates** - As above, but a median value is calculated for each gene from all samples/runs of the same condition.
+* **Differential expression** - The number of files here varies. For each experiment, we extract the different conditions for which pair-wise comparisons are possible. For this experiment, only one variable is changing between the samples (developmental stage), so we have 3 possible contrasts: 24h schistosomule v 3h schistosomule, 24h schistosomule v cercariae and 3h schistosomule v cercariae. The second study in the list ("Praziquantel mode of action and resistance") is more complicated; we have several facets changing between conditions (drug treatment, development stage, timepoint, strain **and** sex), resulting in many more possible contrasts. We calculate differential expression for any pairwise combination of conditions that have three or more replicates: it's down to you to choose which of those comparisons is biologically meaningful. There are 2 types of file available here:
+    - Summary files: for each combination of variables for which comparisons have been calculated, this file contains the genes that show a significant difference in at least one comparison. 
+    - Full results files: each of these files contain the full DESeq2 results for a contrast (i.e., fold changes for ALL genes, whether or not they are statistically significant).
+
+3. Download the full results files for the "Schistosoma mansoni transcriptomics at different life stages" "24-hour-schistosomule-vs-cercariae" experiment by clicking "Full result files for 3 contrasts (zipped) and place it into the "Module_3_WormBaseParaSite_2" directory.
+
+```bash
+cd ~/Module_3_WormBaseParaSite_2
+
+# Extract the compressed directory
+unzip ERP000427.de.contrasts.zip
+
+# move inside the results directory
+cd ERP000427.de.contrasts
+
+# have a look at the 24-hour-schistosomule-vs-cercariae file
+
+head -n 20 24-hour-schistosomule-vs-cercariae.tsv  
+or  
+grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | less
+```
+
+Use some of the commands you learned yesterday to extract the following information from the "24-hour-schistosomule-vs-cercariae.tsv" file:
+
+4. Extract the top 5 most significantly regulated genes
+    (hint: the final column, "padj", gives the adjusted p value. A smaller adjusted p value = more significant).
+
+
+```bash
+grep  "^Smp_" 24-hour-schistosomule-vs-cercariae.tsv | LC_ALL=C sort -g -k 7,7 | awk -F'\t' '$7 != "NA"' | head -n 5
+```
+
+
+5. Of the genes with an adjusted p-value that is less than 0.05, which is   
+    (a) most highly upregulated in the 24h schistosomules v the cercariae   
+
+    (b) most strongly upregulated in the cercariae v the 24h schistosomules?       
+
+```bash
+# upregulated in the 24h schistosomules means that Log2FoldChange (column 3) should be a positive number
+
+grep  "^Sman_" 24-hour-schistosomule-vs-cercariae.tsv | awk -F'\t' '$7 < 0.05 && $3 > 0' | LC_ALL=C sort -r -g -k 3,3 | head -n 10
+```
+
+```bash
+# upregulated in the cercariate means that Log2FoldChange (column 3) should be a negative number
+
+grep  "^Sman_" 24-hour-schistosomule-vs-cercariae.tsv | awk -F'\t' ' $7 < 0.05 && $3 < 0' | LC_ALL=C sort -g -k 3,3 | head -n 10
+```
+
+
+[↥ **Back to top**](#top)
+
+---
+## Performing Gene-set enrichment analysis <a name="gene-set"></a> 
+
+Gene set enrichment analysis (GSEA) (also called functional enrichment analysis or pathway enrichment analysis) is a method to identify classes of genes or proteins that are over-represented in a large set of genes or proteins, and may have an association with disease phenotypes.
+
+![image](https://user-images.githubusercontent.com/33452269/203346104-4ebe92bf-65c3-44d3-8e16-8bf4cd3342f8.png)
+
+
+In the previous module we talked about Gene Ontology (GO) [here](https://github.com/WCSCourses/HelminthBioinformatics_2023/blob/wbps_edits/manuals/module_1_WBP1/module_1_WBP1.md#go_terms).
+
+"Gene Ontology" enrichment analysis is one of the most commonly used enrichment analyses.
+
+Gene ontology is a formal representation of knowledge about a gene with respect to three aspects:
+Molecular Function, Cellular Component and Biological Process.
+
+So what is the Gene Ontology (GO) enrichment analysis?
+
+Fundamentally, the gene ontology analysis is meant to answer a very simple question: “What biological processes, molecular functions, and cellular components are significantly associated with a set of genes or proteins?”
+
+For example, we can take the list of genes we identified as significantly upregulated in cercariae vs 24h-schistosomules and try to identify what are the biological processes, cellular components and molecular functions that are implicated in this developmental stage comparison.
+
+Instead of manually trying to identify which genes in your list of differentially expressed genes have similar biological processes, cellular component and molecular functions, the GO enrichment analysis does it for you. More specifically, it clusters the genes into gene ontologies group, performs statistical analysis and shows you the most significantly overepressented ontologies!
+
+So basically a GO enrichment analysis takes a list of gene identifiers like this:
+
+<img src="figures/gprofiler_1.png" width="600">
+
+and organises them to Gene Ontology terms (GO):
+
+<img src="figures/gprofiler_2.png" width="600">
+<br><br>
+
+WormBase ParaSite offers a tool that performs this kind of analysis: g:Profiler that can be accessed from the "Tools" page:
+
+- Go to WormBase ParaSite (https://parasite.wormbase.org/).
+  
+- Click "Tools" at the top menu.
+
+- Click "g:Profiler" in the tools table.
+
+  
+<img width="1440" alt="Screenshot 2022-11-22 at 17 29 02" src="https://user-images.githubusercontent.com/33452269/203386793-b5f8080f-c53f-4cba-9023-876982684f83.png">
+
+
+
+[↥ **Back to top**](#top)
+
+---
+
+### _EXERCISE 3 : Gene -set enrichment analysis exercise_ <a name="gene-set_exercise"></a>
+
+
+
+Use the 24-hour-schistosomule-vs-cercariae.tsv from the previous section and print a list of genes with an adjusted p-value that is less than 0.05, which are most strongly upregulated in the cercariae v the 24h schistosomules.  
+
+1. Use gProfiler and perform a Gene-set enrichment analysis for these 40 genes from the "Schistosoma mansoni (PRJEA36577)" organism.  
+
+2. Which are the 3 most significantly enriched Cellular Component terms? Are they relevant to this developmental stage comparion we're performing?
+
+3. Expand the stats by using the ">>" in the header of the GO:CC result table. Try to interpret the T, Q, TnQ and U metrics. What do they represent?  
+
+
+    <details closed>
+    <summary>**Useful tips**</summary>
+    You can read more here: https://biit.cs.ut.ee/gprofiler/page/docs<br>
+   * **T - Term Size**: How many S. mansoni genes are in general associated with this term.<br>
+   * **Q - Query Size**: The number of genes in our gene list (the one we run the analysis for). In our case this number should theoretically be 40, however it is 14, why?<br>
+   * **TnQ - Overlap Size**: How many genes from our list are associated with this term.<br>
+   * **U - Total number of _S.mansoni_ genes.<br>
+    </details>
 
 [↥ **Back to top**](#top)
 
@@ -389,7 +580,7 @@ The files come in three flavours:
 
 - **Ortholog/paralog files**<br>Finally, we provide a TSV (tab-separated variable) file for each genome containing calculated ortholog and paralog relationships for all genes in the genome.
 
-#### Walk through examples
+### Walk through examples
 
 1. First of all, move to the module's specific directory:
 ```bash
@@ -399,15 +590,15 @@ cd ~/Module_3_WormBaseParaSite_2
 ```wget``` is a handy utility for retrieving online files including the ones from the FTP. The following will pull down the _Necator americanus_ GFF3 file into your working directory:
 
 ```bash
-wget http://ftp.ebi.ac.uk/pub/databases/wormbase/parasite/releases/current/species/necator_americanus/PRJNA72135/necator_americanus.PRJNA72135.WBPS18.annotations.gff3.gz
+wget http://ftp.ebi.ac.uk/pub/databases/wormbase/parasite/releases/current/species/necator_americanus/PRJNA72135/necator_americanus.PRJNA72135.WBPS19.annotations.gff3.gz
 
 ```
 
 Unzip the file and have a look at the contents:
 
 ```bash
-gzip -d necator_americanus.PRJNA72135.WBPS18.annotations.gff3.gz
-less necator_americanus.PRJNA72135.WBPS18.annotations.gff3
+gzip -d necator_americanus.PRJNA72135.WBPS19.annotations.gff3.gz
+less necator_americanus.PRJNA72135.WBPS19.annotations.gff3
 ```
 
 Using the commands that you learned yesterday, we can manipulate these files to extract all sorts of information. Break down the following commands to understand what each section is doing:
@@ -421,46 +612,46 @@ To extract the names all of the gene features on scaffold "KI657457":
 # There are various ways to achieve this
 
 # One is:
-grep "^KI657457" necator_americanus.PRJNA72135.WBPS18.annotations.gff3 | grep "\tgene\t" | cut -f9 | grep -o "Name=[^;]\+" | sed -e 's/Name=//'
+grep "^KI657457" necator_americanus.PRJNA72135.WBPS19.annotations.gff3 | grep "\tgene\t" | cut -f9 | grep -o "Name=[^;]\+" | sed -e 's/Name=//'
 
 # Another more specific one is:
-grep -v "#"  necator_americanus.PRJNA72135.WBPS18.annotations.gff3  | awk '$3~/gene/ && $1~/KI657457/ {print}'  | grep -o "Name=[^;]\+" | sed -e 's/Name=//' 
+grep -v "#"  necator_americanus.PRJNA72135.WBPS19.annotations.gff3  | awk '$3~/gene/ && $1~/KI657457/ {print}'  | grep -o "Name=[^;]\+" | sed -e 's/Name=//' 
 ```
 
 Count how many genes each scaffold is annotated with:
 
 ```bash
 # One way to do it:
-grep "\tgene\t" necator_americanus.PRJNA72135.WBPS18.annotations.gff3 | cut -f1 | sort | uniq -c
+grep "\tgene\t" necator_americanus.PRJNA72135.WBPS19.annotations.gff3 | cut -f1 | sort | uniq -c
 
 # Another way:
-grep -v "#"  necator_americanus.PRJNA72135.WBPS18.annotations.gff3  | awk '$3~/gene/{print}'  | cut -f 1 | sort | uniq -c
+grep -v "#"  necator_americanus.PRJNA72135.WBPS19.annotations.gff3  | awk '$3~/gene/{print}'  | cut -f 1 | sort | uniq -c
 ```
 
 Similarly, using the protein FASTA file:
 
 ```bash
 # download the file
-wget https://ftp.ebi.ac.uk/pub/databases/wormbase/parasite/releases/current/species/necator_americanus/PRJNA72135/necator_americanus.PRJNA72135.WBPS18.protein.fa.gz
+wget https://ftp.ebi.ac.uk/pub/databases/wormbase/parasite/releases/current/species/necator_americanus/PRJNA72135/necator_americanus.PRJNA72135.WBPS19.protein.fa.gz
 
 # unzip 
-gzip -d necator_americanus.PRJNA72135.WBPS18.protein.fa.gz
+gzip -d necator_americanus.PRJNA72135.WBPS19.protein.fa.gz
 
 # count the number of proteins
-grep -c "^>" necator_americanus.PRJNA72135.WBPS18.protein.fa
+grep -c "^>" necator_americanus.PRJNA72135.WBPS19.protein.fa
 
 # extract the sequence of NECAME_00165
-sed -n -e "/NAME_00165/,/^>/p" necator_americanus.PRJNA72135.WBPS18.protein.fa | sed -e '$d'
+sed -n -e "/NAME_00165/,/^>/p" necator_americanus.PRJNA72135.WBPS19.protein.fa | sed -e '$d'
 ```
 
 And a more complicated ```awk``` to extract scaffold lengths in a genome FASTA file:
 
 ```bash
 # download the file
-wget  https://ftp.ebi.ac.uk/pub/databases/wormbase/parasite/releases/current/species/necator_americanus/PRJNA72135/necator_americanus.PRJNA72135.WBPS18.genomic.fa.gz
+wget  https://ftp.ebi.ac.uk/pub/databases/wormbase/parasite/releases/current/species/necator_americanus/PRJNA72135/necator_americanus.PRJNA72135.WBPS19.genomic.fa.gz
 
 # unzip 
-gzip -d necator_americanus.PRJNA72135.WBPS18.genomic.fa.gz
+gzip -d necator_americanus.PRJNA72135.WBPS19.genomic.fa.gz
 
 # count the lengths
 awk '/^>/ { 
@@ -475,11 +666,31 @@ awk '/^>/ {
 {
   seqlen += length($0)
 }
-END {print seqlen}'  necator_americanus.PRJNA72135.WBPS18.genomic.fa
+END {print seqlen}'  necator_americanus.PRJNA72135.WBPS19.genomic.fa
 ```
+
+### Additional exercises 
+
+1. Which _N.americanus_ scaffold has more genes ?
+2. Write a loop to extract the sequences of all of these proteins:
+
+NECAME_00333  
+NECAME_00215  
+NECAME_00169  
+NECAME_00417  
+NECAME_00018  
+NECAME_00028  
+NECAME_00893  
+NECAME_00782  
+NECAME_00092  
+NECAME_00891  
+NECAME_00638  
+NECAME_00025  
+
+  
 [↥ **Back to top**](#top)
 
-### The REST API <a name="api"></a>
+## The REST API <a name="api"></a>
 
 The other way to query WormBase ParaSite data is via the REST API (Application Programming Interface). An API is just another way to retrieve data from a server, but this time via scripts or commands. You make a request to the server, but rather than returning a webpage, it returns the data in a structured format. We offer data in JSON (JavaScript Object Notation) and XML (Extensible Markup Language), which are both commonly used formats for data exchange. They are structured, so good for writing programs to interpret and manipulate them, but also human readable.
 
@@ -651,7 +862,7 @@ We can see that _M. arenaria_ is the assembly with the highest BUSCO Annotation 
 [↥ **Back to top**](#top)
 
 ---
-#### API exercises <a name="api_exercises"></a> 
+### _EXERCISE 4 -API exercise_ <a name="api_exercises"></a> 
 
 Adapt the commands that you used above to retrieve the following information from the WormBase ParaSite API. Note that you’ll need to use different endpoints: browse the site to see which ones to use.
 
@@ -681,128 +892,3 @@ Feel free to expand or tweak your programs if you have time!
 
 [↥ **Back to top**](#top)
 
-
----
-## The WormBase ParaSite Expression browser <a name="expression_data"></a>
-
-Earlier in this section, we looked at a gene in JBrowse and used RNAseq tracks to see in which life stages it was expressed. What if you were interested in transcriptional differences between life stages, but didn't have a specific gene in mind?
-
-You might want to retrieve **all** of the _S. mansoni_ genes that are differentially expressed between 2 life cycle stages. 
-
-WormBase ParaSite has collated RNAseq data from publicly available studies and analysed it against our genomes and annotations.
-
-This means that if somebody has already conducted a study to compare the conditions that you're interested in, you can look up pre-calculated differentially expressed genes. 
-
-1. Navigate back to the _S. mansoni_ genome landing page, and select "Gene expression"
-
-![](figures/expression_1.png)
-
-2. We can see a summary of the different studies that have been conducted. We're interested in life cycle stages, so select the first study "Schistosoma mansoni transcriptomics at different life stages". 
-
-![](figures/expression_2.png)
-
-For each study, we have a summary of the conditions for which data is available. You'll learn much more about how transcriptomic experiments are analysed in module 7, but for those who are interested we have used HISAT2 to align reads to the genome, HTSeq to quantify counts per gene and DESeq2 to compute differential expression per condition.
-
-Several files are available for download. These are:
-
-* **Characteristics and conditions per run** - a file summarising the metadata available for each sample/run in the study.
-* **Counts of aligned reads per run (FeatureCounts)** - for each gene, raw counts per sample/run as produced by HTSeq (not normalised for library size).
-* **Gene expression (TPM) per run** - for each gene, counts per sample/run normalised for gene length and library size (TPM = transcripts per million).
-* **Gene expression (TPM) per condition as median across replicates** - As above, but a median value is calculated for each gene from all samples/runs of the same condition.
-* **Differential expression** - The number of files here varies. For each experiment, we extract the different conditions for which pair-wise comparisons are possible. For this experiment, only one variable is changing between the samples (developmental stage), so we have 3 possible contrasts: 24h schistosomule v 3h schistosomule, 24h schistosomule v cercariae and 3h schistosomule v cercariae. The second study in the list ("Praziquantel mode of action and resistance") is more complicated; we have several facets changing between conditions (drug treatment, development stage, timepoint, strain **and** sex), resulting in many more possible contrasts. We calculate differential expression for any pairwise combination of conditions that have three or more replicates: it's down to you to choose which of those comparisons is biologically meaningful. There are 2 types of file available here:
-    - Summary files: for each combination of variables for which comparisons have been calculated, this file contains the genes that show a significant difference in at least one comparison. 
-    - Full results files: each of these files contain the full DESeq2 results for a contrast (i.e., fold changes for ALL genes, whether or not they are statistically significant).
-
-
-3. Download the full results files for the "Schistosoma mansoni transcriptomics at different life stages" "24-hour-schistosomule-vs-cercariae" experiment by clicking "Full result files for 3 contrasts (zipped) and place it into the "Module_3_WormBaseParaSite_2" directory.
-
-```bash
-cd ~/Module_3_WormBaseParaSite_2
-
-# Extract the compressed directory
-unzip ERP000427.de.contrasts.zip
-
-# move inside the results directory
-cd ERP000427.de.contrasts
-
-# have a look at the 24-hour-schistosomule-vs-cercariae file
-grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | less
-```
-
-Use some of the commands you learned yesterday to extract the following information from the "24-hour-schistosomule-vs-cercariae.tsv" file:
-
-4. Extract the top 5 most significantly regulated genes (hint: the final column, "padj", gives the adjusted p value. A smaller adjusted p value = more significant).
-
-```bash
-grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | grep -v "^gene_id" | sort -g -k 7,7 | awk -F'\t' '$7 != "NA"' | head -n 5
-```
-
-5. Of the genes with an adjusted p-value that is less than 0.05, which is (a) most highly upregulated in the 24h schistosomules v the cercariae (b) most strongly upregulated in the cercariae v the 24h schistosomules?
-```bash
-# upregulated in the 24h schistosomules means tha Log2FoldChange (column 3) should be a positive number
-grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | grep -v "^gene_id" | awk -F'\t' '$7 != "NA" && $7 < 0.05 && $3 > 0' | sort -r -g -k 3,3 | head -n 10
-
-
-# upregulated in the cercariate means tha Log2FoldChange (column 3) should be a negative number
-grep -v "^#" 24-hour-schistosomule-vs-cercariae.tsv | grep -v "^gene_id" | awk -F'\t' '$7 != "NA" && $7 < 0.05 && $3 < 0' | sort -g -k 3,3 | head -n 10
-```
-
-[↥ **Back to top**](#top)
-
----
-## Performing Gene-set enrichment analysis <a name="gene-set"></a> 
-
-Gene set enrichment analysis (GSEA) (also called functional enrichment analysis or pathway enrichment analysis) is a method to identify classes of genes or proteins that are over-represented in a large set of genes or proteins, and may have an association with disease phenotypes.
-
-![image](https://user-images.githubusercontent.com/33452269/203346104-4ebe92bf-65c3-44d3-8e16-8bf4cd3342f8.png)
-
-In the previous module we talked about Gene Ontology (GO) [here](https://github.com/WCSCourses/HelminthBioinformatics_2023/blob/wbps_edits/manuals/module_1_WBP1/module_1_WBP1.md#go_terms).
-
-"Gene Ontology" enrichment analysis is one of the most commonly used enrichment analyses.
-
-Gene ontology is a formal representation of knowledge about a gene with respect to three aspects:
-Molecular Function, Cellular Component and Biological Process.
-
-So what is the Gene Ontology (GO) enrichment analysis?
-
-Fundamentally, the gene ontology analysis is meant to answer a very simple question: “What biological processes, molecular functions, and cellular components are significantly associated with a set of genes or proteins?”
-
-For example, we can take the list of genes we identified as significantly upregulated in cercariae vs 24h-schistosomules and try to identify what are the biological processes, cellular components and molecular functions that are implicated in this developmental stage comparison.
-
-Instead of manually trying to identify which genes in your list of differentially expressed genes have similar biological processes, cellular component and molecular functions, the GO enrichment analysis does it for you. More specifically, it clusters the genes into gene ontologies group, performs statistical analysis and shows you the most significantly overepressented ontologies!
-
-So basically a GO enrichment analysis takes a list of gene identifiers like this:
-
-<img src="figures/gprofiler_1.png" width="600">
-
-and organises them to Gene Ontology terms (GO):
-
-<img src="figures/gprofiler_2.png" width="600">
-<br><br>
-WormBase ParaSite offers a tool that performs this kind of analysis: g:Profiler that can be accessed from the "Tools" page:
-
-- Go to WormBase ParaSite (https://parasite.wormbase.org/). Click "Tools" at the top menu. Click "g:Profiler" in the tools table.
-<img width="1440" alt="Screenshot 2022-11-22 at 17 29 02" src="https://user-images.githubusercontent.com/33452269/203386793-b5f8080f-c53f-4cba-9023-876982684f83.png">
-
-[↥ **Back to top**](#top)
-
----
-### Gene-set enrichment analysis exercise <a name="gene-set_exercises"></a> 
-
-Use the 24-hour-schistosomule-vs-cercariae.tsv from the previous section and print a list of genes with an adjusted p-value that is less than 0.05, which are most strongly upregulated in the cercariae v the 24h schistosomules.
-
-1. Use gProfiler and perform a Gene-set enrichment analysis for these 40 genes from the "Schistosoma mansoni (PRJEA36577)" organism.
-
-2. Which are the 3 most significantly enriched Cellular Component terms? Are they relevant to this developmental stage comparion we're performing?
-
-3. Expand the stats by using the ">>" in the header of the GO:CC result table. Try to interpret the T, Q, TnQ and U metrics. What do they represent?
-    <details closed>
-    <summary>Help!</summary>
-    You can read more here: https://biit.cs.ut.ee/gprofiler/page/docs<br>
-   * T - Term Size: How many S. mansoni genes are in general associated with this term.<br>
-   * Q - Query Size: The number of genes in our gene list (the one we run the analysis for). In our case this number should theoretically be 40, however it is 14, why?<br>
-   * TnQ - Overlap Size: How many genes from our list are associated with this term.<br>
-   * U - Total number of S. mansoni genes.<br>
-    </details>
-
-[↥ **Back to top**](#top)
