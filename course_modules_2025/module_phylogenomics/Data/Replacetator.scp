@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# ============================================================
+# Script to add species names (with underscores) before the code in the fasta headers
+# Usage: ./Replacetator.scp input.fasta mapping_table.txt output.fasta
+# ============================================================
+
+
+if [[ $# -ne 3 ]]; then
+    echo "Usage: $0 <input.fasta> <mapping_table.txt> <output.fasta>"
+    exit 1
+fi
+
+FASTA_FILE="$1"
+MAPPING_FILE="$2"
+OUTPUT_FILE="$3"
+
+cp "$FASTA_FILE" "$OUTPUT_FILE"
+
+# Read mapping file line by line
+while IFS=$'\t' read -r code species; do
+    species_formatted="${species// /_}"  # Replace spaces with underscores
+    # Replace header ">code" with ">Species_name_[code]"
+    sed -i "s/^>$code\$/>${species_formatted}_\[$code\]/" "$OUTPUT_FILE"
+done < "$MAPPING_FILE"
+
+echo "Done. Output written to: $OUTPUT_FILE"
+
+exit
