@@ -1,66 +1,66 @@
-Apac	Adenocephalus_pacificus
-Alob	Allocreadium_lobatum
-Agra	Alveobothrium_grabatum
-Ahwa	Azygia_hwangtsiyui
-Alon	Azygia_longa
-Asus	Azygia_susquehannae
-Bgol	Brachycladium_goliath
-Ckor	Carassotrema_koreanum
-Ccom	Clinostomum_complanatum
-Cpis	Clinostomum_piscidium
-Csin	Clonorchis_sinensis
-Cagu	Creptotrematina_aguirrepequenoi
-Clin	Cryptocotyle_lingua
-Cpru	Cyathocotyle_prussica
-Dden	Dibothriocephalus_dendriticus
-Dlat	Dibothriocephalus_latus
-Dnih	Dibothriocephalus_nihonkaiensis
-Drud	Didymobothrium_rudolphii
-Dcor	Diphyllobothrium_cordatum
-Dste	Diphyllobothrium_stemmacephalum
-Djap	Diplodiscus_japonicus
-Dmeh	Diplodiscus_mehrai
-Dnig	Diplodiscus_nigromaculati
-Dbal	Diplogonoporus_balaenopterae
-Eaco	Echinoparyphium_aconiatum
-Ecap	Echinostoma_caproni
-Ehor	Echinostoma_hortense
-Emiy	Echinostoma_miyagawai
-Epar	Echinostoma_paraensei
-Erev	Echinostoma_revolutum
-Fhep	Fasciola_hepatica
-Fjac	Fasciola_jacksoni
-Fmag	Fascioloides_magna
-Fbus	Fasciolopsis_buskii
-Htae	Hydatigera_taeniaeformis
-Lint	Ligula_intestinalis
-Mbil	Metorchis_bilis
-Mori	Metorchis_orientalis
-Mxan	Metorchis_xanthosomus
-Mben	Moniezia_benedeni
-Mpol	Morishitium_polonicum
-Oail	Ogmocotyle_ailuri
-Osud	Opisthorchis_sudarikovi
-Oviv	Opisthorchis_viverrini
-Pskr	Paragonimus_skrjabini_miyazakii
-Pwes	Paragonimus_westermani
-Pele	Plagiorchis_elegans
-Pmac	Proterometra_macrostoma
-Pyag	Pseudoparacreptotrema_yaguezani
-Rsco	Rhinebothrium_scobinae
-Smag	Scalithrium_magniphallum
-Sbov	Schistosoma_bovis
-Scur	Schistosoma_curassoni
-Sgui	Schistosoma_guineensis
-Shae	Schistosoma_haematobium
-Sind	Schistosoma_indicum
-Sjap	Schistosoma_japonicum
-Sman	Schistosoma_mansoni
-Smar	Schistosoma_margrebowiei
-Smat	Schistosoma_mattheei
-Smek	Schistosoma_mekongi
-Sspi	Schistosoma_spindalis
-Seri	Spirometra_erinaceieuropaei
-Svar	Spongiobothrium_variabile
-Treg	Trichobilharzia_regenti
-Tszi	Trichobilharzia_szidati
+Apac	Adenocephalus_pacificus	Cestode
+Alob	Allocreadium_lobatum	Trematode
+Agra	Alveobothrium_grabatum	Cestode
+Ahwa	Azygia_hwangtsiyui	Trematode
+Alon	Azygia_longa	Trematode
+Asus	Azygia_susquehannae	Trematode
+Bgol	Brachycladium_goliath	Trematode
+Ckor	Carassotrema_koreanum	Trematode
+Ccom	Clinostomum_complanatum	Trematode
+Cpis	Clinostomum_piscidium	Trematode
+Csin	Clonorchis_sinensis	Trematode
+Cagu	Creptotrematina_aguirrepequenoi	Trematode
+Clin	Cryptocotyle_lingua	Trematode
+Cpru	Cyathocotyle_prussica	Trematode
+Dden	Dibothriocephalus_dendriticus	Cestode
+Dlat	Dibothriocephalus_latus	Cestode
+Dnih	Dibothriocephalus_nihonkaiensis	Cestode
+Drud	Didymobothrium_rudolphii	Cestode
+Dcor	Diphyllobothrium_cordatum	Cestode
+Dste	Diphyllobothrium_stemmacephalum	Cestode
+Djap	Diplodiscus_japonicus	Trematode
+Dmeh	Diplodiscus_mehrai	Trematode
+Dnig	Diplodiscus_nigromaculati	Trematode
+Dbal	Diplogonoporus_balaenopterae	Cestode
+Eaco	Echinoparyphium_aconiatum	Trematode
+Ecap	Echinostoma_caproni	Trematode
+Ehor	Echinostoma_hortense	Trematode
+Emiy	Echinostoma_miyagawai	Trematode
+Epar	Echinostoma_paraensei	Trematode
+Erev	Echinostoma_revolutum	Trematode
+Fhep	Fasciola_hepatica	Trematode
+Fjac	Fasciola_jacksoni	Trematode
+Fmag	Fascioloides_magna	Trematode
+Fbus	Fasciolopsis_buskii	Trematode
+Htae	Hydatigera_taeniaeformis	Cestode
+Lint	Ligula_intestinalis	Cestode
+Mbil	Metorchis_bilis	Trematode
+Mori	Metorchis_orientalis	Trematode
+Mxan	Metorchis_xanthosomus	Trematode
+Mben	Moniezia_benedeni	Cestode
+Mpol	Morishitium_polonicum	Trematode
+Oail	Ogmocotyle_ailuri	Trematode
+Osud	Opisthorchis_sudarikovi	Trematode
+Oviv	Opisthorchis_viverrini	Trematode
+Pskr	Paragonimus_skrjabini_miyazakii	Trematode
+Pwes	Paragonimus_westermani	Trematode
+Pele	Plagiorchis_elegans	Trematode
+Pmac	Proterometra_macrostoma	Trematode
+Pyag	Pseudoparacreptotrema_yaguezani	Trematode
+Rsco	Rhinebothrium_scobinae	Cestode
+Smag	Scalithrium_magniphallum	Cestode
+Sbov	Schistosoma_bovis	Trematode
+Scur	Schistosoma_curassoni	Trematode
+Sgui	Schistosoma_guineensis	Trematode
+Shae	Schistosoma_haematobium	Trematode
+Sind	Schistosoma_indicum	Trematode
+Sjap	Schistosoma_japonicum	Trematode
+Sman	Schistosoma_mansoni	Trematode
+Smar	Schistosoma_margrebowiei	Trematode
+Smat	Schistosoma_mattheei	Trematode
+Smek	Schistosoma_mekongi	Trematode
+Sspi	Schistosoma_spindalis	Trematode
+Seri	Spirometra_erinaceieuropaei	Cestode
+Svar	Spongiobothrium_variabile	Cestode
+Treg	Trichobilharzia_regenti	Trematode
+Tszi	Trichobilharzia_szidati	Trematode
