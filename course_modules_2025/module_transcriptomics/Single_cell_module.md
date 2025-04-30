@@ -1,5 +1,5 @@
 # Single-cell transcriptomics
-### Author: Santiago Fontenla, addapted from tutorial by Teresa Attenborough 
+### Author: Santiago Fontenla, addapted from the tutorial by Teresa Attenborough 
 
 ## Table of Contents
 1. [Overview and Aims](#intro)
@@ -10,8 +10,8 @@
 6. [Normalizing and Scaling the data](#N&S)
 7. [SCTransform of data](#SCTrasform)
 8. [Plot UMAPs](#plotUMAPs)
-
-10. [Functional analysis using GO term enrichment](#go)
+9. [Plot the expression of individual genes in the UMAP](#plotGenes)
+10. [Rename UMAP clusters IDs](#renameUMAP)
 
 ---
 
@@ -477,7 +477,7 @@ DimPlot(day2somules, reduction = "umap")
 ggsave(paste0("day2somules_v10clust_40PC_0.4res_RNA_",st,".jpg"))
 ```
 
-![](figures/SC_Figure_10.jpg)
+![](figures/SC_Figure_10.png)
 **Figure 10.**
 
 ## SCTransform of data <a name="SCTrasform"></a>
@@ -546,7 +546,7 @@ FeaturePlot(day2somules, features="percent.mt", label=TRUE)
 ggsave("day2somules_v10_40PC_0.5res_after_one_filt_mt_SCT.jpg")
 ```
 
-![](figures/SC_Figure_13.png)
+![](figures/SC_Figure_13.jpg)
 **Figure 13.**
 
 What do you think about this figure? Is there any cluster with a higher proportion of MT RNA?
@@ -596,13 +596,15 @@ A brainstorm question: how might you use this list to choose a gene to use for i
 How else might you classify cell cluster tissue types?
 
 
-### Plot individual genes
+## Plot the expression of individual genes in the UMAP <a name="plotGenes"></a>
 
-Now we can look at gene expression in these data by gene. The example below shows you ago 2-1. As above, remove the hash symbol in front of the word ggsave and run this chunk of code if you want to save the plot. If you want to look at a different gene, simply type the gene ID where "Smp-179320" currently sits. Remember to use - rather than _ ! We can visualise genes that we already know something about in the organism, to see if that gives us some clues
+Now we can look at gene expression in these data by gene, which could be useful to identify cluster marker genes. The example below shows you ago 2-1. If you want to look at a different gene, simply type the gene ID where "Smp-179320" currently sits. Remember to use - rather than _ ! We can visualise genes that we already know something about in the organism, to see if that gives us some clues
 ```R
 FeaturePlot(day2somules, features = "Smp-179320")
 #ggsave(paste0("day2somules-Smp-179320-",st, ".jpg"), width = 25, height = 15)
 ```
+![](figures/SC_Figure_14.png)
+**Figure 14.**
 
 We can also look at these genes with a violin plot - this visualisation can be helpful in many ways, including seeing which clusters a gene is most expressed in.
 
@@ -610,8 +612,11 @@ We can also look at these genes with a violin plot - this visualisation can be h
 VlnPlot(day2somules, features = "Smp-179320")
 #ggsave(paste0("day2somules-Smp-179320_",st, ".jpg"), width = 25, height = 15)
 ```
+![](figures/SC_Figure_15.png)
+**Figure 15.**
 
 Are there any genes you're particularly interested in? You can adapt the code below to see if, and where, it might be expressed in these data. If you're not sure, you can look up S mansoni on WBPS and choose a gene from there (https://parasite.wormbase.org/index.html). Remember to delete the # if you want to save the plot to your computer!
+
 ```R
 FeaturePlot(day2somules, features = "your_gene")
 #ggsave(paste0("day2somules-your-gene_",st,".jpg"), width = 25, height = 15)
@@ -624,6 +629,8 @@ coexpression.plot <-FeaturePlot(day2somules, features = c("Smp-179320", "Smp-086
 coexpression.plot
 #ggsave(paste0("day2somules-coexpressed-Smp-179320-Smp-086860-",st, ".jpg"), width = 45, height = 25)
 ```
+![](figures/SC_Figure_16.png)
+**Figure 16.**
 
 Can you find a pair genes whose products you might expect to interact, and see if they are co-expressed? Again, you can use WBPS to learn more about genes.
 
@@ -631,7 +638,7 @@ Can you find a pair genes whose products you might expect to interact, and see i
 #put your code in here!
 ```
 
-#Cluster IDs
+## Rename UMAP cluster IDs <a name="renameUMAP"></a>
 
 You want all the cluster names to be unique - why might that be?
 ```R
@@ -666,3 +673,5 @@ LabelClusters(plot1, id = "ident", color = 'black', size =4, repel = T,  box.pad
 
 ggsave(paste0("day2somules-labelledlclusters_40PC_0.5res_",st,".jpg"), width = 25, height = 15)
 ```
+![](figures/SC_Figure_17.png)
+**Figure 17.**
