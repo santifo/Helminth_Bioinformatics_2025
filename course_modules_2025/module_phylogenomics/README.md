@@ -63,7 +63,7 @@ mafft --auto nad3.faa > nad3.alg.faa
 >--auto: automatically switches algorithms according to data size.
 
 -------------------------
-[OPTIONAL] Visualizing the alignment online in https://alignmentviewer.org/)
+[OPTIONAL] Visualizing the alignment online in https://alignmentviewer.org/).
 Open your favourite web browsers and upload one of the files you recently align. 
 
 ![alignmentviewer](https://github.com/user-attachments/assets/6aa9ed93-c215-45bd-855f-78632c8fb706)
