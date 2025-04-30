@@ -108,8 +108,6 @@ To use it on the VM, type man seqret on the command line to see the manual infor
 man seqret
 ```
 
->*"Again, please note that the procedure below is for all six proteins. As you need to trim the alignment of each protein independently.*
-
 1. Open a Terminal and go into the directory	that contains the trimmed files.
 
 ```
@@ -137,12 +135,11 @@ less atp6.alg.trim.aln
 
 Concatenator.scp  is a locally developed script written in bash that we use in our lab to concatenate sequences from different alignments to build a “super protein” or “super gene”. This script takes a *list of organism codes and a list of alignment files*. For each organism, it extracts matching sequences from all input alignment files, appends them in order, and produces a final concatenated FASTA file (concatenated.fas).
 
->*"Again, please note that the procedure below is for all six proteins. As you need to trim the alignment of each protein independently.*
 
 1. Open a Terminal and go into the directory	that contains the trimmed files.
 
 ```
-/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Dataseq/
+/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Data/
 ```
 
 2. To generate a file with the list of alignment files to concatenate type: 
@@ -206,7 +203,7 @@ As the input file, we will use the FASTA file generated in the previous activity
 
 **Introduction to the IQ-TREE program:**
 
-This program allows you to perform phylogenetic analysis by Maximum Likelihood. It uses efficient algorithms to explore the tree space, allowing very large matrices to be analyzed with reliable results (hundreds or thousands of sequences). It allows estimating the evolutionary model (ModelFinder module) followed by the phylogenetic inference and implements support measures to evaluate the reliability of the groupings or branches (Bootstrap, Ultrafast Bootstrap Approximation and probabilistic contrasts). The program can be downloaded and run locally (http://www.iqtree.org/), or on online servers such as http://iqtree.cibiv.univie.ac.at/.
+This program allows you to perform phylogenetic analysis by Maximum Likelihood. It uses highly efficient algorithms to explore the tree space, allowing very large matrices to be analyzed with reliable results (hundreds or thousands of sequences). It allows estimating the evolutionary model (ModelFinder module) followed by the phylogenetic inference and implements support measures to evaluate the reliability of the groupings or branches (Bootstrap, Ultrafast Bootstrap Approximation and probabilistic contrasts). The program can be downloaded and run locally (http://www.iqtree.org/), or on online servers such as http://iqtree.cibiv.univie.ac.at/.
 You can find many basic and advanced tutorials at http://www.iqtree.org/doc/
 
 >*Please note that the following procedure applies to the six concatenated protein sequences of mitochondrial-encoded genes. If you are analyzing a different dataset, be sure to replace the file names in the instructions and adjust the parameters accordingly.*
@@ -218,7 +215,7 @@ You can find many basic and advanced tutorials at http://www.iqtree.org/doc/
 1.	Open a Terminal and go into the folder that contains the concatenated alignment file previously generated:
 
 ```
-/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Dataseq/
+/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Data/
 ```
 
 2.	Type: 
@@ -246,7 +243,7 @@ iqtree2 -s concatenated.rn.fas -m mtZOA+F+I+R6 -B 1000 -nt 6
 
 
 Once the process is finished, the output files will be found in the folder, including:
-.treefile: the ML tree in NEWICK format, which can be visualized by any supported tree viewer programs like FigTree. .iqtree: the main report file that is self-readable. You should look at this file to see the computational results. It also contains a textual representation of the final tree. .log: log file of the entire run (also printed on the screen).
+**.treefile:** the ML tree in NEWICK format, which can be visualized by any supported tree viewer programs like FigTree. **.iqtree:** the main report file that is self-readable. You should look at this file to see the computational results. It also contains a textual representation of the final tree. **.log:** log file of the entire run (also printed on the screen).
 
 ### B.	Tree visualization
 
@@ -307,4 +304,6 @@ e.g.  can modify the size of the fonts (in Tip Labels, Legend, etc).
 |                   | Allocreadiidae       | *Pseudoparacreptotrema yaguezani*                                                                                                             |
 | **Diplostomida**  | Schistosomatidae     | *Schistosoma bovis*, *Schistosoma curassoni*, *Schistosoma guineensis*, *Schistosoma haematobium*, *Schistosoma indicum*, *Schistosoma japonicum*, *Schistosoma mansoni*, *Schistosoma margrebowiei*, *Schistosoma mattheei*, *Schistosoma mekongi*, *Schistosoma spindalis*, *Trichobilharzia regenti*, *Trichobilharzia szidati* |
 
->*Olson PD, Cribb TH, Tkach VV, Bray RA, Littlewood DTJ. (2003). Phylogeny and classification of the Digenea (Platyhelminthes: Trematoda). International Journal for Parasitology, 33(7), 733–755.*
+-------------------------
+[OPTIONAL] Check Olson PD, Cribb TH, Tkach VV, Bray RA, Littlewood DTJ. (2003). *Phylogeny and classification of the Digenea (Platyhelminthes: Trematoda).* International Journal for Parasitology, 33(7), 733–755. for furhter
+
