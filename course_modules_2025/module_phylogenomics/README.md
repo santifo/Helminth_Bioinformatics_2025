@@ -28,7 +28,7 @@ To carry out an alignment, the sequences need to be available in a file that can
 The dataset (unaligned set of sequences: **.faa files** and table) is in:
 
 ```
-/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Dataseq/
+/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Data/
 ```
 
 ### A.	Alignment with MAFFT
@@ -43,7 +43,7 @@ To use it on the VM, type mafft on the command-line, mafft --help will give you 
 1. Open a Terminal and go into the directory	that contains the dataset to align.
 
 ```
-/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Dataseq/
+/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Data/
 ```
 
 2. Type: 
@@ -82,7 +82,7 @@ To use it on the VM, type trimal on the command-line, trimal -h will give you in
 1. Open a Terminal and go into the directory	that contains the alignments.
 
 ```
-/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Dataseq/
+/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Data/
 ```
 
 2. Type: 
@@ -113,7 +113,7 @@ man seqret
 1. Open a Terminal and go into the directory	that contains the trimmed files.
 
 ```
-/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Dataseq/
+/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Data/
 ```
 
 2. Type: 
