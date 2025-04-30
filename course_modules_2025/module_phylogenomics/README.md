@@ -96,6 +96,8 @@ trimal -in nad2.alg.faa -out nad2.alg.trim.faa -gt 0.3 -cons 0.7
 trimal -in nad3.alg.faa -out nad3.alg.trim.faa -gt 0.3 -cons 0.7
 ```
 
+The option -gt 0.3 removes columns (alignment positions) with gaps in more than 30% of the sequences, while -cons 0.7 retains only columns where the residue conservation score is at least 0.7. 
+
 ### C.	Convert the alignment to Clustal format to facilitate visualization using the **seqret** program from the EMBOSS package.
 
 seqret is a command-line tool from the EMBOSS (European Molecular Biology Open Software Suite) package used to convert between different sequence formats. For example, it can convert a FASTA file to Clustal, GenBank, Phylip, and many other formats. It works with both DNA and protein sequences, and is often used to prepare files for input into other bioinformatics tools. Please refer to https://www.bioinformatics.nl/cgi-bin/emboss/help/seqret for further details and options.
@@ -297,7 +299,7 @@ e.g.  can modify the size of the fonts (in Tip Labels, Legend, etc).
 |                   | Echinostomatidae     | *Echinoparyphium aconiatum*, *Echinostoma caproni*, *Echinostoma hortense*, *Echinostoma miyagawai*, *Echinostoma paraensei*, *Echinostoma revolutum* |
 |                   | Fasciolidae          | *Fasciola hepatica*, *Fasciola jacksoni*, *Fascioloides magna*, *Fasciolopsis buskii*                                                               |
 |                   | Morishitiidae        | *Morishitium polonicum*     
-|                   | Diplodiscidae        | *Diplodiscus_japonicus*, *Diplodiscus_mehrai*, *Diplodiscus_nigromaculati*  |
+|                   | Diplodiscidae        | *Diplodiscus japonicus*, *Diplodiscus mehrai*, *Diplodiscus nigromaculati*  |
 |                   | Notocotylidae        | *Ogmocotyle ailuri*                                                                                                                           |
 |                   | Paragonimidae        | *Paragonimus skrjabini miyazakii*, *Paragonimus westermani*                                                                                     |
 |                   | Plagiorchiidae       | *Plagiorchis elegans*, *Proterometra macrostoma*                                                                                                 |
