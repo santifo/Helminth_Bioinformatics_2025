@@ -64,7 +64,7 @@ mafft --auto nad3.faa > nad3.alg.faa
 
 -------------------------
 [OPTIONAL] Visualizing the alignment online in https://alignmentviewer.org/).
-Open your favourite web browsers and upload one of the files you recently align. 
+Open your preferred web browser and upload a file containing one of your recent sequence alignments.
 
 ![alignmentviewer](https://github.com/user-attachments/assets/6aa9ed93-c215-45bd-855f-78632c8fb706)
 
