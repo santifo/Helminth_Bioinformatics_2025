@@ -37,7 +37,7 @@ MAFFT is an advanced tool that can align using different alignment algorithms fo
 
 To use it on the VM, type mafft on the command-line, mafft --help will give you information about the proper syntax. 
 
->*"Please note that the procedure below is for all six proteins. As you need to align the sequences of each protein independently.*
+>*Please note that the procedure below is for all six proteins. As you need to align the sequences of each protein independently.*
 
 
 1. Open a Terminal and go into the directory	that contains the dataset to align.
