@@ -449,18 +449,19 @@ VizDimLoadings(day2somules, dims = 1:2, reduction = "pca")
 
 We can also plot a heatmap to visualize the top features contributing to heterogenity in each PC. We will plot the expression for each feature in the top 500 cells in the exptremes of the spectrum.
 ```R
-DimHeatmap(day2somules, dims = 1, cells = 500, balanced = TRUE) 
+DimHeatmap(day2somules, dims = 1:3, cells = 500, balanced = TRUE) 
 ```
 
 ![](figures/SC_Figure_9.png)
 
-**Figure 9.** Heatmap showing the gene expression of top 500 most variable cells for PC1
+**Figure 9.** Heatmap showing the most contributing features in PCs 1 to 3 and the gene expression in the top 500 most variable cells (positive and negative)
 
-### Plotting the variation in each PC: Jackstraw and Elbowplot
+### Plotting the variation in each PCA: Jackstraw and Elbowplot
+
+Principal component analysis (PCA) is a fundamental dimension reduction technique in analyzing single-cell genomic data. It maps the cells with high-dimensional and noisy genomic information to a low-dimensional and denoised principal component space. The principal components (PCs) are then used to group cells into clusters. The number of PCs plays a critical role in downstream analyses. With too many PCs, PCs with the smallest variations may represent the noise in the data and dilute the signal. With too few PCs, the essential information in the data may not be captured. An optimal number of PCs should keep the essential information in the data while filtering out as much noise as possible.
 
 It's possible to use JackStraw to randomly permute data in 1% chunks. Here with 100 replicates and for 100 PCs. However, for these data it's too slow for this tutorial. 
 
-An elbow plot is a quick way to assess the contribution of the principal components by percentage of variation.
 ```R
 DefaultAssay(day2somules) <- "RNA"
 
@@ -468,7 +469,9 @@ DefaultAssay(day2somules) <- "RNA"
 #day2somules <- ScoreJackStraw(day2somules, dims = 1:100) #extract the scores
 #JackStrawPlot(day2somules, dims = 1:100) #plot the p-vals for PCs. Dashed line giives null distribution
 #ggsave("day2somules_v10_jackstrawplot100.pdf", width = 30, height = 15, units = c('cm'))
-
+```
+An elbow plot is a quick way to assess the contribution of the principal components by standard deviation.
+```R
 ElbowPlot(day2somules, ndims = 100)  #ranks PCs by percentage of variation. A clear dropoff is sometimes seen, though not really here.
 ggsave(paste0("day2somules_v10_elbowplot100_",st,".jpg"))
 ```
