@@ -364,7 +364,7 @@ ggsave(paste0("raw_cgenesVumis_mito_somules_v10_bybatch_",st,".png"), width = 10
 ```
 
 ![](figures/SC_Figure_6.png)
-**Figure 6.**
+**Figure 6.** Correlation between feature (genes) and UMIs (transcript) counts per cell. Gray scale indicates the percentage of mito RNA.
 
 ### QC filtering
 
@@ -404,16 +404,26 @@ day2somules <- readRDS(file = "day2somules_v10_firstfilt.rds")
 
 ## Normalisation and scaling <a name="N&S"></a>
 
-On to the next stage of analysis: initial normalization and clustering
+On to the next stage of analysis we will do an initial normalization, scalinig and clustering
+
+We do an initial noramlization using default parameters, that is divide the feature (gene) expression for each cell by the total expression, multiplie this by a 10,000 factor and log-transform the result.
 
 ```R
-
 day2somules <- NormalizeData(day2somules)
+```
+We next calculate a subset of features that exhibit high cell-to-cell variation in the dataset (i.e, they are highly expressed in some cells, and lowly expressed in others).
+
+```R
 day2somules <- FindVariableFeatures(day2somules, selection.method = "vst", nfeatures = 2000)
 # Identify the 10 most highly variable genes
 top10 <- head(VariableFeatures(day2somules), 10)
-top10
+plot<-VariableFeaturePlot(day2somules)
+LabelPoints((plot=plot),points=top10, repel=TRUE)
+```
+![](figures/SC_Figure_6.png)
+**Figure 6.** Correlation between feature (genes) and UMIs (transcript) counts per cell. Gray scale indicates the percentage of mito RNA.
 
+```R
 all.genes <- rownames(day2somules)
 day2somules <- ScaleData(day2somules, features = all.genes)
 
@@ -432,7 +442,7 @@ VizDimLoadings(day2somules, dims = 1:2, reduction = "pca")
 ```
 
 ![](figures/SC_Figure_7.png)
-**Figure 7.**
+**Figure 7.** Top most variable genes for 1st and 2nd PCs after the initial normalization and scaling.
 
 ```R
 #plots heatmap of top 500 most variable cells for PC1, with relative gene expression
@@ -441,7 +451,7 @@ DimHeatmap(day2somules, dims = 1, cells = 500, balanced = TRUE)
 
 ![](figures/SC_Figure_8.png)
 
-**Figure 8.**
+**Figure 8.** heatmap of top 500 most variable cells for PC1
 
 ### Jackstraw
 
