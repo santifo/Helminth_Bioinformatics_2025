@@ -483,9 +483,15 @@ ggsave(paste0("day2somules_v10_elbowplot100_",st,".jpg"))
 
 ### Find clusters
 
+Seurat applies a graph-based clustering approach. Constructs a K-nearest neighbor graph based on the euclidean distance in PCA space, and refine the edge weights between any two cells based on the shared overlap in their local neighborhoods (Jaccard similarity). This step is performed using the FindNeighbors() function, and takes as input the previously defined dimensionality of the dataset (PCs).
+
 ```R
 #here construct k-nearest neighbors graph based on euclidean distance in PCA space, then refine edge weights based on Jaccard similarity. this takes the number of PCs previously determined as important (here 40 PCs_)
-day2somules <- FindNeighbors(day2somules, dims = 1:40) 
+day2somules <- FindNeighbors(day2somules, dims = 1:40)
+
+```
+To cluster the cells, we next apply modularity optimization techniques, to iteratively group cells together, with the goal of optimizing the standard modularity function. The FindClusters() function implements this procedure, and contains a resolution parameter that sets the ‘granularity’ of the downstream clustering, with increased values leading to a greater number of clusters.
+```R
 #this iteratively groups cells using Louvain algorithm (default). Resolution sets the granularity. 0.4-1.2 gives good results for ~3K cells, with larger number suiting larger datasets.
 day2somules <- FindClusters(day2somules, resolution = 0.5) 
 #runs umap to visualise the clusters. Need to set the number of PCs
