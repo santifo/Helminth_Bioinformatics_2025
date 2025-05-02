@@ -473,8 +473,8 @@ ElbowPlot(day2somules, ndims = 100)  #ranks PCs by percentage of variation. A cl
 ggsave(paste0("day2somules_v10_elbowplot100_",st,".jpg"))
 ```
 
-![](figures/SC_Figure_9.jpg)
-**Figure 9.** 
+![](figures/SC_Figure_10.jpg)
+**Figure 10.** 
 
 ### Find clusters
 
@@ -490,8 +490,8 @@ DimPlot(day2somules, reduction = "umap")
 ggsave(paste0("day2somules_v10clust_40PC_0.4res_RNA_",st,".jpg"))
 ```
 
-![](figures/SC_Figure_10.png)
-**Figure 10.**
+![](figures/SC_Figure_11.png)
+**Figure 11.**
 
 ## SCTransform of data <a name="SCTrasform"></a>
 
@@ -537,8 +537,8 @@ ggsave(paste0("day2somules_v10clust_40PC_0.4res_SCT",st,".jpg"))
 
 ```
 
-![](figures/SC_Figure_11.png)
-**Figure 11.**
+![](figures/SC_Figure_12.png)
+**Figure 12.**
 
 #Plot metadata
 
@@ -549,8 +549,8 @@ ggsave("day2somules_v10_40PC_0.5res_after_one_filt_shuffled_batch_SCT.jpg")
 
 ```
 
-![](figures/SC_Figure_12.png)
-**Figure 12.**
+![](figures/SC_Figure_13.png)
+**Figure 13.**
 
 What do you notice once the UMAP is coloured by sample? Is there anything you might do about this?
 
@@ -559,8 +559,8 @@ FeaturePlot(day2somules, features="percent.mt", label=TRUE)
 ggsave("day2somules_v10_40PC_0.5res_after_one_filt_mt_SCT.jpg")
 ```
 
-![](figures/SC_Figure_13.jpg)
-**Figure 13.**
+![](figures/SC_Figure_14.jpg)
+**Figure 14.**
 
 What do you think about this figure? Is there any cluster with a higher proportion of MT RNA?
 
@@ -616,8 +616,8 @@ Now we can look at gene expression in these data by gene, which could be useful 
 FeaturePlot(day2somules, features = "Smp-179320")
 #ggsave(paste0("day2somules-Smp-179320-",st, ".jpg"), width = 25, height = 15)
 ```
-![](figures/SC_Figure_14.png)
-**Figure 14.**
+![](figures/SC_Figure_15.png)
+**Figure 15.**
 
 We can also look at these genes with a violin plot - this visualisation can be helpful in many ways, including seeing which clusters a gene is most expressed in.
 
@@ -625,8 +625,8 @@ We can also look at these genes with a violin plot - this visualisation can be h
 VlnPlot(day2somules, features = "Smp-179320")
 #ggsave(paste0("day2somules-Smp-179320_",st, ".jpg"), width = 25, height = 15)
 ```
-![](figures/SC_Figure_15.png)
-**Figure 15.**
+![](figures/SC_Figure_16.png)
+**Figure 16.**
 
 Are there any genes you're particularly interested in? You can adapt the code below to see if, and where, it might be expressed in these data. If you're not sure, you can look up S mansoni on WBPS and choose a gene from there (https://parasite.wormbase.org/index.html). Remember to delete the # if you want to save the plot to your computer!
 
@@ -642,8 +642,8 @@ coexpression.plot <-FeaturePlot(day2somules, features = c("Smp-179320", "Smp-086
 coexpression.plot
 #ggsave(paste0("day2somules-coexpressed-Smp-179320-Smp-086860-",st, ".jpg"), width = 45, height = 25)
 ```
-![](figures/SC_Figure_16.png)
-**Figure 16.**
+![](figures/SC_Figure_17.png)
+**Figure 17.**
 
 Can you find a pair genes whose products you might expect to interact, and see if they are co-expressed? Again, you can use WBPS to learn more about genes.
 
@@ -686,5 +686,5 @@ LabelClusters(plot1, id = "ident", color = 'black', size =4, repel = T,  box.pad
 
 ggsave(paste0("day2somules-labelledlclusters_40PC_0.5res_",st,".jpg"), width = 25, height = 15)
 ```
-![](figures/SC_Figure_17.png)
-**Figure 17.**
+![](figures/SC_Figure_18.png)
+**Figure 18.**
