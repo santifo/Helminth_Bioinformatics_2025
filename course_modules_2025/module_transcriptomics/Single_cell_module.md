@@ -4,7 +4,7 @@
 ## Table of Contents
 1. [Overview and Aims](#intro)
 2. [Introduction to single cell transcriptomics](#basic)
-3. [Working with Seurat objects](#seurat)
+3. [Setup the Seurat Object](#seurat)
 4. [Doublet cells removal](#doubletremoval)
 5. [QC removal](#QCremoval)
 6. [Normalizing and Scaling the data](#N&S)
@@ -33,7 +33,7 @@ The scRNA-seq data used in the module was obtained from 2 day schistosomula of _
 
 ---
 
-## Working with Seurat objects <a name="seurat"></a>
+## Setup the Seurat Object <a name="seurat"></a>
 
 After sequencing, reads are mapped to the reference genome with Cell Ranger, a set of analysis pipelines that process Chromium Next GEM single cell data to align reads and generate feature-barcode matrices. To do this, transcripts from different cells are identified through a 10X barcode, while different transcripts of each cell are identified through a unique molecular identifier or UMI.
 
