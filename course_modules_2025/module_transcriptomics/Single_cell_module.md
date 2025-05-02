@@ -448,6 +448,7 @@ VizDimLoadings(day2somules, dims = 1:2, reduction = "pca")
 **Figure 8.** Top variable genes for 1st and 2nd PCs after the initial normalization and scaling.
 
 We can also plot a heatmap to visualize the top features contributing to heterogenity in each PC. We will plot the expression for each feature in the top 500 cells in the exptremes of the spectrum.
+
 ```R
 DimHeatmap(day2somules, dims = 1:3, cells = 500, balanced = TRUE) 
 ```
@@ -470,7 +471,8 @@ DefaultAssay(day2somules) <- "RNA"
 #JackStrawPlot(day2somules, dims = 1:100) #plot the p-vals for PCs. Dashed line giives null distribution
 #ggsave("day2somules_v10_jackstrawplot100.pdf", width = 30, height = 15, units = c('cm'))
 ```
-An elbow plot is a quick way to assess the contribution of the principal components by standard deviation.
+An elbow plot is a quick way to assess the contribution of the principal components to the variation. It starts from a scatterplot where the y-axis shows the standard deviations of PCs and the x-axis shows the numbers of PCs. Since the PCs are ordered decreasingly by their standard deviations, the scatterplot usually presents a monotonically decreasing curve that sharply descends for the first several PCs and gradually flattens out for the subsequent PCs.
+
 ```R
 ElbowPlot(day2somules, ndims = 100)  #ranks PCs by percentage of variation. A clear dropoff is sometimes seen, though not really here.
 ggsave(paste0("day2somules_v10_elbowplot100_",st,".jpg"))
@@ -481,9 +483,15 @@ ggsave(paste0("day2somules_v10_elbowplot100_",st,".jpg"))
 
 ### Find clusters
 
+Seurat applies a graph-based clustering approach. Constructs a K-nearest neighbor graph based on the euclidean distance in PCA space, and refine the edge weights between any two cells based on the shared overlap in their local neighborhoods (Jaccard similarity). This step is performed using the FindNeighbors() function, and takes as input the previously defined dimensionality of the dataset (PCs).
+
 ```R
 #here construct k-nearest neighbors graph based on euclidean distance in PCA space, then refine edge weights based on Jaccard similarity. this takes the number of PCs previously determined as important (here 40 PCs_)
-day2somules <- FindNeighbors(day2somules, dims = 1:40) 
+day2somules <- FindNeighbors(day2somules, dims = 1:40)
+
+```
+To cluster the cells, we next apply modularity optimization techniques, to iteratively group cells together, with the goal of optimizing the standard modularity function. The FindClusters() function implements this procedure, and contains a resolution parameter that sets the ‘granularity’ of the downstream clustering, with increased values leading to a greater number of clusters.
+```R
 #this iteratively groups cells using Louvain algorithm (default). Resolution sets the granularity. 0.4-1.2 gives good results for ~3K cells, with larger number suiting larger datasets.
 day2somules <- FindClusters(day2somules, resolution = 0.5) 
 #runs umap to visualise the clusters. Need to set the number of PCs
