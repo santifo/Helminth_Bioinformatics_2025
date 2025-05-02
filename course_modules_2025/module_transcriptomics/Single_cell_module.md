@@ -448,6 +448,7 @@ VizDimLoadings(day2somules, dims = 1:2, reduction = "pca")
 **Figure 8.** Top variable genes for 1st and 2nd PCs after the initial normalization and scaling.
 
 We can also plot a heatmap to visualize the top features contributing to heterogenity in each PC. We will plot the expression for each feature in the top 500 cells in the exptremes of the spectrum.
+
 ```R
 DimHeatmap(day2somules, dims = 1:3, cells = 500, balanced = TRUE) 
 ```
@@ -470,7 +471,8 @@ DefaultAssay(day2somules) <- "RNA"
 #JackStrawPlot(day2somules, dims = 1:100) #plot the p-vals for PCs. Dashed line giives null distribution
 #ggsave("day2somules_v10_jackstrawplot100.pdf", width = 30, height = 15, units = c('cm'))
 ```
-An elbow plot is a quick way to assess the contribution of the principal components by standard deviation.
+An elbow plot is a quick way to assess the contribution of the principal components to the variation. It starts from a scatterplot where the y-axis shows the standard deviations of PCs and the x-axis shows the numbers of PCs. Since the PCs are ordered decreasingly by their standard deviations, the scatterplot usually presents a monotonically decreasing curve that sharply descends for the first several PCs and gradually flattens out for the subsequent PCs.
+
 ```R
 ElbowPlot(day2somules, ndims = 100)  #ranks PCs by percentage of variation. A clear dropoff is sometimes seen, though not really here.
 ggsave(paste0("day2somules_v10_elbowplot100_",st,".jpg"))
