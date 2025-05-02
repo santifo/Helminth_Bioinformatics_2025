@@ -444,17 +444,17 @@ day2somules <- RunPCA(day2somules, features = VariableFeatures(object = day2somu
 VizDimLoadings(day2somules, dims = 1:2, reduction = "pca") 
 ```
 
-![](figures/SC_Figure_7.png)
-**Figure 7.** Top variable genes for 1st and 2nd PCs after the initial normalization and scaling.
+![](figures/SC_Figure_8.png)
+**Figure 8.** Top variable genes for 1st and 2nd PCs after the initial normalization and scaling.
 
 We can also plot a heatmap to visualize the top features contributing to heterogenity in each PC. We will plot the expression for each feature in the top 500 cells in the exptremes of the spectrum.
 ```R
 DimHeatmap(day2somules, dims = 1, cells = 500, balanced = TRUE) 
 ```
 
-![](figures/SC_Figure_8.png)
+![](figures/SC_Figure_9.png)
 
-**Figure 8.** Heatmap showing the gene expression of top 500 most variable cells for PC1
+**Figure 9.** Heatmap showing the gene expression of top 500 most variable cells for PC1
 
 ### Plotting the variation in each PC: Jackstraw and Elbowplot
 
