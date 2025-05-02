@@ -420,10 +420,12 @@ top10 <- head(VariableFeatures(day2somules), 10)
 plot<-VariableFeaturePlot(day2somules)
 LabelPoints((plot=plot),points=top10, repel=TRUE)
 ```
-![](figures/SC_Figure_6.png)
-**Figure 6.** Correlation between feature (genes) and UMIs (transcript) counts per cell. Gray scale indicates the percentage of mito RNA.
+![](figures/SC_Figure_7.png)
+**Figure 7.** Labeled are the top 10 most variable fetures in the data. Red dots represent the 2000 most variable features.
 
+We apply a linear transformation that is a standard pre-processing step prior to dimensional reduction techniques. We scale the data considering all genes (by default only variable features are scaled)
 ```R
+
 all.genes <- rownames(day2somules)
 day2somules <- ScaleData(day2somules, features = all.genes)
 
@@ -431,9 +433,10 @@ day2somules <- ScaleData(day2somules, features = all.genes)
 
 ### PCA
 
-Now, we can look at look at gene expression scaled across the cells, and find variable features: genes.
+Here, we perform PCA on the scaled data.
 
-Here, we perform PCA on the scaled data. The most variable features selected earlier are used.
+Now, we can look at gene expression scaled across the cells, and find variable features (genes).
+
 ```R
 #shows top contributing features for the PCs
 day2somules <- RunPCA(day2somules, features = VariableFeatures(object = day2somules),npcs = 100) 
@@ -442,20 +445,20 @@ VizDimLoadings(day2somules, dims = 1:2, reduction = "pca")
 ```
 
 ![](figures/SC_Figure_7.png)
-**Figure 7.** Top most variable genes for 1st and 2nd PCs after the initial normalization and scaling.
+**Figure 7.** Top variable genes for 1st and 2nd PCs after the initial normalization and scaling.
 
+We can also plot a heatmap to visualize the top features contributing to heterogenity in each PC. We will plot the expression for each feature in the top 500 cells in the exptremes of the spectrum.
 ```R
-#plots heatmap of top 500 most variable cells for PC1, with relative gene expression
 DimHeatmap(day2somules, dims = 1, cells = 500, balanced = TRUE) 
 ```
 
 ![](figures/SC_Figure_8.png)
 
-**Figure 8.** heatmap of top 500 most variable cells for PC1
+**Figure 8.** Heatmap showing the gene expression of top 500 most variable cells for PC1
 
-### Jackstraw
+### Plotting the variation in each PC: Jackstraw and Elbowplot
 
-It's possible to use JackStraw to randomly permute data in 1% chunks. Here with 100 replicates and for 100 PCs. However, for these data it's too slow for this tutorial - on my computer it took approximately 28 minutes. 
+It's possible to use JackStraw to randomly permute data in 1% chunks. Here with 100 replicates and for 100 PCs. However, for these data it's too slow for this tutorial. 
 
 An elbow plot is a quick way to assess the contribution of the principal components by percentage of variation.
 ```R
@@ -471,7 +474,7 @@ ggsave(paste0("day2somules_v10_elbowplot100_",st,".jpg"))
 ```
 
 ![](figures/SC_Figure_9.jpg)
-**Figure 9.**
+**Figure 9.** 
 
 ### Find clusters
 
