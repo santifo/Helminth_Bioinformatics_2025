@@ -495,7 +495,7 @@ To cluster the cells, we next apply modularity optimization techniques, to itera
 #this iteratively groups cells using Louvain algorithm (default). Resolution sets the granularity. 0.4-1.2 gives good results for ~3K cells, with larger number suiting larger datasets.
 day2somules <- FindClusters(day2somules, resolution = 0.5)
 ```
-### Run non-linear dimensional reduction
+### Run non-linear dimensional reduction5
 
 Seurat offers several non-linear dimensional reduction techniques, such as tSNE and UMAP, to visualize and explore these datasets. The goal of these algorithms is to learn underlying structure in the dataset, in order to place similar cells together in low-dimensional space. Therefore, cells that are grouped together within graph-based clusters determined above should co-localize on these dimension reduction plots.
 
