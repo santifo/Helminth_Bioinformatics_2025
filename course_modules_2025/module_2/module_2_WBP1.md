@@ -1,5 +1,6 @@
 # WormBase ParaSite
 
+
 ## Table of contents
 1. [Overview and Aims](#intro)
 2. [Genes and genomes](#genes_and_genomes)
@@ -7,7 +8,7 @@
     * [Genomes: the basics](#basics_genomes)
     * [Sequence databases](#sequence_databases)
 3. [Looking at genomes in WormBase ParaSite](#wbps_genomes)
-    * [EXERCISE 1](#genomes_exercise)
+    * [_EXERCISE 1_Genome assembly metrics_](#genomes_exercise)
     * [Submit a genome to WormBase ParaSite](#submit_genome)
 4. [Looking at genes in WormBase ParaSite](#wbps_genes)
     * [The gene page](#gene_page)
@@ -16,9 +17,9 @@
     * [Protein domains](#protein_domains)
     * [AlphaFold 3D protein structures](#af)
     * [Orthologues and paralogues](#comparative_genomics)
-    * [EXERCISE 2](#gene_page_exercise)
+    * [_EXERCISE 2 - Gene page information retrival_](#gene_page_exercise)
 5. [BioMart](#biomart)
-    * [EXERCISE 3](#biomart_exercise)
+    * [_EXERCISE 3 - BioMart data retrival_](#biomart_exercise)
 
 ## Overview and Aims <a name="intro"></a>
 In this first module we'll start by reviewing the basics on genes and genomes: what they are, how we represent and talk about them, and how we go from a DNA sequence- a string of letters- to making predictions about gene function. We'll look at this in the context of WormBase ParaSite (which you might also see referred to as WBPS) and other online database resources. 
