@@ -583,7 +583,7 @@ FeaturePlot(day2somules, features = "Smp-179320")
 #ggsave(paste0("day2somules-Smp-179320-",st, ".jpg"), width = 25, height = 15)
 ```
 ![](figures/SC_Figure_15.png)
-**Figure 15.**
+**Figure 15.** UMAP plot showing the expression of Smp_179320 (ago2-1) per cell
 
 We can also look at these genes with a violin plot - this visualisation can be helpful in many ways, including seeing which clusters a gene is most expressed in.
 
@@ -592,9 +592,9 @@ VlnPlot(day2somules, features = "Smp-179320")
 #ggsave(paste0("day2somules-Smp-179320_",st, ".jpg"), width = 25, height = 15)
 ```
 ![](figures/SC_Figure_16.png)
-**Figure 16.**
+**Figure 16.** Violin plot showing the expression of Smp_179320 (ago2-1) per cluster
 
-Are there any genes you're particularly interested in? You can adapt the code below to see if, and where, it might be expressed in these data. If you're not sure, you can look up S mansoni on WBPS and choose a gene from there (https://parasite.wormbase.org/index.html). Remember to delete the # if you want to save the plot to your computer!
+Are there any genes you're particularly interested in? You can adapt the code below to see if, and where, it might be expressed in these data. If you're not sure, you can look up _S.mansoni_ on WBPS and choose a gene from there (https://parasite.wormbase.org/index.html). Remember to delete the # if you want to save the plot to your computer!
 
 ```R
 FeaturePlot(day2somules, features = "your_gene")
@@ -609,7 +609,7 @@ coexpression.plot
 #ggsave(paste0("day2somules-coexpressed-Smp-179320-Smp-086860-",st, ".jpg"), width = 45, height = 25)
 ```
 ![](figures/SC_Figure_17.png)
-**Figure 17.**
+**Figure 17.** UMAPs showing the co-expression of Smp_179320 (ago2-1) and Smp_086860 (histone H2A) per cell 
 
 Can you find a pair genes whose products you might expect to interact, and see if they are co-expressed? Again, you can use WBPS to learn more about genes.
 
@@ -653,4 +653,4 @@ LabelClusters(plot1, id = "ident", color = 'black', size =4, repel = T,  box.pad
 ggsave(paste0("day2somules-labelledlclusters_40PC_0.5res_",st,".jpg"), width = 25, height = 15)
 ```
 ![](figures/SC_Figure_18.png)
-**Figure 18.**
+**Figure 18.** Once you have identified the cell types you can rename the clusters
