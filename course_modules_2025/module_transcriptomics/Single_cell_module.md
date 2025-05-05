@@ -5,15 +5,16 @@
 1. [Overview and Aims](#intro)
 2. [Introduction to single cell transcriptomics](#basic)
 3. [Setup the Seurat Object](#seurat)
-4. [Standard preprocessing workflow]
+4. [Standard preprocessing workflow](#preprocessing)
     * [Doublet cells removal](#doubletremoval)
     * [QC removal](#QCremoval)
 5. [SCTransform the data](#SCTrasform)
-6. [Perform dimentional reduction](#plotUMAPs)
-7. [Determine the 'dimentionality' of the dataset]
-8. [Cluster the cells]
-9. [Run non-linear dimensional reduction (UMAP)] 
-10. [Finding differentially expressed features](#plotGenes)
+6. [Perform dimentional reduction](#PCA)
+7. [Determine the 'dimentionality' of the dataset](#dimentionality)
+8. [Cluster the cells](#cluster)
+9. [Run non-linear dimensional reduction (UMAP)](#umap)
+10. [Finding differentially expressed features (cluster biomarkers)](#biomarkers)
+    * [Explote the expression of specific genes in the UMAP](#plotGenes)
 11. [Assigning cell type identity to clusters](#renameUMAP)
 
 ---
@@ -190,7 +191,9 @@ If you're not sure which metadata are available, or you want a summary of metada
 
 [↥  **Back to top**](#top)
 
-## Doublet ID <a name="doubletremoval"></a>
+## Standard preprocessing workflow <a name="preprocessing"></a>
+
+### Doublet ID <a name="doubletremoval"></a>
 
 Doublets, or multiplets, form when two or more cells are associated with one cell barcode - for example you might have a 'cell' in your data that looks like a hybrid of a muscle and a neural cell. Since these don't describe a cell type found in the sample, we want to exclude these cells as much as possible. There are many tools/strategies, the below tool assigns each cell a doublet score, and assigns cells as doublets or singlets based on these scores and the expected percentage of doublets. Run the following lines and set the function.
 
@@ -271,7 +274,7 @@ table(day2somules@meta.data$batches)
 
 [↥  **Back to top**](#top)
 
-## QC removal <a name="QCremoval"></a>
+### QC removal <a name="QCremoval"></a>
 
 
 ### Mito % 
@@ -323,7 +326,7 @@ day2somules_metadata %>%
   	geom_vline(xintercept = 500) +
   	geom_vline(xintercept = 1000)+
   	ggtitle("UMIs per cell")
-ggsave(paste0("raw_umisPerCell_somules_v10_",st,".png"), width = 10, height = 5)
+#ggsave(paste0("raw_umisPerCell_somules_v10_",st,".png"), width = 10, height = 5)
 
 ```
 
@@ -342,7 +345,7 @@ day2somules_metadata %>%
   	scale_x_log10() + 
   	geom_vline(xintercept = 300)+
   	ggtitle("Genes per cell")
-ggsave(paste0("raw_genesPerCell_somules_v10_",st,".png"), width = 10, height = 5)
+#ggsave(paste0("raw_genesPerCell_somules_v10_",st,".png"), width = 10, height = 5)
 ```
 
 ![](figures/SC_Figure_5.jpg)
@@ -363,7 +366,7 @@ day2somules_metadata %>%
   	geom_vline(xintercept = 1000) +
   	geom_hline(yintercept = 500) +
   	facet_wrap(~batches)
-ggsave(paste0("raw_cgenesVumis_mito_somules_v10_bybatch_",st,".png"), width = 10, height = 5)
+#ggsave(paste0("raw_cgenesVumis_mito_somules_v10_bybatch_",st,".png"), width = 10, height = 5)
 ```
 
 ![](figures/SC_Figure_6.png)
@@ -405,20 +408,16 @@ day2somules <- readRDS(file = "day2somules_v10_firstfilt.rds")
 
 [↥ **Back to top**](#top)
 
-## Normalisation and scaling <a name="N&S"></a>
+## SCTransform of data <a name="SCTrasform"></a>
 
-On to the next stage of analysis we will do an initial normalization, scalinig and clustering
-
-We do an initial noramlization using default parameters, that is divide the feature (gene) expression for each cell by the total expression, multiplie this by a 10,000 factor and log-transform the result.
+Do a basic analysis to start with, using SCTransform. This function normalises and scales the data, and finds variable features. It has some improvements from earlier versions of Seurat and replaces NormalizeData(), ScaleData(), and FindVariableFeatures()).
 
 ```R
-day2somules <- NormalizeData(day2somules)
+# run sctransform
+day2somules <- SCTransform(day2somules, verbose = TRUE)
 ```
-We next calculate a subset of features that exhibit high cell-to-cell variation in the dataset (i.e, they are highly expressed in some cells, and lowly expressed in others).
-
+We can visualize the features (genes) that exhibit high cell-to-cell variation in the dataset (i.e, they are highly expressed in some cells, and lowly expressed in others).
 ```R
-day2somules <- FindVariableFeatures(day2somules, selection.method = "vst", nfeatures = 2000)
-# Identify the 10 most highly variable genes
 top10 <- head(VariableFeatures(day2somules), 10)
 plot<-VariableFeaturePlot(day2somules)
 LabelPoints((plot=plot),points=top10, repel=TRUE)
@@ -426,25 +425,16 @@ LabelPoints((plot=plot),points=top10, repel=TRUE)
 ![](figures/SC_Figure_7.png)
 **Figure 7.** Labeled are the top 10 most variable fetures in the data. Red dots represent the 2000 most variable features.
 
-We apply a linear transformation that is a standard pre-processing step prior to dimensional reduction techniques. We scale the data considering all genes (by default only variable features are scaled)
-```R
+The results of this are saved in a different 'assay' of the R object - so you can still use both, and the data aren't overwritten.
 
-all.genes <- rownames(day2somules)
-day2somules <- ScaleData(day2somules, features = all.genes)
+## Perform dimentional reduction <a name='PCA'></a>
 
-```
-
-### PCA
-
-Here, we perform PCA on the scaled data.
-
-Now, we can look at gene expression scaled across the cells, and find variable features (genes).
+Principal component analysis (PCA) is a fundamental dimension reduction technique in analyzing single-cell genomic data. It maps the cells with high-dimensional and noisy genomic information to a low-dimensional and denoised principal component space.
 
 ```R
-#shows top contributing features for the PCs
-day2somules <- RunPCA(day2somules, features = VariableFeatures(object = day2somules),npcs = 100) 
+day2somules <- RunPCA(day2somules, features = VariableFeatures(object = day2somules), npcs=100)
 #shows the weightings of top contributing features to pcs 1 and 2
-VizDimLoadings(day2somules, dims = 1:2, reduction = "pca") 
+VizDimLoadings(day2somules, dims = 1:2, reduction = "pca") #shows the weightings of top contributing features to PCs 1 and 2
 ```
 
 ![](figures/SC_Figure_8.png)
@@ -460,11 +450,11 @@ DimHeatmap(day2somules, dims = 1:3, cells = 500, balanced = TRUE)
 
 **Figure 9.** Heatmap showing the most contributing features in PCs 1 to 3 and the gene expression in the top 500 most variable cells (positive and negative)
 
-### Plotting the variation in each PCA: Jackstraw and Elbowplot
+## Determine the 'dimentionality' of the dataset <a name='dimentionality'></a>
 
-Principal component analysis (PCA) is a fundamental dimension reduction technique in analyzing single-cell genomic data. It maps the cells with high-dimensional and noisy genomic information to a low-dimensional and denoised principal component space. The principal components (PCs) are then used to group cells into clusters. The number of PCs plays a critical role in downstream analyses. With too many PCs, PCs with the smallest variations may represent the noise in the data and dilute the signal. With too few PCs, the essential information in the data may not be captured. An optimal number of PCs should keep the essential information in the data while filtering out as much noise as possible.
+The principal components (PCs) are then used to group cells into clusters. The number of PCs plays a critical role in downstream analyses. With too many PCs, PCs with the smallest variations may represent the noise in the data and dilute the signal. With too few PCs, the essential information in the data may not be captured. An optimal number of PCs should keep the essential information in the data while filtering out as much noise as possible.
 
-It's possible to use JackStraw to randomly permute data in 1% chunks. Here with 100 replicates and for 100 PCs. However, for these data it's too slow for this tutorial. 
+It's possible to use JackStraw to randomly permute data in 1% chunks. Here with 100 replicates and for 100 PCs. However, it's too slow for this tutorial. 
 
 ```R
 DefaultAssay(day2somules) <- "RNA"
@@ -478,89 +468,45 @@ An elbow plot is a quick way to assess the contribution of the principal compone
 
 ```R
 ElbowPlot(day2somules, ndims = 100)  #ranks PCs by percentage of variation. A clear dropoff is sometimes seen, though not really here.
-ggsave(paste0("day2somules_v10_elbowplot100_",st,".jpg"))
+#ggsave(paste0("day2somules_v10_elbowplot100_",st,".jpg"))
 ```
 
 ![](figures/SC_Figure_10.jpg)
-**Figure 10.** 
+**Figure 10.** Elbowplot showing the proportion of variation captured by each PC
 
-### Find clusters
+## Cluster the cells <a name='cluster'></a>
 
 Seurat applies a graph-based clustering approach. Constructs a K-nearest neighbor graph based on the euclidean distance in PCA space, and refine the edge weights between any two cells based on the shared overlap in their local neighborhoods (Jaccard similarity). This step is performed using the FindNeighbors() function, and takes as input the previously defined dimensionality of the dataset (PCs).
 
 ```R
-#here construct k-nearest neighbors graph based on euclidean distance in PCA space, then refine edge weights based on Jaccard similarity. this takes the number of PCs previously determined as important (here 40 PCs_)
+#here construct k-nearest neighbours graph based on euclidean distance in PCA space, then refine edge weights based on Jaccard similarity. this takes the number of PCs previously determined as important (here 40 PCs_)
 day2somules <- FindNeighbors(day2somules, dims = 1:40)
+```
 
-```
 To cluster the cells, we next apply modularity optimization techniques, to iteratively group cells together, with the goal of optimizing the standard modularity function. The FindClusters() function implements this procedure, and contains a resolution parameter that sets the ‘granularity’ of the downstream clustering, with increased values leading to a greater number of clusters.
-```R
+
+```R 
 #this iteratively groups cells using Louvain algorithm (default). Resolution sets the granularity. 0.4-1.2 gives good results for ~3K cells, with larger number suiting larger datasets.
-day2somules <- FindClusters(day2somules, resolution = 0.5)
+day2somules <- FindClusters(day2somules, resolution = 0.5) 
 ```
-### Run non-linear dimensional reduction5
+## Run non-linear dimensional reduction <a name="umap"></a>
 
 Seurat offers several non-linear dimensional reduction techniques, such as tSNE and UMAP, to visualize and explore these datasets. The goal of these algorithms is to learn underlying structure in the dataset, in order to place similar cells together in low-dimensional space. Therefore, cells that are grouped together within graph-based clusters determined above should co-localize on these dimension reduction plots.
 
 ```R
+
 #runs umap to visualise the clusters. Need to set the number of PCs
-day2somules <- RunUMAP(day2somules, dims = 1:40) 
-#visulaises the UMAP
-DimPlot(day2somules, reduction = "umap") 
-ggsave(paste0("day2somules_v10clust_40PC_0.4res_RNA_",st,".jpg"))
-```
-
-![](figures/SC_Figure_11.png)
-**Figure 11.**
-
-## SCTransform of data <a name="SCTrasform"></a>
-
-Do a basic analysis to start with, using SCTransform. This function normalises and scales the data, and finds variable features. It has some improvements from earlier versions of Seurat and replaces NormalizeData(), ScaleData(), and FindVariableFeatures()).
-
-```R
-# run sctransform
-day2somules <- SCTransform(day2somules, verbose = TRUE)
-```
-
-The results of this are saved in a different 'assay' of the R object - so you can still use both, and the data aren't overwritten.
-
-### PCA on SCT transformed data
-
-Now, perform dimensionality reduction by PCA and UMAP embedding
-
-Here, we perform PCA on the scaled data. The most variable features selected earlier are used. This follows the same approach as when using the RNA assay we used above.
-
-```R
-day2somules <- RunPCA(day2somules, features = VariableFeatures(object = day2somules), npcs=100)
-VizDimLoadings(day2somules, dims = 1:2, reduction = "pca") #shows the weightings of top contributing features to PCs 1 and 2
-DimHeatmap(day2somules, dims = 1, cells = 500, balanced = TRUE) #plots heatmap of top 500 most variable cells for PC1, with relative gene expression
-```
-
-### Clustering on SCT
-
-```R
-#here construct k-nearest neighbours graph based on euclidean distance in PCA space, then refine edge weights based on Jaccard similarity. this takes the number of PCs previously determined as important (here 40 PCs_)
-day2somules <- FindNeighbors(day2somules, dims = 1:40) 
-#this iteratively groups cells using Louvain algorithm (default). Resolution sets the granularity. 0.4-1.2 gives good results for ~3K cells, with larger number suiting larger datasets.
-day2somules <- FindClusters(day2somules, resolution = 0.5) 
-```
-## Plot UMAPs <a name="plotUMAPs"></a>
-
-Runs umap to visualize the clusters. Need to set the number of PCs
-
-```R
-
 day2somules <- RunUMAP(day2somules, dims = 1:40) 
 #visualises the UMAP
 DimPlot(day2somules, reduction = "umap") 
-ggsave(paste0("day2somules_v10clust_40PC_0.4res_SCT",st,".jpg"))
+#ggsave(paste0("day2somules_v10clust_40PC_0.4res_SCT",st,".jpg"))
 
 ```
 
 ![](figures/SC_Figure_12.png)
-**Figure 12.**
+**Figure 12.** UMAP plot, cells are colored by cluster
 
-#Plot metadata
+### Plot metadata
 
 Now we have a UMAP representation of our cells, we can also use that to visualise the metadata.
 ```R
@@ -570,7 +516,7 @@ ggsave("day2somules_v10_40PC_0.5res_after_one_filt_shuffled_batch_SCT.jpg")
 ```
 
 ![](figures/SC_Figure_13.png)
-**Figure 13.**
+**Figure 13.** UMAP plot, cells are colored by batch
 
 What do you notice once the UMAP is coloured by sample? Is there anything you might do about this?
 
@@ -580,12 +526,12 @@ ggsave("day2somules_v10_40PC_0.5res_after_one_filt_mt_SCT.jpg")
 ```
 
 ![](figures/SC_Figure_14.jpg)
-**Figure 14.**
+**Figure 14.** UMAP plot, cells are colored by percentage of mtRNA
 
 What do you think about this figure? Is there any cluster with a higher proportion of MT RNA?
 
 
-## Markers identification <a name="markers"></a>
+## Finding differentially expressed features (cluster biomarkers) <a name="biomarkers"></a>
 
 We want to understand what the cell clusters might be. One approach to do that is find gene that are cluster markers - find differentially expressed genes that are descriptive of a cluster.
 
@@ -594,7 +540,7 @@ DefaultAssay(day2somules) <- "RNA"
 
 day2somules<-JoinLayers(day2somules)
 
-#day2somules.all.markers_roc <- FindAllMarkers(day2somules, only.pos = TRUE, min.pct = 0.0, logfc.threshold = 0.0, test.use = "roc")
+#day2somules.all.markers_roc <- FindAllMarkers(day2somules, only.pos = TRUE, min.pct = 0.0, logfc.threshold = 0.0, test.use = "roc") #We could search the markers for all clusters, however that would take too long.
 
 day2somules.markers_roc_cluster0 <- FindMarkers(day2somules, ident.1 = 0, only.pos = TRUE, min.pct = 0.0, logfc.threshold = 0.0, test.use = "roc")
 ```
@@ -629,7 +575,7 @@ A brainstorm question: how might you use this list to choose a gene to use for i
 How else might you classify cell cluster tissue types?
 
 
-## Plot the expression of individual genes in the UMAP <a name="plotGenes"></a>
+### Explore the expression of specific genes in the UMAP <a name="plotGenes"></a>
 
 Now we can look at gene expression in these data by gene, which could be useful to identify cluster marker genes. The example below shows you ago 2-1. If you want to look at a different gene, simply type the gene ID where "Smp-179320" currently sits. Remember to use - rather than _ ! We can visualise genes that we already know something about in the organism, to see if that gives us some clues
 ```R
@@ -671,7 +617,7 @@ Can you find a pair genes whose products you might expect to interact, and see i
 #put your code in here!
 ```
 
-## Rename UMAP cluster IDs <a name="renameUMAP"></a>
+## Assigning cell type identity to clusters <a name="renameUMAP"></a>
 
 You want all the cluster names to be unique - why might that be?
 ```R
