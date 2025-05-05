@@ -5,13 +5,14 @@
 1. [Overview and Aims](#intro)
 2. [Introduction to single cell transcriptomics](#basic)
 3. [Setup the Seurat Object](#seurat)
-4. [Doublet cells removal](#doubletremoval)
-5. [QC removal](#QCremoval)
-6. [Normalizing and Scaling the data](#N&S)
-7. [SCTransform of data](#SCTrasform)
-8. [Plot UMAPs](#plotUMAPs)
-9. [Plot the expression of individual genes in the UMAP](#plotGenes)
-10. [Rename UMAP clusters IDs](#renameUMAP)
+4. [Standard preprocessing workflow]
+5. *[Doublet cells removal](#doubletremoval)
+7. *[QC removal](#QCremoval)
+8. [Normalizing and Scaling the data](#N&S)
+9. [SCTransform of data](#SCTrasform)
+10. [Plot UMAPs](#plotUMAPs)
+11. [Plot the expression of individual genes in the UMAP](#plotGenes)
+12. [Rename UMAP clusters IDs](#renameUMAP)
 
 ---
 
