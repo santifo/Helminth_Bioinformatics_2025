@@ -4,17 +4,17 @@
 1. [Overview and Aims](#aims)
 2. [Tools](#tools)
     * [BLAST](#blast)
-      * [EXERCISE 1](#blast_exercise)
+      * [_EXERCISE 1 BLAST search_](#blast_exercise)
     * [JBrowse](#genome_browser)
     * [VEP](#vep)
-      * [EXERCISE 2](#vep_exercise)
+      * [_EXERCISE 2 : Variant Effect Prediction_](#vep_exercise)
 3. [The WormBase ParaSite Expression browser](#expression_data)
 4. [Gene-set enrichment analysis](#gene-set)
-      * [EXERCISE 3](#gene-set_exercises)
+      * [_EXERCISE 3 : Gene -set enrichment analysis_](#gene-set_exercises)
 5. [Accessing WormBase ParaSite data programmatically](#programmatic_access)
     * [Working with sequence and annotation files](#files)
     * [The REST API](#api)
-      * [EXERCISE 4](#api_exercises)
+      * [_EXERCISE 4 -API exercise_](#api_exercises)
 
 
 
