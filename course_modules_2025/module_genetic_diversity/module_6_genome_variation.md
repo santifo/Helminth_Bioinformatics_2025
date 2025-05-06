@@ -88,7 +88,7 @@ ls -lrt
 
 You should be able to see:
 - a directory called “raw_reads”, which contains all of the sequencing data we will be working with today, 
-- a directory called "R_analysis", where we will performed our population genetic analyses, 
+- a directory called "R_analysis", where we will perform our population genetic analyses, 
 - two files, one is your reference sequence that we will map our raw reads to, and the other contains metadata about our samples that we will be using later. 
 
 It is a good idea to collect all metadata to do with a study early, as it can help you explore your data in the analysis, and help interpret the genetic signals that you hopefully will discover.
