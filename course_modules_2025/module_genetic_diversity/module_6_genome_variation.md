@@ -41,16 +41,16 @@ In this exercise, you will be analyzing genetic variation in the gastrointestina
 pathogen of wild and domesticated ruminants worldwide, and has a major impact on the health and economic viability of sheep and goat farming in 
 particular. It is also a genetically tractable model used for drug discovery, vaccine development, and anthelmintic resistance research. A chromosome-scale 
 reference genome assembly and manually curated genome annotation are both available to download and explore at WormBase Parasite.
-The sequencing data you will be using in this module is from two published studies - [Salle et al 2019 Nature Communications](https://doi.org/10.1038/s41467-019-12695-4) 
+The sequencing data you will be using in this module are from two published studies - [Salle et al 2019 Nature Communications](https://doi.org/10.1038/s41467-019-12695-4) 
 and [Doyle et al. 2020 Communications Biology](https://doi.org/10.1038/s42003-020-01377-3) - which describe the global and genome-wide genetic diversity of *H. contortus*, all of 
-which was generated at the Wellcome Sanger Institute. Analysis of global diversity allows you to understand aspects of the species biology, such as how different populations are 
+which were generated at the Wellcome Sanger Institute. Analysis of global diversity allows you to understand aspects of the species biology, such as how different populations are 
 connected (which may be important to understand the spread of a pathogen or ongoing transmission), whether populations are growing or declining (perhaps in response to drug
 treatment), or the impact of selection on regions or specific genes throughout the genome. 
 
-Although whole-genome sequencing data was generated for these samples, we have extracted only the mitochondrial DNA-derived reads for you to work with. The main reason for this is 
+Although whole-genome sequencing data were generated for these samples, we have extracted only the mitochondrial DNA-derived reads for you to work with. The main reason for this is 
 that at this scale, the data should be able to be analysed efficiently on your computer without the need for high performance computing infrastructure and/or capacity. 
 
-To analyse these data, we will be working in both the unix and R command line environments. This is because we typically manipulate high throughput sequencing data such 
+To analyse these data, we will be working in both the Unix and R command line environments. This is because we typically manipulate high throughput sequencing data such 
 as those you will be using in Unix, i.e., read mapping and SNP calling, whereas the population genetic analyses are commonly written using R tools. 
 Although some graphical user interface (GUI) tools such as CLC Genomics and Geneious are available (at a cost) to do similar tasks, using the command 
 line gives you much greater flexibility in the analyses that you can do and the scale that you can do it, and it is freely available. There will be 
@@ -108,7 +108,7 @@ It is a good idea to collect all metadata to do with a study early, as it can he
 
 The first exercise of any genomics project is to turn your sample of interest into sequencing data. There are many steps involved, including sample collection (and storage), DNA extraction (and storage), 
 sequencing library preparation, and then finally submitting and having your DNA library sequenced on one or more of a number of different sequencing platforms. Not surprisingly, the success of each step will influence how well your sample is sequenced and will impact the quality of the data generated.  Exploring and understanding the characteristics of the raw data 
-before any assembly is performed should give you some confidence in whether your data is sufficient to undertake a genomic analysis, and may provide some insight into how an analysis will proceed.
+before any assembly is performed should give you some confidence in whether your data are sufficient to undertake a genomic analysis, and may provide some insight into how an analysis will proceed.
 
 We will start by using a tool called **FastQC** (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) to examine some characteristics of your raw data. FastQC takes raw fastq reads and 
 provides simple graphs and tables to quickly assess the quality of the data. It also highlights where they may be problems in different aspects of your data.
