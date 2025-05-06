@@ -26,12 +26,12 @@ Genetic variation can tell us a lot about an organism's evolutionary past, broad
 which organisms adapt to new environments or selection pressures such as drug treatmennt. The use of genomics to understand genetic variation offers insight into 
 these processes at a range of resolutions, from single nucleotide polymorphisms to genome-wide chromosomal rearrangements.   
 
-Modern genomic approaches such as high-throughput sequencing has enabled not only the rapid increase in reference genome assemblies, but also the ability to resequence 
+Modern genomic approaches such as high-throughput sequencing have enabled not only the rapid increase in reference genome assemblies, but also the ability to resequence 
 genomes from many individuals within a species. The re-sequencing of a genome typically aims to align or map new sequence data to a reference genome (please 
 note that we will use the terms “aligning” and “mapping” interchangeably), and identify differences between the newly sequenced sample and the reference genome. These differences
 can vary in number and size, ranging from single-base substitutions called *single nucleotide polymorphisms (SNPs)*, *INsertions and DELetions (INDELs)* that can range from one 
 to many base pairs, to *copy number variants (CNVs)* of, for example, one or more genes. By comparing these different types of genetic variations between closely related 
-populations or individual organisms, in is possible to learn how genetic differences that may cause phenotypic differences, such as drug resistance or increased virulence in pathogens, 
+populations or individual organisms, is possible to learn how genetic differences may cause phenotypic differences, such as drug resistance or increased virulence in pathogens, 
 or changed susceptibility to disease in humans. 
 
 One important prerequisite for the mapping of sequence data to work is that the reference and the re-sequenced subject have 
