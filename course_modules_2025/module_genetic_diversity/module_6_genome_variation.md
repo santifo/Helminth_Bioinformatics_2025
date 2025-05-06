@@ -51,8 +51,8 @@ Although whole-genome sequencing data was generated for these samples, we have e
 that at this scale, the data should be able to be analysed efficiently on your computer without the need for high performance computing infrastructure and/or capacity. 
 
 To analyse these data, we will be working in both the unix and R command line environments. This is because we typically manipulate high throughput sequencing data such 
-as those you will be using in unix, i.e., read mapping and SNP calling, whereas the population genetic analyses are commonly written using R tools. 
-Although some graphical user interface (GUI) tools such as CLC Genomics and Genious are available (at a cost) to do similar tasks, using the command 
+as those you will be using in Unix, i.e., read mapping and SNP calling, whereas the population genetic analyses are commonly written using R tools. 
+Although some graphical user interface (GUI) tools such as CLC Genomics and Geneious are available (at a cost) to do similar tasks, using the command 
 line gives you much greater flexibility in the analyses that you can do and the scale that you can do it, and it is freely available. There will be 
 a considerable amount of coding in this module - this may be daunting at first, however, with some practice, it will become much easier. 
 
