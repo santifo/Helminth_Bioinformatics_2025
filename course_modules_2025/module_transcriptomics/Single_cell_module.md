@@ -478,7 +478,7 @@ DimPlot(day2somules, reduction = "umap")
 ggsave(paste0("day2somules_v10clust_40PC_0.4res_RNA_",st,".jpg"))
 ```
 
-![](figures/SC_Figure_10.jpg)
+![](figures/SC_Figure_10.png)
 **Figure 10.**
 
 ## SCTransform of data <a name="SCTrasform"></a>
@@ -537,7 +537,7 @@ FeaturePlot(day2somules, features="percent.mt", label=TRUE)
 ggsave("day2somules_v10_40PC_0.5res_after_one_filt_mt_SCT.jpg")
 ```
 
-![](figures/SC_Figure_13.png)
+![](figures/SC_Figure_13.jpg)
 **Figure 13.**
 
 What do you think about this figure? Is there any cluster with a higher proportion of MT RNA?
