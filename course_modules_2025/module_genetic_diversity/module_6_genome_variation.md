@@ -235,7 +235,7 @@ samtools faidx haemonchus_contortus.PRJEB506.WBPS18.genomic.fa mitochondrion > h
 The command *samtools faidx* is a really useful for a few different reasons:
 - Its primary job is to create an "index" file which is necessary for some tools - the index file will have a ".fai" extension
 - However, it can be used to extract one or more sequences from a multi-sequence file - this is exactly what we have done here, extracting the "mitochondria" sequence from the whole genome assembly
-- It can also be used to extract part of a sequence, for example, modifying the above command can be used to extract a particular sequnece based on a sequence range, ie 1-100. 
+- It can also be used to extract part of a sequence, for example, modifying the above command can be used to extract a particular sequence based on a sequence range, ie 1-100. 
 
 ```bash
 # Extract the first 100 bases of the mitochondrial genome
@@ -247,7 +247,7 @@ samtools faidx haemonchus_contortus.PRJEB506.WBPS18.genomic.fa mitochondrion:1-1
 - to try this, attempt the following:
 	- go to WormBase ParaSite, and search for the "cox1" gene (HCON_00667215) to identify the start and end coordinates in the mitochondrial genome
 	- on the command line, using "samtools faidx" and the cox1 gene coordinates, extract the sequence and save it to a new file
-	- once you have the cox1 sequence in the new file, have a look at the header of the sequence - does it look sensible? What would be a sensible naming stategy if you have 100 mtDNA genomes or genes or sequneces from different species extracted this way?
+	- once you have the cox1 sequence in the new file, have a look at the header of the sequence - does it look sensible? What would be a sensible naming strategy if you have 100 mtDNA genomes or genes or sequences from different species extracted this way?
 	- if not, change the header name using a "sed" command.  
 
 
@@ -321,7 +321,7 @@ head single_sample.tmp.sam
 **Figure** Exploring the SAM file format
 
 
-Most of the data in a SAM file is relatively easy to interpret - it contains information about each read, where 
+Most of the data in a SAM file are relatively easy to interpret - it contains information about each read, where 
 it is mapped in the genome, and how well it maps to the genome. 
 
 One column that is not easy to interpret is the "flag" column. It contains various numbers, which are the sum of "bits" that actually decribe many different
@@ -399,7 +399,7 @@ bcftools mpileup -Ou -f hcontortus_mtDNA.fasta single_sample.tmp.sorted.bam | bc
 # index the bcf variant file:
 bcftools index single_sample.tmp.bcf
 
-# convert the bcf file to a vcf file:
+# convert the bcf file to a vcf file and compress the file:
 bcftools view single_sample.tmp.bcf -Oz > single_sample.tmp.vcf.gz
  
 # index the vcf.gz file using tabix:
@@ -588,8 +588,8 @@ vcftools --gzvcf all_samples.vcf.gz
 ```
 
 
-In general, SNP callers tend to call too many variants, and so some filtering is required. Depending on that the intended outcome of the 
-analysis, i.e. population genomics, or coding sequence analysis to identify causative mutations, the degree of filtering may differ.
+In general, SNP callers tend to call too many variants, and so some filtering is required. Depending on what the intended outcome of the 
+analysis is, i.e. population genomics, or coding sequence analysis to identify causative mutations, the degree of filtering may differ.
 
 Here, we will use [**vcftools**](https://vcftools.github.io/man_latest.html) to perform some basic filtering, including on minor allele 
 frequency (maf) that should be above 5% (which will exclude rare and perhaps uninformative variants, at least for this analysis, and by 
