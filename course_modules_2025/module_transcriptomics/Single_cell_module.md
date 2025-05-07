@@ -479,7 +479,7 @@ ggsave(paste0("day2somules_v10clust_40PC_0.4res_RNA_",st,".jpg"))
 ```
 
 ![](figures/SC_Figure_10.png)
-**Figure 10.**
+**Figure 10.** lo que quieras 
 
 ## SCTransform of data <a name="SCTrasform"></a>
 
