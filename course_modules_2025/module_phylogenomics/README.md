@@ -28,7 +28,7 @@ To carry out an alignment, the sequences need to be available in a file that can
 The dataset (unaligned set of sequences: **.faa files** and table) is in:
 
 ```
-/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Dataseq/
+/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Data/
 ```
 
 ### A.	Alignment with MAFFT
@@ -37,13 +37,13 @@ MAFFT is an advanced tool that can align using different alignment algorithms fo
 
 To use it on the VM, type mafft on the command-line, mafft --help will give you information about the proper syntax. 
 
->*"Please note that the procedure below is for all six proteins. As you need to align the sequences of each protein independently.*
+>*Please note that the procedure below is for all six proteins. As you need to align the sequences of each protein independently.*
 
 
 1. Open a Terminal and go into the directory	that contains the dataset to align.
 
 ```
-/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Dataseq/
+/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Data/
 ```
 
 2. Type: 
@@ -63,8 +63,8 @@ mafft --auto nad3.faa > nad3.alg.faa
 >--auto: automatically switches algorithms according to data size.
 
 -------------------------
-[OPTIONAL] Visualizing the alignment online in https://alignmentviewer.org/)
-Open your favourite web browsers and upload one of the files you recently align. 
+[OPTIONAL] Visualizing the alignment online in https://alignmentviewer.org/).
+Open your preferred web browser and upload a file containing one of your recent sequence alignments.
 
 ![alignmentviewer](https://github.com/user-attachments/assets/6aa9ed93-c215-45bd-855f-78632c8fb706)
 
@@ -82,7 +82,7 @@ To use it on the VM, type trimal on the command-line, trimal -h will give you in
 1. Open a Terminal and go into the directory	that contains the alignments.
 
 ```
-/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Dataseq/
+/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Data/
 ```
 
 2. Type: 
@@ -96,6 +96,8 @@ trimal -in nad2.alg.faa -out nad2.alg.trim.faa -gt 0.3 -cons 0.7
 trimal -in nad3.alg.faa -out nad3.alg.trim.faa -gt 0.3 -cons 0.7
 ```
 
+The option -gt 0.3 removes columns (alignment positions) with gaps in more than 30% of the sequences, while -cons 0.7 retains only columns where the residue conservation score is at least 0.7. 
+
 ### C.	Convert the alignment to Clustal format to facilitate visualization using the **seqret** program from the EMBOSS package.
 
 seqret is a command-line tool from the EMBOSS (European Molecular Biology Open Software Suite) package used to convert between different sequence formats. For example, it can convert a FASTA file to Clustal, GenBank, Phylip, and many other formats. It works with both DNA and protein sequences, and is often used to prepare files for input into other bioinformatics tools. Please refer to https://www.bioinformatics.nl/cgi-bin/emboss/help/seqret for further details and options.
@@ -108,12 +110,10 @@ To use it on the VM, type man seqret on the command line to see the manual infor
 man seqret
 ```
 
->*"Again, please note that the procedure below is for all six proteins. As you need to trim the alignment of each protein independently.*
-
 1. Open a Terminal and go into the directory	that contains the trimmed files.
 
 ```
-/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Dataseq/
+/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Data/
 ```
 
 2. Type: 
@@ -137,12 +137,11 @@ less atp6.alg.trim.aln
 
 Concatenator.scp  is a locally developed script written in bash that we use in our lab to concatenate sequences from different alignments to build a “super protein” or “super gene”. This script takes a *list of organism codes and a list of alignment files*. For each organism, it extracts matching sequences from all input alignment files, appends them in order, and produces a final concatenated FASTA file (concatenated.fas).
 
->*"Again, please note that the procedure below is for all six proteins. As you need to trim the alignment of each protein independently.*
 
 1. Open a Terminal and go into the directory	that contains the trimmed files.
 
 ```
-/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Dataseq/
+/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Data/
 ```
 
 2. To generate a file with the list of alignment files to concatenate type: 
@@ -206,7 +205,7 @@ As the input file, we will use the FASTA file generated in the previous activity
 
 **Introduction to the IQ-TREE program:**
 
-This program allows you to perform phylogenetic analysis by Maximum Likelihood. It uses efficient algorithms to explore the tree space, allowing very large matrices to be analyzed with reliable results (hundreds or thousands of sequences). It allows estimating the evolutionary model (ModelFinder module) followed by the phylogenetic inference and implements support measures to evaluate the reliability of the groupings or branches (Bootstrap, Ultrafast Bootstrap Approximation and probabilistic contrasts). The program can be downloaded and run locally (http://www.iqtree.org/), or on online servers such as http://iqtree.cibiv.univie.ac.at/.
+This program allows you to perform phylogenetic analysis by Maximum Likelihood. It uses highly efficient algorithms to explore the tree space, allowing very large matrices to be analyzed with reliable results (hundreds or thousands of sequences). It allows estimating the evolutionary model (ModelFinder module) followed by the phylogenetic inference and implements support measures to evaluate the reliability of the groupings or branches (Bootstrap, Ultrafast Bootstrap Approximation and probabilistic contrasts). The program can be downloaded and run locally (http://www.iqtree.org/), or on online servers such as http://iqtree.cibiv.univie.ac.at/.
 You can find many basic and advanced tutorials at http://www.iqtree.org/doc/
 
 >*Please note that the following procedure applies to the six concatenated protein sequences of mitochondrial-encoded genes. If you are analyzing a different dataset, be sure to replace the file names in the instructions and adjust the parameters accordingly.*
@@ -218,7 +217,7 @@ You can find many basic and advanced tutorials at http://www.iqtree.org/doc/
 1.	Open a Terminal and go into the folder that contains the concatenated alignment file previously generated:
 
 ```
-/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Dataseq/
+/home/manager/course_data/Mitogenomics-Phylogenomics/LAC/Data/
 ```
 
 2.	Type: 
@@ -246,7 +245,7 @@ iqtree2 -s concatenated.rn.fas -m mtZOA+F+I+R6 -B 1000 -nt 6
 
 
 Once the process is finished, the output files will be found in the folder, including:
-.treefile: the ML tree in NEWICK format, which can be visualized by any supported tree viewer programs like FigTree. .iqtree: the main report file that is self-readable. You should look at this file to see the computational results. It also contains a textual representation of the final tree. .log: log file of the entire run (also printed on the screen).
+**.treefile:** the ML tree in NEWICK format, which can be visualized by any supported tree viewer programs like FigTree. **.iqtree:** the main report file that is self-readable. You should look at this file to see the computational results. It also contains a textual representation of the final tree. **.log:** log file of the entire run (also printed on the screen).
 
 ### B.	Tree visualization
 
@@ -300,11 +299,13 @@ e.g.  can modify the size of the fonts (in Tip Labels, Legend, etc).
 |                   | Echinostomatidae     | *Echinoparyphium aconiatum*, *Echinostoma caproni*, *Echinostoma hortense*, *Echinostoma miyagawai*, *Echinostoma paraensei*, *Echinostoma revolutum* |
 |                   | Fasciolidae          | *Fasciola hepatica*, *Fasciola jacksoni*, *Fascioloides magna*, *Fasciolopsis buskii*                                                               |
 |                   | Morishitiidae        | *Morishitium polonicum*     
-|                   | Diplodiscidae        | *Diplodiscus_japonicus*, *Diplodiscus_mehrai*, *Diplodiscus_nigromaculati*  |
+|                   | Diplodiscidae        | *Diplodiscus japonicus*, *Diplodiscus mehrai*, *Diplodiscus nigromaculati*  |
 |                   | Notocotylidae        | *Ogmocotyle ailuri*                                                                                                                           |
 |                   | Paragonimidae        | *Paragonimus skrjabini miyazakii*, *Paragonimus westermani*                                                                                     |
 |                   | Plagiorchiidae       | *Plagiorchis elegans*, *Proterometra macrostoma*                                                                                                 |
 |                   | Allocreadiidae       | *Pseudoparacreptotrema yaguezani*                                                                                                             |
 | **Diplostomida**  | Schistosomatidae     | *Schistosoma bovis*, *Schistosoma curassoni*, *Schistosoma guineensis*, *Schistosoma haematobium*, *Schistosoma indicum*, *Schistosoma japonicum*, *Schistosoma mansoni*, *Schistosoma margrebowiei*, *Schistosoma mattheei*, *Schistosoma mekongi*, *Schistosoma spindalis*, *Trichobilharzia regenti*, *Trichobilharzia szidati* |
 
->*Olson PD, Cribb TH, Tkach VV, Bray RA, Littlewood DTJ. (2003). Phylogeny and classification of the Digenea (Platyhelminthes: Trematoda). International Journal for Parasitology, 33(7), 733–755.*
+-------------------------
+[OPTIONAL] Check Olson PD, Cribb TH, Tkach VV, Bray RA, Littlewood DTJ. (2003). *Phylogeny and classification of the Digenea (Platyhelminthes: Trematoda).* International Journal for Parasitology, 33(7), 733–755. for furhter
+

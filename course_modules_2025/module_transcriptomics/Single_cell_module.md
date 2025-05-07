@@ -1,5 +1,8 @@
 # Single-cell transcriptomics
+
 ### Author: Santiago Fontenla, addapted from the tutorial by Teresa Attenborough 
+## Affiliation: University of Glasgow
+
 
 ## Table of Contents
 1. [Overview and Aims](#intro)
@@ -471,6 +474,7 @@ ElbowPlot(day2somules, ndims = 100)  #ranks PCs by percentage of variation. A cl
 #ggsave(paste0("day2somules_v10_elbowplot100_",st,".jpg"))
 ```
 
+
 ![](figures/SC_Figure_10.jpg)
 **Figure 10.** Elbowplot showing the proportion of variation captured by each PC
 
@@ -524,6 +528,7 @@ What do you notice once the UMAP is coloured by sample? Is there anything you mi
 FeaturePlot(day2somules, features="percent.mt", label=TRUE)
 ggsave("day2somules_v10_40PC_0.5res_after_one_filt_mt_SCT.jpg")
 ```
+
 
 ![](figures/SC_Figure_14.jpg)
 **Figure 14.** UMAP plot, cells are colored by percentage of mtRNA
@@ -652,5 +657,6 @@ LabelClusters(plot1, id = "ident", color = 'black', size =4, repel = T,  box.pad
 
 ggsave(paste0("day2somules-labelledlclusters_40PC_0.5res_",st,".jpg"), width = 25, height = 15)
 ```
+
 ![](figures/SC_Figure_18.png)
 **Figure 18.** Once you have identified the cell types you can rename the clusters

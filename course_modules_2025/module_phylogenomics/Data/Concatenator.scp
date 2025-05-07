@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# ============================================================================
+# Script: Concatenator.scp
+# Purpose: Concatenate sequences from multiple FASTA files based on a reference list.
+#
+# Usage:
+#   ./Concatenator.scp list_of_alignment_files.txt reference_codes.txt
+#
+# Arguments:
+#   $1 - File containing the list of FASTA alignment files to process (one per line)
+#   $2 - File containing the list of reference codes (one per OTU)
+#
+# Output:
+#   - concatenated.fas: A FASTA file with concatenated sequences following the order in the reference list.
+# ============================================================================
+
+# Exit immediately if a command exits with a non-zero status
+set -euo pipefail
+
+# Check if the correct number of arguments was provided
+if [[ $# -ne 2 ]]; then
+    echo "Usage: $0 <list_of_alignment_files.txt> <reference_codes.txt>"
+    exit 1
+fi
+
+# Clean up any existing temporary files
+rm -f *.tmpx temp
+
+# Read reference codes (organisms)
+Organisms=$(cat "$2")
+for Organism in $Organisms; do
+    #echo "Initializing sequence for: $Organism"
+    echo ">$Organism" > "${Organism}.tmpx"
+done
+
+# Read list of alignment files
+AlignmentFiles=$(cat "$1")
+for AlignmentFile in $AlignmentFiles; do 
+    echo "Processing alignment file: $AlignmentFile"
+
+    # Format the FASTA file: put sequences in one line and keep headers properly
+    sed 's/>..*/&____/g' "$AlignmentFile" \
+        | sed ':a;N;$!ba;s/\n//g' \
+        | sed 's/____/\n/g' \
+        | sed 's/>/\n>/g' \
+        | grep . > temp
+
+    # Append the corresponding sequence to each organism's temporary file
+    Organisms=$(cat "$2")
+    for Organism in $Organisms; do      
+        echo "Appending sequence for: $Organism"
+        # Extract the sequence for the organism and append (exclude headers)
+        grep -A1 "$Organism" temp | grep -v "^>" >> "${Organism}.tmpx"
+    done
+done
+
+# Concatenate all temporary files into the final output
+cat *.tmpx > concatenated.fas
+
+# Optional: clean up temporary files
+rm -f *.tmpx temp
+
+echo "Concatenation completed successfully. Output written to 'concatenados.fas'."
+exit 0
