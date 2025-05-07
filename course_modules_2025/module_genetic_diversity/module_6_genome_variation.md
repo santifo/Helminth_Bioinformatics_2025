@@ -22,16 +22,16 @@ Steve Doyle, 2023
 
 
 ## 1. Overview and Aims <a name="intro"></a>
-Genetic variation can tell us a lot about an organisms evolutionary past, broad and fine-scale relationships within and between species, and the mechanisms by
+Genetic variation can tell us a lot about an organism's evolutionary past, broad and fine-scale relationships within and between species, and the mechanisms by
 which organisms adapt to new environments or selection pressures such as drug treatmennt. The use of genomics to understand genetic variation offers insight into 
-these processes at a range of resolutions, from single nucleotide polymorphisms genome-wide to chromosomal rearrangements.   
+these processes at a range of resolutions, from single nucleotide polymorphisms to genome-wide chromosomal rearrangements.   
 
-Modern genomic approaches such as high-throughput sequencing has enabled not only the rapid increase in reference genome assemblies, but also the ability to resequence 
+Modern genomic approaches such as high-throughput sequencing have enabled not only the rapid increase in reference genome assemblies, but also the ability to resequence 
 genomes from many individuals within a species. The re-sequencing of a genome typically aims to align or map new sequence data to a reference genome (please 
 note that we will use the terms “aligning” and “mapping” interchangeably), and identify differences between the newly sequenced sample and the reference genome. These differences
 can vary in number and size, ranging from single-base substitutions called *single nucleotide polymorphisms (SNPs)*, *INsertions and DELetions (INDELs)* that can range from one 
 to many base pairs, to *copy number variants (CNVs)* of, for example, one or more genes. By comparing these different types of genetic variations between closely related 
-populations or individual organisms, in is possible to learn how genetic differences that may cause phenotypic differences, such as drug resistance or increased virulence in pathogens, 
+populations or individual organisms, is possible to learn how genetic differences may cause phenotypic differences, such as drug resistance or increased virulence in pathogens, 
 or changed susceptibility to disease in humans. 
 
 One important prerequisite for the mapping of sequence data to work is that the reference and the re-sequenced subject have 
@@ -41,18 +41,18 @@ In this exercise, you will be analyzing genetic variation in the gastrointestina
 pathogen of wild and domesticated ruminants worldwide, and has a major impact on the health and economic viability of sheep and goat farming in 
 particular. It is also a genetically tractable model used for drug discovery, vaccine development, and anthelmintic resistance research. A chromosome-scale 
 reference genome assembly and manually curated genome annotation are both available to download and explore at WormBase Parasite.
-The sequencing data you will be using in this module is from two published studies - [Salle et al 2019 Nature Communications](https://doi.org/10.1038/s41467-019-12695-4) 
+The sequencing data you will be using in this module are from two published studies - [Salle et al 2019 Nature Communications](https://doi.org/10.1038/s41467-019-12695-4) 
 and [Doyle et al. 2020 Communications Biology](https://doi.org/10.1038/s42003-020-01377-3) - which describe the global and genome-wide genetic diversity of *H. contortus*, all of 
-which was generated at the Wellcome Sanger Institute. Analysis of global diversity allows you to understand aspects of the species biology, such as how different populations are 
+which were generated at the Wellcome Sanger Institute. Analysis of global diversity allows you to understand aspects of the species biology, such as how different populations are 
 connected (which may be important to understand the spread of a pathogen or ongoing transmission), whether populations are growing or declining (perhaps in response to drug
 treatment), or the impact of selection on regions or specific genes throughout the genome. 
 
-Although whole-genome sequencing data was generated for these samples, we have extracted only the mitochondrial DNA-derived reads for you to work with. The main reason for this is 
+Although whole-genome sequencing data were generated for these samples, we have extracted only the mitochondrial DNA-derived reads for you to work with. The main reason for this is 
 that at this scale, the data should be able to be analysed efficiently on your computer without the need for high performance computing infrastructure and/or capacity. 
 
-To analyse these data, we will be working in both the unix and R command line environments. This is because we typically manipulate high throughput sequencing data such 
-as those you will be using in unix, i.e., read mapping and SNP calling, whereas the population genetic analyses are commonly written using R tools. 
-Although some graphical user interface (GUI) tools such as CLC Genomics and Genious are available (at a cost) to do similar tasks, using the command 
+To analyse these data, we will be working in both the Unix and R command line environments. This is because we typically manipulate high throughput sequencing data such 
+as those you will be using in Unix, i.e., read mapping and SNP calling, whereas the population genetic analyses are commonly written using R tools. 
+Although some graphical user interface (GUI) tools such as CLC Genomics and Geneious are available (at a cost) to do similar tasks, using the command 
 line gives you much greater flexibility in the analyses that you can do and the scale that you can do it, and it is freely available. There will be 
 a considerable amount of coding in this module - this may be daunting at first, however, with some practice, it will become much easier. 
 
@@ -88,7 +88,7 @@ ls -lrt
 
 You should be able to see:
 - a directory called “raw_reads”, which contains all of the sequencing data we will be working with today, 
-- a directory called "R_analysis", where we will performed our population genetic analyses, 
+- a directory called "R_analysis", where we will perform our population genetic analyses, 
 - two files, one is your reference sequence that we will map our raw reads to, and the other contains metadata about our samples that we will be using later. 
 
 It is a good idea to collect all metadata to do with a study early, as it can help you explore your data in the analysis, and help interpret the genetic signals that you hopefully will discover.
@@ -107,9 +107,8 @@ It is a good idea to collect all metadata to do with a study early, as it can he
 ## 2. Quality control of raw sequencing data <a name="dataQC"></a>
 
 The first exercise of any genomics project is to turn your sample of interest into sequencing data. There are many steps involved, including sample collection (and storage), DNA extraction (and storage), 
-sequencing library preparation, and then finally submitting and having your DNA library sequenced on one or more of a number of different sequencing platforms. Not surprisingly then is that the 
-success of each step will influence how well your sample will be sequenced and will impact on the quality of the data generated.  Exploring and understanding the characteristics of the raw data 
-before any assembly is performed should give you some confidence in whether your data is sufficient to undertake a genomic analysis, and may provide some insight into how an analysis will proceed.
+sequencing library preparation, and then finally submitting and having your DNA library sequenced on one or more of a number of different sequencing platforms. Not surprisingly, the success of each step will influence how well your sample is sequenced and will impact the quality of the data generated.  Exploring and understanding the characteristics of the raw data 
+before any assembly is performed should give you some confidence in whether your data are sufficient to undertake a genomic analysis, and may provide some insight into how an analysis will proceed.
 
 We will start by using a tool called **FastQC** (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) to examine some characteristics of your raw data. FastQC takes raw fastq reads and 
 provides simple graphs and tables to quickly assess the quality of the data. It also highlights where they may be problems in different aspects of your data.
@@ -122,7 +121,7 @@ provides simple graphs and tables to quickly assess the quality of the data. It 
 
 The main panel of this figure shows an example of the comparison of the distribution of per base quality (Phred score, on the y-axis) per base position in the read (x-axis). Phred scores above 30 
 are typically considered to be good quality for an Illumina read. In this case, it shows higher quality bases toward the start of the read (in the green section), followed by a decrease in quality 
-along the read, in which the quality drops into the yellow (Phred < 30) and then into the red (Phred < 20). Some examples of “good” and “bad” quality data is found in the “Example Reports” section of 
+along the read, in which the quality drops into the yellow (Phred < 30) and then into the red (Phred < 20). Some examples of “good” and “bad” quality data are found in the “Example Reports” section of 
 the FastQC website.
 
 
@@ -211,7 +210,7 @@ To save time, we have generated a multiQC report for all of the samples, which c
 
 
 ## 3. Preparing your reference sequence prior to mapping <a name="ref"></a>
-Before mapping out samples, we need a reference genome. If you didn't have a reference genome for your species, you might have to first assemble the reads to make a draft genome assembly. 
+Before mapping our samples, we need a reference genome. If you didn't have a reference genome for your species, you might have to first assemble the reads to make a draft genome assembly. 
 That is outside of the scope of this workshop, but please talk to the instructors about this if you are interested.
 
 Fortunately, we have access to a high-quality reference genome for *Haemonchus contortus*, which we can download from [WormBase ParaSite](https://parasite.wormbase.org/Haemonchus_contortus_prjeb506/Info/Index/). 
