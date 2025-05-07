@@ -210,7 +210,7 @@ To save time, we have generated a multiQC report for all of the samples, which c
 
 
 ## 3. Preparing your reference sequence prior to mapping <a name="ref"></a>
-Before mapping out samples, we need a reference genome. If you didn't have a reference genome for your species, you might have to first assemble the reads to make a draft genome assembly. 
+Before mapping our samples, we need a reference genome. If you didn't have a reference genome for your species, you might have to first assemble the reads to make a draft genome assembly. 
 That is outside of the scope of this workshop, but please talk to the instructors about this if you are interested.
 
 Fortunately, we have access to a high-quality reference genome for *Haemonchus contortus*, which we can download from [WormBase ParaSite](https://parasite.wormbase.org/Haemonchus_contortus_prjeb506/Info/Index/). 
